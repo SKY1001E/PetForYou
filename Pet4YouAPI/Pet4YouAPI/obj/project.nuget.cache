@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "GWkwMdKVBySVtzNPmrPc3TrfcDd3U2I3U9mNhESJFbQA6zauv84mWLC38BnHdPASnpmIa3FqvfcbEoBpT9hI+A==",
+  "success": true,
+  "projectFilePath": "E:\\Pet4You\\Pet4YouAPI\\Pet4YouAPI\\Pet4YouAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\tkace\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\tkace\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\tkace\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\tkace\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\tkace\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\tkace\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
