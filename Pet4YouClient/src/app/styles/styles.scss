@@ -1,11 +1,92 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* IMPORTS */
-@import "./mixins";
-@import "./helpers";
-@import "./variables";
-
-/* Styles */
 body {
-  background: $petMainBgColor;
+  margin: 0;
+  padding: 0;
 }
+
+.navbar {
+  background: #9EDCEF;
+  height: 130px;
+  width: 100%;
+}
+
+.navbar ul {
+  padding: 0;
+}
+
+.navbar ul li {
+  display: inline-block;
+  line-height: 80px;
+  margin: 0 5px;
+  margin-right: 100px; 
+
+}
+
+.navbar ul li a {
+  color: black;
+  font-size: 20px;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+a:hover {
+  background: #3a5a72;
+  transition: 0.5s;
+}
+
+.add_button {
+  background: #3a5a72;
+  color: white;
+  font-size: 20px;
+  padding: 10px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: 0.5s;
+  margin-right: 30px;
+}
+
+.add_button:hover {
+  background: #357db9;
+}
+@mixin at-max-width-960px {
+  @media (max-width: 960px) {
+    @content;
+  }
+}
+
+@include at-max-width-960px {
+  ul {
+    position: fixed;
+    width: 100%;
+    background: #2c3e50;
+    margin-bottom: -5px;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+  }
+  .navbar ul li {
+    display: inline-block;
+    margin: 0px 40px;
+  }
+  .navbar ul li a {
+    font-size: 20px;
+    color:white;
+  }
+  a:hover {
+    background: none;
+    color: #357db9;
+  }
+  .add_button{
+    font-size: 15px;
+    padding: 7px 10px;
+
+  }
+  .logo{
+    width: 80px;
+    margin-left: 20px;
+  }
+  .navbar {
+    height: 100px;
+  }
+}
+
+
