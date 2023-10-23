@@ -118,8 +118,8 @@
   }
 }
 
-@mixin _550-h {
-  @media all and (max-height: 550px) {
+@mixin at-max-width-550px {
+  @media (max-width: 550px) {
     @content;
   }
 }
@@ -141,7 +141,11 @@
     @content;
   }
 }
-
+@mixin at-max-width-960px {
+  @media (max-width: 960px) {
+    @content;
+  }
+}
 @mixin _1224-h {
   @media all and (max-height: 1224px) {
     @content;

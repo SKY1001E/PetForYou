@@ -1,8 +1,10 @@
+@import './mixins.scss';
+
 body {
   margin: 0;
   padding: 0;
 }
-
+//Header
 .navbar {
   background: #9EDCEF;
   height: 130px;
@@ -20,7 +22,6 @@ body {
   margin-right: 100px; 
 
 }
-
 .navbar ul li a {
   color: black;
   font-size: 20px;
@@ -47,10 +48,69 @@ a:hover {
 .add_button:hover {
   background: #357db9;
 }
-@mixin at-max-width-960px {
-  @media (max-width: 960px) {
-    @content;
-  }
+//Sign-in page
+.container {
+  background-color: white;
+  width: 40%;
+  height: 55%;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.signIn_logo {
+  width: 160px;
+  height: 170px;
+}
+
+.form-group label {
+  font-size: 18px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 13px;
+  background: #9EDCEF;
+  border: none;
+}
+.sign_btn button, .google_btn button {
+  width: 50%;
+  padding: 10px;
+  font-size: 15px;
+  border: none;
+  margin: 5px 0;
+}
+.Google_logo img {
+  margin-right: 10px;
+  height: 20px;
+  font-size: 10px;
+}
+.return-link {
+  position: absolute;
+  top: 18%;
+  right: 92%;
+  font-size: 16px;
+}
+.label_sign{
+  font-size: 25px;
+  margin-top: 70px;
+}
+//Sign-up page
+.signUpcontainer {
+  background-color: white;
+  width: 50%;
+  height: 70%;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+
+}
+.signUp_logo {
+  width: 120px;
+  height: 140px;
+  margin-top: -65px;
 }
 
 @include at-max-width-960px {
@@ -69,23 +129,110 @@ a:hover {
   }
   .navbar ul li a {
     font-size: 20px;
-    color:white;
+    color: white;
   }
   a:hover {
     background: none;
     color: #357db9;
   }
-  .add_button{
+  .add_button {
     font-size: 15px;
     padding: 7px 10px;
-
   }
-  .logo{
+  .logo {
     width: 80px;
     margin-left: 20px;
   }
   .navbar {
     height: 100px;
+  }
+  .container{
+    width: 80%;
+    height: 55%;
+  }
+  .signIn_logo {
+  width: 120px;
+  height: 120px;
+  margin-top: -30px;
+}
+.form-group label {
+  font-size: 14px;
+}
+.return-link {
+  right: 86%;
+}
+.signUpcontainer {
+  width: 55%;
+  height: 70%;
+}
+.signUp_logo {
+  width: 120px;
+  height: 130px;
+  margin-top: -50px;
+}
+.sign_btn button, .google_btn button {
+  padding: 10px;
+  font-size: 10px;
+  margin: 10px 0;
+}
+.footer{
+  display: none;
+}
+}
+@include _1224-h{
+  .container {
+    overflow-y: auto;
+    max-height: 60vh; 
+    margin-bottom: 20px; 
+  }
+
+  .signUpcontainer {
+    overflow-y: auto;
+    max-height: 60vh;
+    margin-bottom: 20px; 
+  }
+}
+@include at-max-width-550px {
+  
+  .navbar ul li {
+    margin: 0px 10px;
+  }
+  .navbar ul li a {
+    font-size: 14px;
+  }
+  .signIn_logo {
+    width: 80px;
+    height: 80px;
+  }
+  .form-group input {
+    padding: 8px;
+    margin-top: 5px;
+    font-size: 10px;
+  }
+  .return-link {
+    font-size: 10px;
+  }
+  .sign_btn button, .google_btn button {
+    padding: 8px;
+    font-size: 9px;
+  }
+  .label_sign {
+    font-size: 20px;
+    margin-top: 70px;
+  }
+  .container{
+    width: 80%;
+    height: 45%;
+  }
+  .signUpcontainer {
+    width: 55%;
+    height:60%;
+    margin-top: 20px;
+  }
+  .signUp_logo {
+    width: 80px;
+    height: 80px;
+    margin-top: -80px;
   }
 }
 

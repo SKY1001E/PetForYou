@@ -1,3 +1,37 @@
-<div class="sign-in">
-
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body style="background-color: rgba(205, 231, 239, 1); display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; flex-direction: column;">
+    <img src="/assets/logo.png" class="signIn_logo" alt="Logo">
+    <div class="return-link">
+        <a href="/" style="text-decoration: none; color: #656565;">На головну</a>
+    </div>
+    <div class="flex justify-content-center align-items-center container">
+        <a href="#" style="position: relative; top: 20px; left: 20px; font-size: 16px; text-decoration: none; color: #2490B2;">Перейти до реєстрації</a>
+        <div class="label_sign" style="display: flex; justify-content: center;">
+            Авторизація
+        </div>
+        <form>
+            <div class="form-group " style="margin: 20px;">
+                <label for="email">Електронна пошта:</label>
+                <input type="email" id="email" name="email" placeholder="Введіть вашу електронну пошту">
+            </div>
+            <div class="form-group" style="margin: 20px;">
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" placeholder="Введіть пароль">
+            </div>
+            <div class="sign_btn" style="display: flex; justify-content: center; ">
+                <button type="submit" style="background-color: #2490B2; color: white;">Увійти</button>
+            </div>
+            <div class="google_btn" style="display: flex; justify-content: center;">
+                <button type="button" style="background-color: white; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15); justify-content: center; display: flex;">
+                    <div class="Google_logo" style="display:  flex; align-items: center;">
+                        <img src="/assets/Google.png" alt="Google Icon"> Sign Up with Google
+                    </div>
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
