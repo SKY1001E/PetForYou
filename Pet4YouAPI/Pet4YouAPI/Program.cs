@@ -1,7 +1,19 @@
+using Microsoft.EntityFrameworkCore;
+using Pet4YouAPI.DBContext;
+using Pet4YouAPI.DI;
+using Pet4YouAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 // Add services to the container.
+builder.Services.AddDbContext<Pet4YouContext>(options =>
+    options.UseSqlServer(configuration.GetConnectionString("default")));
+
+
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

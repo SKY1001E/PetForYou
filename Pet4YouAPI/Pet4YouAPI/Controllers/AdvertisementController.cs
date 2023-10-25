@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-//using Pet4YouAPI.Models;
-using System.Reflection;
 
 namespace Pet4YouAPI.Controllers
 {

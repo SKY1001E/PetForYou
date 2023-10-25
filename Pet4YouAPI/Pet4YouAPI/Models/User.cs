@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Pet4YouAPI.Models;
 
@@ -19,7 +20,7 @@ public partial class User
 
     public bool Deleted { get; set; }
 
-    public virtual ICollection<AdvertisementDeleting> AdvertisementDeletings { get; set; } = new List<AdvertisementDeleting>();
+    // public virtual ICollection<AdvertisementDeleting> AdvertisementDeletings { get; set; } = new List<AdvertisementDeleting>();
 
     public virtual ICollection<Advertisement> Advertisements { get; set; } = new List<Advertisement>();
 

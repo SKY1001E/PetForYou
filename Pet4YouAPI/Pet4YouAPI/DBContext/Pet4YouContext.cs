@@ -5,7 +5,7 @@ using Pet4YouAPI.Models;
 
 namespace Pet4YouAPI.DBContext;
 
-public partial class Pet4YouContext : DbContext
+public class Pet4YouContext : DbContext
 {
     public Pet4YouContext()
     {
@@ -34,10 +34,6 @@ public partial class Pet4YouContext : DbContext
 
     public virtual DbSet<UserInfo> UserInfos { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS;Initial Catalog=Pet4You;Integrated Security=True;TrustServerCertificate=true");
-    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -78,7 +74,7 @@ public partial class Pet4YouContext : DbContext
             entity.Property(e => e.DeleteDate).HasColumnType("datetime");
             entity.Property(e => e.Reason).HasMaxLength(200);
 
-            entity.HasOne(d => d.AdminUser).WithMany(p => p.AdvertisementDeletings)
+            entity.HasOne(d => d.AdminUser).WithMany()
                 .HasForeignKey(d => d.AdminUserId);
 
             entity.HasOne(d => d.Advertisement).WithMany(p => p.AdvertisementDeletings)
@@ -167,7 +163,7 @@ public partial class Pet4YouContext : DbContext
             entity.Property(e => e.ProfileImageSource).HasMaxLength(256);
             entity.Property(e => e.Sex).HasMaxLength(10);
 
-            entity.HasOne(d => d.IdNavigation).WithOne(p => p.UserInfo)
+            entity.HasOne(d => d.User).WithOne(p => p.UserInfo)
                 .HasForeignKey<UserInfo>(d => d.Id);
         });
     }

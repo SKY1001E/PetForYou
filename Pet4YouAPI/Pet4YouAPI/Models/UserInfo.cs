@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Pet4YouAPI.Models;
 
@@ -25,5 +26,6 @@ public partial class UserInfo
 
     public DateTime? DateOfBirth { get; set; }
 
-    public virtual User IdNavigation { get; set; } = null!;
+    [JsonIgnore]
+    public virtual User User { get; set; } = null!;
 }
