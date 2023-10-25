@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Pet4You\\Pet4YouAPI\\Pet4YouAPI\\Pet4YouAPI.csproj": {}
+    "D:\\Учеба\\3к_о\\авпз\\Pet4You\\Pet4YouAPI\\Pet4YouAPI\\Pet4YouAPI.csproj": {}
   },
   "projects": {
-    "E:\\Pet4You\\Pet4YouAPI\\Pet4YouAPI\\Pet4YouAPI.csproj": {
+    "D:\\Учеба\\3к_о\\авпз\\Pet4You\\Pet4YouAPI\\Pet4YouAPI\\Pet4YouAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Pet4You\\Pet4YouAPI\\Pet4YouAPI\\Pet4YouAPI.csproj",
+        "projectUniqueName": "D:\\Учеба\\3к_о\\авпз\\Pet4You\\Pet4YouAPI\\Pet4YouAPI\\Pet4YouAPI.csproj",
         "projectName": "Pet4YouAPI",
-        "projectPath": "E:\\Pet4You\\Pet4YouAPI\\Pet4YouAPI\\Pet4YouAPI.csproj",
-        "packagesPath": "C:\\Users\\tkace\\.nuget\\packages\\",
-        "outputPath": "E:\\Pet4You\\Pet4YouAPI\\Pet4YouAPI\\obj\\",
+        "projectPath": "D:\\Учеба\\3к_о\\авпз\\Pet4You\\Pet4YouAPI\\Pet4YouAPI\\Pet4YouAPI.csproj",
+        "packagesPath": "C:\\Users\\vlcvi\\.nuget\\packages\\",
+        "outputPath": "D:\\Учеба\\3к_о\\авпз\\Pet4You\\Pet4YouAPI\\Pet4YouAPI\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\tkace\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\vlcvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -45,6 +40,20 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
@@ -69,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

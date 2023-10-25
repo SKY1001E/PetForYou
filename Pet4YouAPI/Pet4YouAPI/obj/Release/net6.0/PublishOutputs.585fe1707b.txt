@@ -1,0 +1,11 @@
+D:\Учеба\3к_о\авпз\Pet4You\Pet4YouAPI\Pet4YouAPI\obj\Release\net6.0\PubTmp\Out\Pet4YouAPI.exe
+D:\Учеба\3к_о\авпз\Pet4You\Pet4YouAPI\Pet4YouAPI\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+D:\Учеба\3к_о\авпз\Pet4You\Pet4YouAPI\Pet4YouAPI\obj\Release\net6.0\PubTmp\Out\appsettings.json
+D:\Учеба\3к_о\авпз\Pet4You\Pet4YouAPI\Pet4YouAPI\obj\Release\net6.0\PubTmp\Out\Pet4YouAPI.dll
+D:\Учеба\3к_о\авпз\Pet4You\Pet4YouAPI\Pet4YouAPI\obj\Release\net6.0\PubTmp\Out\Pet4YouAPI.deps.json
+D:\Учеба\3к_о\авпз\Pet4You\Pet4YouAPI\Pet4YouAPI\obj\Release\net6.0\PubTmp\Out\Pet4YouAPI.runtimeconfig.json
+D:\Учеба\3к_о\авпз\Pet4You\Pet4YouAPI\Pet4YouAPI\obj\Release\net6.0\PubTmp\Out\Pet4YouAPI.pdb
+D:\Учеба\3к_о\авпз\Pet4You\Pet4YouAPI\Pet4YouAPI\obj\Release\net6.0\PubTmp\Out\Microsoft.OpenApi.dll
+D:\Учеба\3к_о\авпз\Pet4You\Pet4YouAPI\Pet4YouAPI\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
+D:\Учеба\3к_о\авпз\Pet4You\Pet4YouAPI\Pet4YouAPI\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Учеба\3к_о\авпз\Pet4You\Pet4YouAPI\Pet4YouAPI\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
