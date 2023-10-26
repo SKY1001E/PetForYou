@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { HeaderService } from '../../../HeaderState'; // Импортируйте HeaderService
 
 @Component({
   selector: 'main-page',
@@ -13,7 +14,8 @@ export class MainPageComponent implements OnInit, OnDestroy, AfterViewInit {
   title = 'Pet4YouClient';
 
   constructor(private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              public headerService: HeaderService) {
   }
 
   ngOnDestroy() {

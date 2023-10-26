@@ -9,6 +9,7 @@ import {SignUpComponent} from "./components/sign-up/sign-up.component";
 
 @NgModule({
     imports: [
+        
         CommonModule,
         FormsModule,
         HttpClientModule,
