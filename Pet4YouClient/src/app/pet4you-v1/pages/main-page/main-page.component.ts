@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import {Location} from "@angular/common";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { HeaderService } from '../../../HeaderState'; // Импортируйте HeaderService
+import {UiControllerService} from '../../services/ui-controller.service'; // Импортируйте HeaderService
 
 @Component({
   selector: 'main-page',
@@ -15,7 +16,8 @@ export class MainPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              public headerService: HeaderService) {
+              private location: Location,
+              public uiController: UiControllerService) {
   }
 
   ngOnDestroy() {
@@ -28,5 +30,9 @@ export class MainPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
 
+  }
+
+  back() {
+      this.location.back();
   }
 }

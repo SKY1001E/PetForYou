@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { HeaderService } from '../../../../../HeaderState'; 
+import {UiControllerService} from '../../../../services/ui-controller.service';
 
 @Component({
     selector: 'sign-up',
@@ -13,7 +13,7 @@ export class SignUpComponent implements OnInit, OnDestroy, AfterViewInit {
 
     constructor(private router: Router,
                 private route: ActivatedRoute,
-                public headerService: HeaderService
+                public uiController: UiControllerService
                     ) {
     }
 
@@ -23,7 +23,7 @@ export class SignUpComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     ngOnInit() {
-        this.headerService.hideHeader = true; 
+        this.uiController.showHeader = false;
     }
 
     ngAfterViewInit() {

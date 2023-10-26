@@ -5,6 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {MainPageComponent} from "./pages/main-page/main-page.component";
 import {ButtonModule} from "primeng/button";
+import {UiControllerService} from "./services/ui-controller.service";
 
 
 @NgModule({
@@ -31,6 +32,8 @@ import {ButtonModule} from "primeng/button";
     MainPageComponent
   ],
   exports: [],
-  providers: []
+  providers: [
+      UiControllerService
+  ]
 })
 export class MainV1Module { }

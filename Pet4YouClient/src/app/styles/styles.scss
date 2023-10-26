@@ -1,103 +1,140 @@
+// Imports
 @import './mixins.scss';
+@import './helpers.scss';
+@import './variables';
 
+// Styles
 body {
   margin: 0;
   padding: 0;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
+
 //Header
-.navbar {
-  background: #9EDCEF;
-  height: 130px;
-  width: 100%;
+.nav-container {
+    background: $navBgColor;
+
+    .navbar {
+        height: 130px;
+        width: 100%;
+
+        ul {
+            padding: 0;
+
+            @include at-max-width-960px {
+                position: fixed;
+                width: 100%;
+                background: #2c3e50;
+                margin-bottom: -5px;
+                bottom: 0;
+                left: 0;
+                text-align: center;
+            }
+
+            li {
+                display: inline-block;
+                line-height: 80px;
+                margin: 0 100px 0 5px;
+
+                @include at-max-width-960px() {
+                    display: inline-block;
+                    margin: 0 40px;
+                }
+
+                a {
+                    color: $navButtonTextColorDarken;
+                    @include border-radius(6px);
+                    @include fluidFontSize(16px, 20px, 767px, 1280px, 20px);
+                    text-decoration: none;
+
+                    @include at-max-width-960px() {
+                        color: $navButtonTextColorLighten;
+                    }
+
+                    &.active:hover {
+                        color: #2c3e50;
+                        text-decoration: underline;
+
+                        @include at-max-width-960px {
+                            color: $navHoverLinkTextColor;
+                        }
+                    }
+                }
+            }
+        }
+
+        .add-button {
+            background: $navButtonBgColor;
+            color: $navButtonTextColorLighten;
+            @include fluidFontSize(16px, 20px, 767px, 1280px, 20px);
+            @include border-radius(6px);
+            text-decoration: none;
+            transition: 0.5s;
+
+            &:hover {
+                background: $navAddButtonHover;
+            }
+        }
+    }
 }
 
-.navbar ul {
-  padding: 0;
+.back-button {
+    position: absolute;
 }
-.navbar ul li {
+// sign-in page
 
-  display: inline-block;
-  line-height: 80px;
-  margin: 0 5px;
-  margin-right: 100px; 
-}
-.navbar ul li a {
-  color: black;
-  font-size: 20px;
-  border-radius: 3px;
-  text-decoration: none;
-}
-.navbar ul li a.active:hover {
-  color: #2c3e50;
-  text-decoration: underline; 
+.sign-in, sign-up {
+    .container {
+        background-color: white;
+        width: 40%;
+        height: 55%;
+        border-radius: 10px;
+        margin-top: 20px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .signIn_logo {
+        width: 160px;
+        height: 170px;
+    }
+
+    .form-group label {
+        font-size: 18px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        font-size: 13px;
+        background: #9EDCEF;
+        border: none;
+    }
+    .sign_btn button, .google_btn button {
+        width: 50%;
+        padding: 13px;
+        font-size: 15px;
+        border: none;
+        margin: 5px 0;
+    }
+    .Google_logo img {
+        margin-right: 10px;
+        height: 20px;
+        font-size: 10px;
+    }
+    .return-link {
+        position: absolute;
+        top: 5%;
+        right: 91%;
+        font-size: 16px;
+    }
+    .label_sign{
+        font-size: 25px;
+        margin-top: 70px;
+    }
 }
 
 
-
-.add_button {
-  background: #3a5a72;
-  color: white;
-  font-size: 20px;
-  padding: 10px 20px;
-  border-radius: 3px;
-  text-decoration: none;
-  transition: 0.5s;
-  margin-right: 30px;
-}
-
-.add_button:hover {
-  background: #357db9;
-}
-//Sign-in page
-.container {
-  background-color: white;
-  width: 40%;
-  height: 55%;
-  border-radius: 10px;
-  margin-top: 20px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-}
-
-.signIn_logo {
-  width: 160px;
-  height: 170px;
-}
-
-.form-group label {
-  font-size: 18px;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  font-size: 13px;
-  background: #9EDCEF;
-  border: none;
-}
-.sign_btn button, .google_btn button {
-  width: 50%;
-  padding: 13px;
-  font-size: 15px;
-  border: none;
-  margin: 5px 0;
-}
-.Google_logo img {
-  margin-right: 10px;
-  height: 20px;
-  font-size: 10px;
-}
-.return-link {
-  position: absolute;
-  top: 5%;
-  right: 91%;
-  font-size: 16px;
-}
-.label_sign{
-  font-size: 25px;
-  margin-top: 70px;
-}
 //Sign-up page
 .signUpcontainer {
   background-color: white;
@@ -115,92 +152,80 @@ body {
 }
 
 @include at-max-width-960px {
-  ul {
-    position: fixed;
-    width: 100%;
-    background: #2c3e50;
-    margin-bottom: -5px;
-    bottom: 0;
-    left: 0;
-    text-align: center;
-  }
-  .navbar ul li {
-    display: inline-block;
-    margin: 0px 40px;
-  }
-  .navbar ul li a {
-    font-size: 20px;
-    color: white;
-  }
-  .navbar ul li a.active:hover {
-    color: #9EDCEF;
-  }
-  
-  .add_button {
-    font-size: 15px;
-    padding: 7px 10px;
-  }
-  .logo {
-    width: 80px;
-    margin-left: 20px;
-  }
-  .navbar {
-    height: 100px;
-  }
-  .container{
-    width: 80%;
-    height: 55%;
-  }
-  .signIn_logo {
-  width: 120px;
-  height: 120px;
-  margin-top: -30px;
-}
-.form-group label {
-  font-size: 14px;
-}
-.return-link {
-  right: 86%;
-}
-.signUpcontainer {
-  width: 55%;
-  height: 70%;
-}
-.signUp_logo {
-  width: 120px;
-  height: 130px;
-  margin-top: -50px;
-}
-.sign_btn button, .google_btn button {
-  padding: 10px;
-  font-size: 13px;
-  margin: 10px 0;
-}
-.sign_btn button:hover, .google_btn button:hover {
-  cursor: pointer;
-  transition: transform 0.5s; 
+
+    .add_button {
+        font-size: 15px;
+        padding: 7px 10px;
+    }
+    .logo {
+        width: 80px;
+    }
+    .navbar {
+        height: 100px;
+    }
+    .container {
+        width: 80%;
+        height: 55%;
+    }
+    .signIn_logo {
+        width: 120px;
+        height: 120px;
+        margin-top: -30px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+    }
+
+    .return-link {
+        right: 86%;
+    }
+
+    .signUpcontainer {
+        width: 55%;
+        height: 70%;
+    }
+
+    .signUp_logo {
+        width: 120px;
+        height: 130px;
+        margin-top: -50px;
+    }
+
+    .sign_btn button, .google_btn button {
+        padding: 10px;
+        font-size: 13px;
+        margin: 10px 0;
+    }
+
+    .sign_btn button:hover, .google_btn button:hover {
+        cursor: pointer;
+        transition: transform 0.5s;
+    }
+
+    .sign_btn button:active, .google_btn button:active {
+        transform: scale(0.94);
+    }
+
+    .footer {
+        display: none;
+    }
 }
 
-.sign_btn button:active, .google_btn button:active {
-  transform: scale(0.94); 
-}
-.footer{
-  display: none;
-}
-}
 @include _960-h{
   .container {
     overflow-y: auto;
-    max-height: 60vh; 
-    margin-bottom: 20px; 
+    max-height: 60vh;
+    margin-bottom: 20px;
   }
 
   .signUpcontainer {
     overflow-y: auto;
     max-height: 60vh;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
   }
 }
+
 @include at-max-width-550px {
   .navbar ul li {
     margin: 0px 20px;
