@@ -6,7 +6,23 @@ import { RouterModule } from '@angular/router';
 import {MainPageComponent} from "./pages/main-page/main-page.component";
 import {ButtonModule} from "primeng/button";
 import {UiControllerService} from "./services/ui-controller.service";
+import {ACCESS_TOKEN_KEY, AuthService} from "./services/auth.service";
+import {JwtModule} from "@auth0/angular-jwt";
+import {environment} from "../../environments/environments";
+import {MessageService} from "primeng/api";
+import {ToastModule} from "primeng/toast";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {BrowserModule} from "@angular/platform-browser";
 
+const providers = [
+    UiControllerService,
+    AuthService,
+    MessageService
+]
+
+export function tokenGetter() {
+    return localStorage.getItem(ACCESS_TOKEN_KEY);
+}
 
 @NgModule({
     imports: [
@@ -26,14 +42,19 @@ import {UiControllerService} from "./services/ui-controller.service";
                 ]
             },
         ]),
+        JwtModule.forRoot({
+            config: {
+                tokenGetter,
+                allowedDomains: environment.tokenWhiteListedDomains
+            }
+        }),
         ButtonModule,
+        ToastModule,
     ],
   declarations: [
     MainPageComponent
   ],
   exports: [],
-  providers: [
-      UiControllerService
-  ]
+  providers: providers
 })
 export class MainV1Module { }

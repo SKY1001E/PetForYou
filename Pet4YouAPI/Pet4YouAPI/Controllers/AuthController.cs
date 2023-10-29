@@ -27,7 +27,7 @@ namespace Pet4YouAPI.Controllers
 
             var user = new User()
             {
-                Login = authModel.Login,
+                Login = authModel.Email,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(authModel.Password),
                 RegistrationDate = DateTime.Now,
                 UserInfo = new UserInfo() {
@@ -46,7 +46,7 @@ namespace Pet4YouAPI.Controllers
             if (registrationResult == RegistrationResult.OtherError)
                 return BadRequest("Error during registration");
 
-            return Ok();
+            return Ok(true);
         }
 
         [HttpPost("login")]
@@ -60,6 +60,7 @@ namespace Pet4YouAPI.Controllers
             }
 
             var token = GenerateJwtToken(user);
+
             return Ok(new
             {
                 token,

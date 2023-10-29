@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {environment} from "../environments/environments";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -10,9 +12,15 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+      {
+          provide: 'API_URL',
+          useValue: environment.apiUrl
+      }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

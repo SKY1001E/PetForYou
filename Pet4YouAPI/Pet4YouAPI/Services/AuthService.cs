@@ -21,9 +21,9 @@ namespace Pet4YouAPI.Services
         {
             User? user = null;
 
-            if(userLogin.Login != "")
+            if(userLogin.Email != "")
             {
-                user = await context.Users.Include(u => u.UserInfo).FirstOrDefaultAsync(u => u.Login == userLogin.Login);
+                user = await context.Users.Include(u => u.UserInfo).FirstOrDefaultAsync(u => u.Login == userLogin.Email);
             }
 
             if (user == null)

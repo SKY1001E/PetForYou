@@ -6,25 +6,66 @@
         <div class="label_sign flex justify-content-center">
             Реєстрація
         </div>
-        <form>
-            <div class="form-group" style="margin: 20px;">
-                <label for="nickname">Нікнейм:</label>
-                <input type="text" id="nickname" name="nickname" placeholder="Введіть ваш нікнейм">
-            </div>
+        <form [formGroup]="form" (ngSubmit)="register()">
+<!--            <div class="form-group" style="margin: 20px;">-->
+<!--                <label for="nickname">Нікнейм:</label>-->
+<!--                <input type="text" id="nickname" name="nickname" placeholder="Введіть ваш нікнейм">-->
+<!--            </div>-->
             <div class="form-group" style="margin: 20px;">
                 <label for="email">Електронна пошта:</label>
-                <input type="email" id="email" name="email" placeholder="Введіть вашу електронну пошту">
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    formControlName="email"
+                    placeholder="Введіть вашу електронну пошту">
+                <div style="height: 10px">
+                    <ng-container *ngIf="(form.get('email')?.touched || form.get('email')?.dirty)
+                            && form.get('email')?.invalid">
+                        <small *ngIf="form.get('email')?.errors?.['required']" class="p-error">Email is required</small>
+                        <small *ngIf="form.get('email')?.errors?.['email']" class="p-error">Email doesn't correct</small>
+                    </ng-container>
+                </div>
             </div>
             <div class="form-group" style="margin: 20px;">
                 <label for="password">Пароль:</label>
-                <input type="password" id="password" name="password" placeholder="Введіть пароль">
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    formControlName="password"
+                    placeholder="Введіть пароль">
+                <div style="height: 10px">
+                    <ng-container *ngIf="(form.get('password')?.touched || form.get('password')?.dirty)
+                            && form.get('password')?.invalid">
+                        <small *ngIf="form.get('password')?.errors?.['required']" class="p-error">Password is required</small>
+                        <small *ngIf="form.get('password')?.errors?.['minlength']" class="p-error">Password must be more then 6 symbols</small>
+                    </ng-container>
+                </div>
             </div>
             <div class="form-group" style="margin: 20px;">
                 <label for="confirm-password">Повторіть пароль:</label>
-                <input type="password" id="confirm-password" name="confirm-password" placeholder="Повторіть пароль">
+                <input
+                    type="password"
+                    id="confirm-password"
+                    name="confirm-password"
+                    formControlName="confirmPassword"
+                    placeholder="Повторіть пароль">
+                <div style="height: 10px">
+                    <ng-container *ngIf="(form.get('confirmPassword')?.touched || form.get('confirmPassword')?.dirty)
+                            && form.get('confirmPassword')?.invalid">
+                        <small class="p-error"
+                                *ngIf="form.get('confirmPassword')!.hasError('passwordMismatch') && !form.get('password')?.invalid">
+                                Passwords do not match.
+                        </small>
+                    </ng-container>
+                </div>
             </div>
             <div class="sign_btn" style="display: flex; justify-content: center;">
-                <button type="submit" style="background-color: #2490B2; color: white;">Зареєструвати аккаунт</button>
+                <button
+                    type="submit"
+                    [disabled]="form.invalid"
+                    style="background-color: #2490B2; color: white;">Зареєструвати аккаунт</button>
             </div>
             <div class="google_btn" style="display: flex; justify-content: center;">
                 <button type="button" style="background-color: white; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15); justify-content: center; display: flex;">
