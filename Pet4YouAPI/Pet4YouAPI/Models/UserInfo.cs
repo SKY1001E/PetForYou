@@ -27,5 +27,5 @@ public partial class UserInfo
     public DateTime? DateOfBirth { get; set; }
 
     [JsonIgnore]
-    public virtual User User { get; set; } = null!;
+    public virtual User? User { get; set; } = null!;
 }

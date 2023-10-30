@@ -22,12 +22,16 @@ public partial class User
 
     // public virtual ICollection<AdvertisementDeleting> AdvertisementDeletings { get; set; } = new List<AdvertisementDeleting>();
 
+    [JsonIgnore]
     public virtual ICollection<Advertisement> Advertisements { get; set; } = new List<Advertisement>();
 
+    [JsonIgnore]
     public virtual ICollection<OrderRequest> OrderRequests { get; set; } = new List<OrderRequest>();
 
+    [JsonIgnore]
     public virtual ICollection<Rating> RatingRaterUsers { get; set; } = new List<Rating>();
 
+    [JsonIgnore]
     public virtual ICollection<Rating> RatingRecipientUsers { get; set; } = new List<Rating>();
 
     public virtual UserInfo? UserInfo { get; set; }

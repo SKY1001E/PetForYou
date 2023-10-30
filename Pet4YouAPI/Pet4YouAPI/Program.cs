@@ -13,6 +13,7 @@ builder.Services.AddDbContext<Pet4YouContext>(options =>
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IHashService, HashService>();
 
 builder.Services.AddCors(options =>
 {

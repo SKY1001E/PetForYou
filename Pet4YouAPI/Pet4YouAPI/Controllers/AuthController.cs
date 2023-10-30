@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Pet4YouAPI.DI;
+using Pet4YouAPI.DTO;
 using Pet4YouAPI.Models;
-using ProjectHiveAPI.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -15,10 +15,12 @@ namespace Pet4YouAPI.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
+        private readonly IHashService _hashService;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService, IHashService hashService)
         {
             this._authService = authService;
+            this._hashService = hashService;
         }
 
         [HttpPost("register")]
@@ -28,7 +30,7 @@ namespace Pet4YouAPI.Controllers
             var user = new User()
             {
                 Login = authModel.Email,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(authModel.Password),
+                PasswordHash = _hashService.HashPassword(authModel.Password),
                 RegistrationDate = DateTime.Now,
                 UserInfo = new UserInfo() {
                     Email = authModel.Email
