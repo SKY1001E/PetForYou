@@ -1,5 +1,5 @@
-﻿using Pet4YouAPI.Models;
-using ProjectHiveAPI.Models;
+﻿using Pet4YouAPI.DTO;
+using Pet4YouAPI.Models;
 
 namespace Pet4YouAPI.DI
 {

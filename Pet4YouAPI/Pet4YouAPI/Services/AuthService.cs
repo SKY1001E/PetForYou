@@ -1,20 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Pet4YouAPI.DBContext;
 using Pet4YouAPI.DI;
+using Pet4YouAPI.DTO;
 using Pet4YouAPI.Models;
-using ProjectHiveAPI.Models;
 
 namespace Pet4YouAPI.Services
 {
     public class AuthService : IAuthService
     {
         private readonly Pet4YouContext context;
-        private readonly IUserService userService;
+        private readonly IUserService _userService;
+        private readonly IHashService _hashService;
 
-        public AuthService(Pet4YouContext context, IUserService userService)
+        public AuthService(Pet4YouContext context, IUserService userService, IHashService hashService)
         {
             this.context = context;
-            this.userService = userService;
+            this._userService = userService;
+            this._hashService = hashService;
         }
 
         public async Task<User?> Login(AuthModel userLogin)
@@ -36,7 +38,8 @@ namespace Pet4YouAPI.Services
                 }
             }
 
-            if (user != null && VerifyPassword(userLogin.Password, user.PasswordHash))
+
+            if (user != null && _hashService.VerifyPassword(userLogin.Password, user.PasswordHash) && user.Deleted == false)
             {
                 return user;
             }
@@ -58,14 +61,9 @@ namespace Pet4YouAPI.Services
             if(isEmailExists)
                 return RegistrationResult.EmailExists;
 
-            userService?.AddUser(user);
+            await _userService.AddUser(user);
 
             return RegistrationResult.Success;
-        }
-
-        private bool VerifyPassword(string enteredPassword, string hashedPassword)
-        {
-            return BCrypt.Net.BCrypt.Verify(enteredPassword, hashedPassword);
         }
     }
 }
