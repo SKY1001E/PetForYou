@@ -51,8 +51,8 @@ export class SignInComponent implements OnInit, OnDestroy, AfterViewInit {
 
     login() {
         const authInfo: AuthResponseModel = {
-            email: 'tkacenkostas20@gmail.com',
-            password: 'qwerty'
+            email: this.form.get('email')?.value,
+            password: this.form.get('password')?.value
         }
 
         this.authService.login(authInfo)

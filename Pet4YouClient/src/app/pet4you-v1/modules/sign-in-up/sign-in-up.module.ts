@@ -5,6 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {SignInComponent} from "./components/sign-in/sign-in.component";
 import {SignUpComponent} from "./components/sign-up/sign-up.component";
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {SignUpComponent} from "./components/sign-up/sign-up.component";
             {path: '', redirectTo: 'in', pathMatch: 'full'},
             { path: 'in', component: SignInComponent },
             { path: 'up', component: SignUpComponent },
+            { path: 'profile', component: ProfileComponent}
         ]),
     ],
     declarations: [
