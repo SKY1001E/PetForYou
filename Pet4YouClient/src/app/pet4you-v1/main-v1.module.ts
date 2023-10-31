@@ -13,7 +13,7 @@ import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {BrowserModule} from "@angular/platform-browser";
-import { ProfileComponent } from './modules/sign-in-up/components/profile/profile.component';
+import { ProfileComponent } from './modules/profile/components/profile.component';
 
 const providers = [
     UiControllerService,
@@ -41,12 +41,13 @@ export function tokenGetter() {
                   loadChildren: () => import('./modules/sign-in-up/sign-in-up.module').then((m) => m.SignInUpModule)
                 },
                 {
-                  path: 'profile', component: ProfileComponent 
+                  path: 'profile',
+                  loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfileModule)
                 }
               ]
             },
           ]),
-          
+
         JwtModule.forRoot({
             config: {
                 tokenGetter,
