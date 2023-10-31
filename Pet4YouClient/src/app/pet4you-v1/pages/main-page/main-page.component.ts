@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import {Location} from "@angular/common";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import {UiControllerService} from '../../services/ui-controller.service'; // Импортируйте HeaderService
+import {UiControllerService} from '../../services/ui-controller.service'; 
 
 @Component({
   selector: 'main-page',

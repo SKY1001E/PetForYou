@@ -7,7 +7,9 @@
 body {
   margin: 0;
   padding: 0;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background: $petMainBgColor;
+
 }
 
 //Header
@@ -17,6 +19,11 @@ body {
     .navbar {
         height: 130px;
         width: 100%;
+        @include at-max-width-960px {
+            .navbar {
+                height: 100px;
+            }
+        }
 
         ul {
             padding: 0;
@@ -40,6 +47,9 @@ body {
                     display: inline-block;
                     margin: 0 40px;
                 }
+                @include at-max-width-520px {
+                    margin: 0px 20px;
+                }
 
                 a {
                     color: $navButtonTextColorDarken;
@@ -50,7 +60,9 @@ body {
                     @include at-max-width-960px() {
                         color: $navButtonTextColorLighten;
                     }
-
+                    @include at-max-width-520px {
+                        font-size: 12px;
+                    }
                     &.active:hover {
                         color: #2c3e50;
                         text-decoration: underline;
@@ -70,11 +82,31 @@ body {
             @include border-radius(6px);
             text-decoration: none;
             transition: 0.5s;
-
-            &:hover {
-                background: $navAddButtonHover;
+            @include at-max-width-960px {
+                font-size: 15px;
+                padding: 7px 10px;
             }
         }
+        .logo {
+            width: 100px;
+            @include at-max-width-960px {
+                width: 80px;
+            }
+        }
+    }
+}
+
+.footer {
+    background-color: #9EDCEF;
+    color: black;
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+    bottom: -30px;
+    text-align: center;
+    @include at-max-width-960px {
+        display: none;
     }
 }
 
@@ -86,16 +118,39 @@ body {
 .sign-in, sign-up {
     .container {
         background-color: white;
-        width: 40%;
-        height: 100%;
-        border-radius: 10px;
+        width: 55%;
+        height: 60%;
+        @include border-radius(10px);
         margin-top: 20px;
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+        @include at-max-width-520px {
+            width: 70%;
+            height: 45%;
+        }
+        @include at-max-width-960px {
+                width: 80%;
+                height: 55%;
+        }
+        @include _960-h{
+              overflow-y: auto;
+              max-height: 60vh;
+              margin-bottom: 20px;
+            } 
     }
 
     .signIn_logo {
         width: 160px;
         height: 170px;
+        @include at-max-width-520px {
+              width: 80px;
+              height: 80px;
+            }
+            @include at-max-width-960px {
+                    width: 120px;
+                    height: 120px;
+                    margin-top: -30px;
+                }   
+                  
     }
 
     .form-group label {
@@ -109,6 +164,11 @@ body {
         font-size: 13px;
         background: #9EDCEF;
         border: none;
+        @include at-max-width-520px {
+              padding: 10px;
+              margin-top: 5px;
+              font-size: 10px;
+            }
     }
     .sign_btn button, .google_btn button {
         width: 50%;
@@ -116,23 +176,40 @@ body {
         font-size: 15px;
         border: none;
         margin: 5px 0;
+        @include at-max-width-520px {
+                padding: 8px;
+                font-size: 9px;
+              }
+              @include at-max-width-960px {
+                    padding: 10px;
+                    font-size: 13px;
+                    margin: 10px 0;
+                }
+            
+                .sign_btn button:hover, .google_btn button:hover {
+                    cursor: pointer;
+                    transition: transform 0.5s;
+                }
+            
+                .sign_btn button:active, .google_btn button:active {
+                    transform: scale(0.94);
+                }
+            
+          }
     }
     .Google_logo img {
         margin-right: 10px;
         height: 20px;
         font-size: 10px;
     }
-    .return-link {
-        position: absolute;
-        top: 5%;
-        right: 91%;
-        font-size: 16px;
-    }
     .label_sign{
         font-size: 25px;
         margin-top: 70px;
+        @include at-max-width-520px {
+              font-size: 20px;
+            }
     }
-}
+
 
 
 //Sign-up page
@@ -140,131 +217,274 @@ body {
   background-color: white;
   width: 50%;
   height: 70%;
-  border-radius: 10px;
+  @include border-radius(10px);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   margin-top: 20px;
+  @include at-max-width-520px {
+      width: 80%;
+      height: 60%;
+    }
+    @include _960-h{
+          overflow-y: auto;
+          max-height: 60vh;
+          margin-bottom: 20px;
+        }
+        @include at-max-width-960px {
+                width: 70%;
+                height: 70%;
+            }
+        
+      }
 
-}
 .signUp_logo {
   width: 120px;
   height: 140px;
   margin-top: -65px;
+  @include at-max-width-520px {
+      width: 80px;
+      height: 80px;
+    }
+    @include at-max-width-960px {
+      
+            width: 120px;
+            height: 130px;
+            margin-top: -50px;
+        }
 }
 
-@include at-max-width-960px {
-
-    .add_button {
-        font-size: 15px;
-        padding: 7px 10px;
-    }
-    .logo {
-        width: 80px;
-    }
-    .navbar {
-        height: 100px;
-    }
-    .container {
-        width: 80%;
+// Profile
+.profile-container {
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    background-color: white;
+    width: 90%;
+    height: 65%;
+    @include _900-h{
+        overflow-y: auto;
         height: 55%;
-    }
-    .signIn_logo {
-        width: 120px;
-        height: 120px;
-        margin-top: -30px;
+        margin-top: 20px;
+
     }
 
-    .form-group label {
-        font-size: 14px;
-    }
 
-    .return-link {
-        right: 86%;
-    }
+        .label-profile{
+            position: relative;
+            font-size: 25px;
+            @include at-max-width-520px {
+                font-size: 20px;
+            }
+        } 
 
-    .signUpcontainer {
-        width: 55%;
-        height: 70%;
-    }
+        .profile-icon {
+            position: absolute;
+            top: 15%;
+            right: 8%;
+            width: 120px; 
+            height: 120px; 
+            @include border-radius(50%);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+            @include at-max-width-520px {
+                right: 40%;
+                width: 70px; 
+                height: 70px;
+            } 
+            @include _767{
+                width: 90px; 
+                height: 90px;
+            }
+            @include _900-h{
+                width: 100px; 
+                height: 100px;
+                top: 10%;
 
-    .signUp_logo {
-        width: 120px;
-        height: 130px;
-        margin-top: -50px;
-    }
+            }
 
-    .sign_btn button, .google_btn button {
-        padding: 10px;
-        font-size: 13px;
-        margin: 10px 0;
-    }
+            .pi.pi-user {
+                font-size: 4.8rem;
+                cursor: pointer;
+                @include at-max-width-520px {
+                    font-size: 2.8rem;
+                    right: 10%;
 
-    .sign_btn button:hover, .google_btn button:hover {
-        cursor: pointer;
-        transition: transform 0.5s;
-    }
+                }
+                @include _767{
+                    font-size: 3.6rem;
 
-    .sign_btn button:active, .google_btn button:active {
-        transform: scale(0.94);
-    }
+                }
+                @include _900-h{
+                    font-size: 3.8rem;
 
-    .footer {
-        display: none;
-    }
-}
+                }
 
-@include _960-h{
-  .container {
-    overflow-y: auto;
-    max-height: 60vh;
-    margin-bottom: 20px;
-  }
+            }
+        }
+        .your-ads-button button {
+            position: absolute;
+            top: 18%;
+            left: 8%;
+            background-color: $profileButtonAds;
+            border: none;
+            padding: 10px 40px;
+            @include border-radius(10px);
+        
+            @include at-max-width-520px {
+                top: 33%;
+                padding: 8px 30px;
+                left: 39%;
+            }
+        
+            &:active {
+                transform: scale(0.97);
+                background-color: lighten($profileButtonAds, 5%);
+            }
+        }
+        
+        
 
-  .signUpcontainer {
-    overflow-y: auto;
-    max-height: 60vh;
-    margin-bottom: 20px;
-  }
-}
+        #photo-upload {
+            display: none; 
+        }
+        
+        .additional-container {
+            position: absolute;
+            background-color: $profileAddContainer;
+            padding: 20px;
+            @include border-radius(10px);
+            height: 55%; 
+            @include _900-h {
+                overflow-y: auto; 
+            }
 
-@include at-max-width-550px {
-  .navbar ul li {
-    margin: 0px 20px;
-  }
-  .navbar ul li a{
-    font-size: 12px;
-  }
-  .signIn_logo {
-    width: 80px;
-    height: 80px;
-  }
-  .form-group input {
-    padding: 8px;
-    margin-top: 5px;
-    font-size: 10px;
-  }
-  .return-link {
-    font-size: 12px;
-    margin-left: 25px;
-  }
-  .sign_btn button, .google_btn button {
-    padding: 10px;
-    font-size: 10px;
-  }
-  .label_sign {
-    font-size: 20px;
-  }
-  .container{
-    height: 45%;
-  }
-  .signUpcontainer {
-    width: 80%;
-    height: 60%;
-    margin-top: 30px;
-  }
-  .signUp_logo {
-    width: 80px;
-    height: 80px;
-  }
-}
-
-
+        
+            @include at-max-width-520px {
+                max-height: 55%; 
+            }
+        
+        
+            &.first {
+                left: 10px;
+                bottom: 10px;
+                width: calc(50% - 15px);
+            }
+        
+            &.second {
+                right: 10px;
+                bottom: 10px;
+                width: calc(50% - 15px);
+            }
+        
+            .user-info label {
+                width: 150px;
+                display: inline-block;
+        
+                @include at-max-width-520px {
+                    width: 100%;
+                    font-size: 8px;
+                }
+            }
+        
+            .user-info input,
+            .user-info textarea {
+                width: calc(100% - 160px);
+                height: 26px;
+                border: none;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                background: white;
+                margin-top: 10px;
+        
+                @include at-max-width-520px {
+                    width: 100%;
+                    height: 15px;
+                    margin: 0px;
+                }
+            }
+        
+            .info-title {
+                @include fluidFontSize(15px, 23px, 767px, 1280px, 20px);
+            }
+                
+        
+            .change-profile-photo {
+                display: block;
+                margin: 0 auto;
+                text-align: center;
+                background-color: $profileEditBtn;
+                border: none;
+                padding: 8px 25px;
+                border-radius: 10px;
+        
+                @include at-max-width-520px {
+                    padding: 2px 5px;
+                    font-size: 10px;
+                    right: 7%;
+                }
+                
+        
+                &.change-profile-photo:active {
+                    transform: scale(0.97);
+                    background-color: lighten($profileEditBtn, 5%);
+                }
+            }
+        
+            .change-password-button {
+                position: absolute;
+                top: 88%;
+                right: 4%;
+                background-color: $profileChangePasswBtn;
+                border: none;
+                padding: 8px 25px;
+                @include border-radius(10px);
+        
+                @include at-max-width-520px {
+                    padding: 2px 5px;
+                    font-size: 10px;
+                    right: 7%;
+                    top: 93%;
+                }
+                @include _900-h{
+                    margin-top: 70px;
+            
+                }
+            
+        
+                &.change-password-button:active {
+                    transform: scale(0.97);
+                    background-color: lighten($profileChangePasswBtn, 5%);
+                }
+            }
+        
+            .change-password-text {
+                @include fluidFontSize(13px, 19px, 767px, 1280px, 16px);
+            }
+        
+            .edit-btn {
+                position: absolute;
+                top: 90%;
+                right: 4%;
+                background-color: $profileEditBtn;
+                border: none;
+                padding: 8px 25px;
+                @include border-radius(10px);
+        
+                @include at-max-width-520px {
+                    padding: 2px 5px;
+                    font-size: 10px;
+                    right: 7%;
+                    top: 93%;
+                }
+                @include _900-h{
+                    margin-top: 80px;
+            
+                }
+        
+                &.edit-btn:active {
+                    transform: scale(0.97);
+                    background-color: lighten($profileEditBtn, 5%);
+                }
+            }
+        }
+    }        
