@@ -8,8 +8,7 @@ body {
   margin: 0;
   padding: 0;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  background: $petMainBgColor;
-
+  background: $petMainBgColor; 
 }
 
 //Header
@@ -19,6 +18,7 @@ body {
     .navbar {
         height: 130px;
         width: 100%;
+        
         @include at-max-width-960px {
             .navbar {
                 height: 100px;
@@ -27,7 +27,6 @@ body {
 
         ul {
             padding: 0;
-
             @include at-max-width-960px {
                 position: fixed;
                 width: 100%;
@@ -36,7 +35,9 @@ body {
                 bottom: 0;
                 left: 0;
                 text-align: center;
+                z-index: 999; 
             }
+            
 
             li {
                 display: inline-block;
@@ -254,237 +255,202 @@ body {
 
 // Profile
 .profile-container {
-    position: absolute;
-    top: 58%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 10px;
-    background-color: white;
-    width: 90%;
-    height: 65%;
-    @include _900-h{
-        overflow-y: auto;
-        height: 55%;
-        margin-top: 20px;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    width: 70%;
+    margin: auto;
+    margin-top: 100px;
+    height: auto;
+    @include border-radius(13px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+    @include at-max-width-960px {
+        width: 80%;
+        margin-bottom: 150px;
 
     }
 
+    @include at-max-width-520px {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+.profile-label {
+    font-size: 25px;
+    @include at-max-width-960px {
+        font-size: 20px;
+    }
+    @include at-max-width-520px {
+        font-size: 15px;
+    }
+}
 
-        .label-profile{
-            position: relative;
-            font-size: 25px;
-            @include at-max-width-520px {
-                font-size: 20px;
-            }
-        } 
+.profile-icon {
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 17px;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+    margin-top: 10px;
 
-        .profile-icon {
-            position: absolute;
-            top: 15%;
-            right: 8%;
-            width: 120px; 
-            height: 120px; 
-            @include border-radius(50%);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
-            @include at-max-width-520px {
-                right: 40%;
-                width: 70px; 
-                height: 70px;
-            } 
-            @include _767{
-                width: 90px; 
-                height: 90px;
-            }
-            @include _900-h{
-                width: 100px; 
-                height: 100px;
-                top: 10%;
+ i {
+    font-size: 90px;
+    @include at-max-width-960px {
+        font-size: 60px;
+    }
+    @include at-max-width-520px {
+        font-size: 20px;
+    }
+}
+}
+.profile-icon-container {
+    text-align: right;
+    @include at-max-width-520px {
+        text-align: center;
+        margin-top: 10px;
+    }
+}
+#photo-upload {
+    display: none; 
+}
+.additional-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+}
 
-            }
-
-            .pi.pi-user {
-                font-size: 4.8rem;
-                cursor: pointer;
-                @include at-max-width-520px {
-                    font-size: 2.8rem;
-                    right: 10%;
-
-                }
-                @include _767{
-                    font-size: 3.6rem;
-
-                }
-                @include _900-h{
-                    font-size: 3.8rem;
-
-                }
-
-            }
-        }
-        .your-ads-button button {
-            position: absolute;
-            top: 18%;
-            left: 8%;
-            background-color: $profileButtonAds;
-            border: none;
-            padding: 10px 40px;
-            @include border-radius(10px);
+.additional-first,
+.additional-second {
+    flex: 1;
+    background-color: #E5E5E5;
+    padding: 10px;
+    @include border-radius(10px);
+    @include at-max-width-520px {
+        padding: 3px;
+        margin-top: 20px;
+    }
+    input {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        @include border-radius(5px);
+        outline: none;
         
-            @include at-max-width-520px {
-                top: 33%;
-                padding: 8px 30px;
-                left: 39%;
-            }
-        
-            &:active {
-                transform: scale(0.97);
-                background-color: lighten($profileButtonAds, 5%);
-            }
-        }
-        
-        
-
-        #photo-upload {
-            display: none; 
+        @include at-max-width-520px {
+            height: 20px;
         }
         
-        .additional-container {
-            position: absolute;
-            background-color: $profileAddContainer;
-            padding: 20px;
-            @include border-radius(10px);
-            height: 55%; 
-            @include _900-h {
-                overflow-y: auto; 
-            }
-
-        
-            @include at-max-width-520px {
-                max-height: 55%; 
-            }
-        
-        
-            &.first {
-                left: 10px;
-                bottom: 10px;
-                width: calc(50% - 15px);
-            }
-        
-            &.second {
-                right: 10px;
-                bottom: 10px;
-                width: calc(50% - 15px);
-            }
-        
-            .user-info label {
-                width: 150px;
-                display: inline-block;
-        
-                @include at-max-width-520px {
-                    width: 100%;
-                    font-size: 8px;
-                }
-            }
-        
-            .user-info input,
-            .user-info textarea {
-                width: calc(100% - 160px);
-                height: 26px;
-                border: none;
-                border-radius: 5px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-                background: white;
-                margin-top: 10px;
-        
-                @include at-max-width-520px {
-                    width: 100%;
-                    height: 15px;
-                    margin: 0px;
-                }
-            }
-        
-            .info-title {
-                @include fluidFontSize(15px, 23px, 767px, 1280px, 20px);
-            }
-                
-        
-            .change-profile-photo {
-                display: block;
-                margin: 0 auto;
-                text-align: center;
-                background-color: $profileEditBtn;
-                border: none;
-                padding: 8px 25px;
-                border-radius: 10px;
-        
-                @include at-max-width-520px {
-                    padding: 2px 5px;
-                    font-size: 10px;
-                    right: 7%;
-                }
-                
-        
-                &.change-profile-photo:active {
-                    transform: scale(0.97);
-                    background-color: lighten($profileEditBtn, 5%);
-                }
-            }
-        
-            .change-password-button {
-                position: absolute;
-                top: 88%;
-                right: 4%;
-                background-color: $profileChangePasswBtn;
-                border: none;
-                padding: 8px 25px;
-                @include border-radius(10px);
-        
-                @include at-max-width-520px {
-                    padding: 2px 5px;
-                    font-size: 10px;
-                    right: 7%;
-                    top: 93%;
-                }
-                @include _900-h{
-                    margin-top: 70px;
-            
-                }
-            
-        
-                &.change-password-button:active {
-                    transform: scale(0.97);
-                    background-color: lighten($profileChangePasswBtn, 5%);
-                }
-            }
-        
-            .change-password-text {
-                @include fluidFontSize(13px, 19px, 767px, 1280px, 16px);
-            }
-        
-            .edit-btn {
-                position: absolute;
-                top: 90%;
-                right: 4%;
-                background-color: $profileEditBtn;
-                border: none;
-                padding: 8px 25px;
-                @include border-radius(10px);
-        
-                @include at-max-width-520px {
-                    padding: 2px 5px;
-                    font-size: 10px;
-                    right: 7%;
-                    top: 93%;
-                }
-                @include _900-h{
-                    margin-top: 80px;
-            
-                }
-        
-                &.edit-btn:active {
-                    transform: scale(0.97);
-                    background-color: lighten($profileEditBtn, 5%);
-                }
-            }
+        &:focus {
+            border-color: dodgerblue;
         }
-    }        
+    }
+
+    label {
+        @include fluidFontSize(10px, 16px, 767px, 1280px, 14px);
+    }
+}
+.password-fields label {
+    @include fluidFontSize(10px, 16px, 767px, 1280px, 14px);
+}
+.info-label{
+    margin-bottom: 32px;
+    @include fluidFontSize(14px, 20px, 767px, 1280px, 18px);
+    @include at-max-width-520px {
+        margin-bottom: 35px;
+    }
+}
+
+.your-ads-button {
+    position: absolute;
+    top:20%;
+    background-color: $profileButtonAds;
+    border: none;
+    padding: 10px 50px;
+
+    @include border-radius(10px);
+    @include at-max-width-960px {
+        padding: 8px 20px;
+    }
+    @include at-max-width-520px {
+        top:25%;
+        padding: 5px 10px;
+        font-size: 10px;
+    }
+
+    &:active {
+        transform: scale(0.97);
+        background-color: lighten($profileButtonAds, 5%);
+    }
+}
+.edit-button {
+    background-color: $profileEditBtn;
+    border: none;
+    margin-top: 10px;
+    padding: 10px 40px;
+    @include border-radius(10px);
+    @include at-max-width-960px {
+        font-size: 11px;
+        padding: 8px 35px;
+    }
+    @include at-max-width-520px {
+        font-size: 8px;
+        padding: 3px 7px;
+    }             
+    &.edit-button:active {
+        transform: scale(0.97);
+        background-color: lighten($profileEditBtn, 5%);
+    }
+}
+
+.change-photo-button {
+    margin: 0 auto;
+    text-align: center;
+    background-color: $profilePhotoChangeBtn;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 10px;
+    @include at-max-width-960px {
+        font-size: 11px;
+        padding: 11px 8px;
+    }
+    @include at-max-width-520px {
+        font-size: 8px;
+        padding: 5px 2px;
+    } 
+    &.change-photo-button:active {
+        transform: scale(0.97);
+        background-color: lighten($profilePhotoChangeBtn, 5%);
+    }
+}
+.change-password-label {
+    margin: 32px;
+    @include fluidFontSize(12px, 17px, 767px, 1280px, 15px);
+    @include at-max-width-520px {
+        margin-bottom: 16px;
+
+    }
+}
+.change-password-button {
+    background-color: $profileChangePasswBtn;
+    margin-top: 20px;
+    padding: 10px 10px;
+    border: none;
+
+    @include border-radius(10px);
+    @include at-max-width-960px {
+        font-size: 11px;
+        padding: 11px 8px;
+    }
+    @include at-max-width-520px {
+        font-size: 8px;
+        padding: 5px 8px;
+
+    } 
+    &.change-password-button:active {
+        transform: scale(0.97);
+        background-color: lighten($profileChangePasswBtn, 5%);
+    }
+}
