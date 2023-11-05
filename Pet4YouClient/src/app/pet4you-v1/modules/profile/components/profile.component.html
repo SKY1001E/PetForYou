@@ -1,4 +1,4 @@
-<div class="profile-container" style="padding: 20px; background-color: white;">
+<div *ngIf="!isLoading else loading" class="profile-container" style="padding: 20px; background-color: white;">
     <label class="flex justify-content-center profile-label">Ваш профіль</label>
     <div class="profile-icon-container">
         <label class="profile-icon" for="photo-upload">
@@ -7,52 +7,55 @@
         <input class="photo-upload-input" type="file" id="photo-upload" accept="image/*">
     </div>
     <button class="your-ads-button" style="margin-top: 10px;">Your Ads</button>
-    
+
     <div class="flex align-center text-center additional-container">
         <div class="additional-first detailed-info">
             <div class="info-label " style="margin-bottom: 20px;">Детальна інформація</div>
             <label for="first-name">Ім'я:</label>
             <input type="text" id="first-name" name="first-name"><br>
-    
+
             <label for="last-name">Прізвище:</label>
             <input type="text" id="last-name" name="last-name"><br>
 
             <label for="gender">Стать:</label>
             <input type="text" id="gender" name="gender"><br>
-    
+
             <label for="email">Email:</label>
             <input type="email" id="email" name="email"><br>
-    
+
             <label for="date-of-birth">Дата народження:</label>
             <input type="date" id="date-of-birth" name="date-of-birth"><br>
-    
+
             <label for="date-of-registration">Дата реєстрації:</label>
             <input type="date" id="date-of-registration" name="date-of-registration"><br>
-            
-            <button class="edit-button">Edit</button> 
 
-        </div>    
+            <button class="edit-button">Edit</button>
+
+        </div>
         <div class="additional-second settings-info">
             <div class="info-label">Налаштування</div>
             <button class="change-photo-button">Змінити фото профіля</button>
-        
+
             <div class="password-fields">
                 <div class="change-password-label">Зміна паролю</div>
                 <label for="old-password">Старий пароль:</label>
                 <input type="password" id="old-password" name="old-password"><br>
-        
+
                 <label for="new-password">Новий пароль:</label>
                 <input type="password" id="new-password" name="new-password"><br>
-        
+
                 <label for="confirm-new-password">Повторити новий пароль:</label>
                 <input type="password" id="confirm-new-password" name="confirm-new-password"><br>
             </div>
-        
+
             <button class="change-password-button">Змінити фото профіля</button>
         </div>
-        
-        
+
+
 
     </div>
-    
 </div>
+
+<ng-template #loading>
+    <p-progressSpinner></p-progressSpinner>
+</ng-template>

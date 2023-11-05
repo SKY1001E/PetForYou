@@ -5,20 +5,21 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {MainPageComponent} from "./pages/main-page/main-page.component";
 import {ButtonModule} from "primeng/button";
-import {UiControllerService} from "./services/ui-controller.service";
-import {ACCESS_TOKEN_KEY, AuthService} from "./services/auth.service";
+import {UIPartsController} from "./services/ui-parts-controller.service";
+import {ACCESS_TOKEN_KEY, AuthService} from "./services/api/auth.service";
 import {JwtModule} from "@auth0/angular-jwt";
 import {environment} from "../../environments/environments";
 import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {BrowserModule} from "@angular/platform-browser";
-import { ProfileComponent } from './modules/profile/components/profile.component';
+import {AuthRequiredGuard} from "./guards/auth-required.guard";
+import {UserService} from "./services/api/user.service";
 
 const providers = [
-    UiControllerService,
+    UIPartsController,
     AuthService,
-    MessageService
+    MessageService,
+    UserService,
+    AuthRequiredGuard
 ]
 
 export function tokenGetter() {
@@ -42,7 +43,8 @@ export function tokenGetter() {
                 },
                 {
                   path: 'profile',
-                  loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfileModule)
+                  loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfileModule),
+                  canActivate: [AuthRequiredGuard]
                 }
               ]
             },

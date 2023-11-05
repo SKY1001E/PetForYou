@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class UiControllerService {
+export class UIPartsController {
 
   showHeader: boolean = true;
 
@@ -12,4 +12,11 @@ export class UiControllerService {
   constructor() {
   }
 
+  storeValue() {
+      return { ...this };
+  }
+
+  restoreValue(val: UIPartsController) {
+      this.showHeader = val.showHeader;
+  }
 }

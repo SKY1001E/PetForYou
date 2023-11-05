@@ -1,5 +1,5 @@
 <div class="main-page">
-    <ng-container *ngIf="uiController.showHeader">
+    <ng-container *ngIf="uiParts.showHeader">
         <div class="nav-container" style="padding: 0 15px">
             <nav class="navbar flex align-items-center justify-content-between">
                 <a href="#">
@@ -9,7 +9,7 @@
                     style="gap: 10px">
                     <li><a class="active" [routerLink]="['#']">Messages</a></li>
                     <li><a class="active" [routerLink]="['#']">Selected</a></li>
-                    <li><a class="active" [routerLink]="['sign', 'in']">Profile</a></li>
+                    <li><a class="active" [routerLink]="['profile']">Profile</a></li>
                 </ul>
                 <a href="#"
                    class="add-button"
@@ -23,7 +23,7 @@
         <button
             pButton
             style="height: 32px; left: 20px"
-            [style.top.px]="uiController.showHeader ? 50 : 20"
+            [style.top.px]="uiParts.showHeader ? 50 : 20"
             [icon]="'pi pi-arrow-left'"
             [iconPos]="'left'"
             [label]="'Back'"

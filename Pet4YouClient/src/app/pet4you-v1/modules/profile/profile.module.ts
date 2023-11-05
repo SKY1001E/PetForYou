@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {ProfileComponent} from "./components/profile.component";
+import {ProgressSpinnerModule} from "primeng/progressspinner";
 
 @NgModule({
     imports: [
@@ -19,6 +20,7 @@ import {ProfileComponent} from "./components/profile.component";
                 component: ProfileComponent
             }
         ]),
+        ProgressSpinnerModule,
     ],
     declarations: [
         ProfileComponent

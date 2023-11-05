@@ -50,7 +50,7 @@ namespace Pet4YouAPI.Controllers
             }
         }
 
-        [HttpPost("change-password")]
+        [HttpPost("changePassword")]
         public async Task<IActionResult> ChangePassword(int userId, string oldPassword, string newPassword)
         {
             var result = await _userService.ChangePassword(userId, oldPassword, newPassword);

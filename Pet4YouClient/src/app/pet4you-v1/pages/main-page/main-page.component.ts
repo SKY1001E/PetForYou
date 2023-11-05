@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import {Location} from "@angular/common";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import {UiControllerService} from '../../services/ui-controller.service'; 
+import {UIPartsController} from '../../services/ui-parts-controller.service';
 
 @Component({
   selector: 'main-page',
@@ -17,7 +17,7 @@ export class MainPageComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(private router: Router,
               private route: ActivatedRoute,
               private location: Location,
-              public uiController: UiControllerService) {
+              public uiParts: UIPartsController) {
   }
 
   ngOnDestroy() {

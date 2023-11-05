@@ -83,7 +83,7 @@ namespace Pet4YouAPI.Controllers
                 Subject = new ClaimsIdentity(new[]
                 {
                     new Claim(ClaimTypes.Email, user.UserInfo.Email),
-                    new Claim(ClaimTypes.NameIdentifier, $"{user.Id}"),
+                    new Claim("userId", $"{user.Id}"),
 
                     // Дополнительные утверждения (claims) о пользователе
                 }),

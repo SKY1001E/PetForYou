@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {Observable, Subject, takeUntil} from 'rxjs';
-import {UiControllerService} from '../../../../services/ui-controller.service';
+import {UIPartsController} from '../../../../services/ui-parts-controller.service';
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../../../services/auth.service";
+import {AuthService} from "../../../../services/api/auth.service";
 import {AuthResponseModel} from "../../../../shared/others/models/auth-models";
 import {MessageService} from "primeng/api";
 
@@ -16,10 +16,11 @@ export class SignUpComponent implements OnInit, OnDestroy, AfterViewInit {
     destroy = new Subject<any>();
 
     form!: FormGroup;
+    private prevUIParts: any;
 
     constructor(private router: Router,
                 private route: ActivatedRoute,
-                public uiController: UiControllerService,
+                public uiParts: UIPartsController,
                 private authService: AuthService,
                 private toastService: MessageService
                     ) {
@@ -28,10 +29,13 @@ export class SignUpComponent implements OnInit, OnDestroy, AfterViewInit {
     ngOnDestroy() {
         this.destroy.next(null);
         this.destroy.complete();
+
+        this.uiParts.restoreValue(this.prevUIParts);
     }
 
     ngOnInit() {
-        this.uiController.showHeader = false;
+        this.prevUIParts = this.uiParts.storeValue();
+        this.uiParts.showHeader = false;
 
         this.buildForm();
     }

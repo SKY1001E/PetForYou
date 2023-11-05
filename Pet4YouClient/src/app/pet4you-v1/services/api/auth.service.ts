@@ -1,9 +1,9 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, tap} from "rxjs";
-import {API_URL} from "../../app-injections-tokens";
+import {API_URL} from "../../../app-injections-tokens";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AuthResponseModel} from "../shared/others/models/auth-models";
+import {AuthResponseModel} from "../../shared/others/models/auth-models";
 import {JwtHelperService} from "@auth0/angular-jwt";
 
 export const ACCESS_TOKEN_KEY = 'pet4you_access_token'
