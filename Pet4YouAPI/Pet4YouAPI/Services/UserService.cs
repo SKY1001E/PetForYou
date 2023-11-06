@@ -52,7 +52,7 @@ namespace Pet4YouAPI.Services
 
         public async Task<User?> GetUserById(int Id)
         {
-            var user = await _context.Users.FindAsync(Id);
+            var user = await _context.Users.Include(u => u.UserInfo).FirstOrDefaultAsync(u => u.Id == Id);
             return user;
         }
 
