@@ -13,6 +13,7 @@ import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {AuthRequiredGuard} from "./guards/auth-required.guard";
 import {UserService} from "./services/api/user.service";
+import {HomePageComponent} from "./pages/home-page/home-page.component";
 
 const providers = [
     UIPartsController,
@@ -35,8 +36,12 @@ export function tokenGetter() {
 
         RouterModule.forChild([
             {
-              path: '', component: MainPageComponent,
+              path: '', redirectTo: 'home', pathMatch: 'full', component: MainPageComponent,
               children: [
+                {
+                  path: 'home',
+                  component: HomePageComponent
+                },
                 {
                   path: 'sign',
                   loadChildren: () => import('./modules/sign-in-up/sign-in-up.module').then((m) => m.SignInUpModule)
@@ -60,7 +65,8 @@ export function tokenGetter() {
         ToastModule,
     ],
   declarations: [
-    MainPageComponent
+    MainPageComponent,
+    HomePageComponent
   ],
   exports: [],
   providers: providers
