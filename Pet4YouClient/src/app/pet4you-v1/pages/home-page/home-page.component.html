@@ -1,3 +1,116 @@
-<div class="home-page">
-
+<div class="flex justify-content-center home-page" style="margin-top: 100px; gap: 10px;">
+    <div class="search-box" style="width: 65%; height: 40px; margin-bottom: 30px;">
+      <span class="p-input-icon-left" style="width: 100%; height: 100%;">
+        <i class="pi pi-search"></i>
+        <input type="text" placeholder="Search here..." style="width: 100%; height: 100%; padding-left: 40px;" pInputText />
+      </span>
+    </div>
+    <div class="dropdown" style="width: 20%; height: 40px; position: relative;">
+        <select [(ngModel)]="selectedCity" style="width: 100%; height: 100%; text-align: center;">
+          <option *ngFor="let city of cities" [value]="city.value">{{ city.label }}</option>
+        </select>
+        <span class="pi pi-map-marker" *ngIf="!selectedCity"></span>
+      </div>
+  </div>
+  <div class="text-center all-categories-label">
+    <p>Main Categories</p>
+ </div>
+  <div class="flex justify-content-center" style="margin-top: 30px;">
+    <div class =" flex text-center categories-area">
+      <div class="categories-card">
+        <img src="/assets/free_group.png" alt="Free">
+        <p>Free</p>
+      </div>
+      <div class="categories-card">
+        <img src="/assets/birds_group.png" alt="Birds">
+        <p>Birds</p>
+      </div>
+      <div class="categories-card">
+        <img src="/assets/dogs_group.png" alt="Dogs">
+        <p>Dogs</p>
+      </div>
+      <div class="categories-card">
+        <img src="/assets/cats_group.png" alt="Cats">
+        <p>Cats</p>
+      </div>
+      <div class="categories-card">
+        <img src="/assets/reptile_group.png" alt="Reptiles">
+        <p>Reptiles</p>
+      </div>
+      <div class="categories-card">
+        <img src="/assets/rodents_group.png" alt="Rodents">
+        <p>Rodents</p>
+      </div>
+      <div class="categories-card">
+        <img src="/assets/fish_group.png" alt="Fish">
+        <p>Fish</p>
+      </div>
+    </div>
+</div>
+  <div class="flex justify-content-center" style="margin-top: 30px;">
+    <div class="text-center announcement-label" style="margin-bottom: 10px;">
+        <p>Announcements</p>
+    </div>
+</div>
+<div class="flex justify-content-center all-announcement" style="margin-top: 5px; margin-bottom: 90px;">
+    <div class="announcement-container">
+        <img src="/assets/announcement1.png" alt="Announcement 1">
+        <p class="announcement-text-content">Kitten looking for a family
+        </p>
+        <div class="announcement-details">
+            <div>
+                <p class="location">Donetsk region</p>
+                <p class="date">Yesterday 20:48</p>
+                <p class="price">Free</p>
+            </div>
+            <div class="add-to-fav">
+                <i class="pi pi-heart heart-icon"></i>
+            </div>
+        </div>
+    </div>
+    <div class="announcement-container">
+        <img src="/assets/announcement2.png" alt="Announcement 2">
+        <p class="announcement-text-content">Selling a British kitten
+        </p>
+        <div class="announcement-details">
+            <div>
+                <p class="location">Poltava region</p>
+                <p class="date">15.09.2023</p>
+                <p class="price">$150</p>
+            </div>
+            <div class="add-to-fav">
+                <i class="pi pi-heart heart-icon"></i>
+            </div>
+        </div>
+    </div>
+    <div class="announcement-container">
+        <img src="/assets/announcement3.png" alt="Announcement 3">
+        <p class="announcement-text-content">Corgi - a natural bobtail!
+        </p>
+        <div class="announcement-details">
+            <div>
+                <p class="location">Lviv region</p>
+                <p class="date">Today 12:07</p>
+                <p class="price">$390</p>
+            </div>
+            <div class="add-to-fav">
+                <i class="pi pi-heart heart-icon"></i>
+            </div>
+        </div>
+    </div>
+    <div class="announcement-container">
+        <img src="/assets/announcement4.jpg" alt="Announcement 3">
+        <p class="announcement-text-content">Selling a parrot with a cage
+        </p>
+        <div class="announcement-details">
+            <div>
+                <p class="location">Chernihiv region</p>
+                <p class="date">12.09.2023</p>
+                <p class="price">$100</p>
+            </div>
+            <div class="add-to-fav">
+                <i class="pi pi-heart heart-icon"></i>
+            </div>
+        </div>
+    </div>
 </div>

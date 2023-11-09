@@ -454,3 +454,101 @@ body {
         background-color: lighten($profileChangePasswBtn, 5%);
     }
 }
+//home-page 
+.dropdown select, .search-box input  {
+    border: none;
+}
+.pi-map-marker {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+}
+.categories-card img {
+    margin: 36px;
+    height: 180px;
+    transition: transform 0.3s ease-in-out;
+    @include _1170{
+        margin: 20px;
+        height: 125px;
+      }
+      @include at-max-width-960px {
+            margin: 20px;
+            height: 100px;
+          }
+}
+.categories-card img:hover {
+    transform: scale(1.1);
+}
+  .categories-area {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 10px; 
+    background-color: white;
+}
+.announcement-container {
+    position: relative;
+    width: 43%;
+    margin: 0 1%; 
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    transition: transform 0.3s ease-in-out;
+    @include at-max-width-520px {
+          width:42%;
+          padding: 10px;
+          }
+    }
+.announcement-container:hover {
+    transform: scale(1.03);
+}
+.all-announcement {
+    @include at-max-width-960px {
+          display: flex;
+          flex-wrap: wrap;
+          margin: 0 auto;
+      }
+  }
+.announcement-container img {
+    width: 100%;
+    height: 60%;
+}
+.announcement-details {
+    color: grey;
+
+    .price {
+        font-weight: bold;
+        color: black;
+        font-size: 18px;
+    }
+}
+
+.announcement-label{
+    @include fluidFontSize(19px, 25px, 767px, 1280px, 22px);
+
+}
+.announcement-text-content{
+    @include fluidFontSize(12px, 20px, 767px, 1280px, 16px);
+
+}
+.announcement-details{
+    @include fluidFontSize(9px, 16px, 767px, 1280px, 12px);
+
+} 
+.all-categories-label{
+    @include fluidFontSize(19px, 25px, 767px, 1280px, 22px);
+
+}
+.add-to-fav {
+    position: absolute;
+    right: 7%;
+    top: 90%;
+    .heart-icon {
+        @include fluidFontSize(15px, 27px, 767px, 1280px, 20px);
+    }
+    &.add-to-fav:hover{
+        color: lightgrey;
+        cursor: pointer;
+    }
+}
+   

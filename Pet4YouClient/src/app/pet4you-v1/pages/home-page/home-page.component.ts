@@ -9,7 +9,14 @@ import {UIPartsController} from "../../services/ui-parts-controller.service";
     templateUrl: './home-page.component.html',
 })
 export class HomePageComponent implements OnInit, OnDestroy {
-
+    cities: { value: string; label: string }[] = [
+        { value: 'kyiv', label: 'Kyiv' },
+        { value: 'lviv', label: 'Lviv' },
+        { value: 'odesa', label: 'Odesa' },
+        { value: 'kharviv', label: 'Kharkiv' }
+      ];
+    
+      selectedCity: string = '';
     destroy = new Subject<any>();
 
     private prevUIParts: any;
