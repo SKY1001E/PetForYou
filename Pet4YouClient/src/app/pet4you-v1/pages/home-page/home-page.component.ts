@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subject, takeUntil, tap} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
-import {UIPartsController} from "../../../services/ui-parts-controller.service";
-import {UserService} from "../../../services/api/user.service";
+import {UserService} from "../../services/api/user.service";
+import {UIPartsController} from "../../services/ui-parts-controller.service";
 
 @Component({
     selector: 'home-page',

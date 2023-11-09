@@ -36,8 +36,11 @@ export function tokenGetter() {
 
         RouterModule.forChild([
             {
-              path: '', redirectTo: 'home', pathMatch: 'full', component: MainPageComponent,
+              path: '', component: MainPageComponent,
               children: [
+                {
+                  path: '', redirectTo: 'home', pathMatch: 'full'
+                },
                 {
                   path: 'home',
                   component: HomePageComponent
