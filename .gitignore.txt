@@ -21,3 +21,5 @@
 [Dd]ebug*/
 *.lib
 *.sbr
+.vs/
+Pet4YouAPI/.vs/
