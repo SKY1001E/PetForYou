@@ -1,35 +1,42 @@
 <div *ngIf="!isLoading else loading" class="profile-container" style="padding: 20px; background-color: white;">
     <label class="flex justify-content-center profile-label">Ваш профіль</label>
-    <div class="profile-icon-container">
-        <label class="profile-icon" for="photo-upload">
-            <i class="pi pi-user"></i>
-        </label>
-        <input class="photo-upload-input" type="file" id="photo-upload" accept="image/*">
+    <div class="flex justify-content-between">
+        <div class="flex flex-direction-column flex-justify-content-end" style="gap: 5px;">
+            <button class="your-ads-button" style="margin-top: 10px;">Your Ads</button>
+            <button class="log-out-button" (click)="logout()" style="margin-top: 10px;">Log out</button>
+        </div>
+        <div class="profile-icon-container">
+            <label class="profile-icon" for="photo-upload">
+                <i class="pi pi-user"></i>
+            </label>
+            <input class="photo-upload-input" type="file" id="photo-upload" accept="image/*">
+        </div>
+       
     </div>
-    <button class="your-ads-button" style="margin-top: 10px;">Your Ads</button>
-
+   
     <div class="flex align-center text-center additional-container">
         <div class="additional-first detailed-info">
-            <div class="info-label " style="margin-bottom: 20px;">Детальна інформація</div>
-            <label for="first-name">Ім'я:</label>
-            <input type="text" id="first-name" name="first-name"><br>
+            <div class="info-label " style="margin-bottom: 20px;">Detailed information</div>
+            <p style="color: gray">Account registraion date: {{user.registrationDate | date : "dd.MM.yyyy" }}</p>    
+            <div class="flex justify-content-around">
+                <div>
+                    <p>First name: {{user.userInfo.firstName ? user.userInfo.firstName : "isn't specified"}}</p>
+                    <p>Last name: {{user.userInfo.lastName ? user.userInfo.lastName : "isn't specified"}}</p>
+                    <p>Patronymic: {{user.userInfo.patronymicName ? user.userInfo.patronymicName : "isn't specified" }}</p>
+                    <p>Sex: {{user.userInfo.sex ? user.userInfo.sex : "isn't specified"}}</p>
+                </div>
+                <div>
+                    <p><b>Contacts:</b></p>
+                    <p>Email: {{user.userInfo.email ? user.userInfo.email : "isn't specified"}}</p>
+                    <p>Phone: {{user.userInfo.phone ? user.userInfo.phone : "isn't specified"}}</p>
+                    <p>Date of Birth: {{user.userInfo.dateOfBirth ? (user.userInfo.dateOfBirth | date: 'dd.MM.yyyy') : "isn't specified"}}</p>
+                </div>
+            </div>
+            
+           
+            <p>Biography: {{user.userInfo.biography ? user.userInfo.biography : "isn't specified"}}</p>
 
-            <label for="last-name">Прізвище:</label>
-            <input type="text" id="last-name" name="last-name"><br>
-
-            <label for="gender">Стать:</label>
-            <input type="text" id="gender" name="gender"><br>
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email"><br>
-
-            <label for="date-of-birth">Дата народження:</label>
-            <input type="date" id="date-of-birth" name="date-of-birth"><br>
-
-            <label for="date-of-registration">Дата реєстрації:</label>
-            <input type="date" id="date-of-registration" name="date-of-registration"><br>
-
-            <button class="edit-button">Edit</button>
+            <button class="edit-button" (click)="changeDialogState()">Edit</button>
 
         </div>
         <div class="additional-second settings-info">
@@ -37,18 +44,20 @@
             <button class="change-photo-button">Змінити фото профіля</button>
 
             <div class="password-fields">
-                <div class="change-password-label">Зміна паролю</div>
-                <label for="old-password">Старий пароль:</label>
-                <input type="password" id="old-password" name="old-password"><br>
+                <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
+                    <div class="change-password-label">Зміна паролю</div>
+                    <label for="old-password">Старий пароль:</label>
+                    <input formControlName="oldPassword" type="password" id="old-password" name="old-password" required><br>
 
-                <label for="new-password">Новий пароль:</label>
-                <input type="password" id="new-password" name="new-password"><br>
+                    <label for="new-password">Новий пароль:</label>
+                    <input formControlName="newPassword" type="password" id="new-password" name="new-password" required><br>
 
-                <label for="confirm-new-password">Повторити новий пароль:</label>
-                <input type="password" id="confirm-new-password" name="confirm-new-password"><br>
+                    <label for="confirm-new-password">Повторити новий пароль:</label>
+                    <input formControlName="newPasswordConfirm" type="password" id="confirm-new-password" name="confirm-new-password" required><br>
+
+                    <button type="submit" class="change-password-button" [disabled]="changePasswordForm.invalid">Змінити пароль</button>
+                </form>
             </div>
-
-            <button class="change-password-button">Змінити фото профіля</button>
         </div>
 
 
@@ -58,4 +67,75 @@
 
 <ng-template #loading>
     <p-progressSpinner></p-progressSpinner>
+</ng-template>
+
+<p-dialog
+    header="Profile editing"
+    [(visible)]="isDialogOpened"
+    [modal]="true"
+    [style]="{ width: '50vw' }"
+    [draggable]="true"
+    [resizable]="true">
+    <ng-container *ngTemplateOutlet="contentDialog"></ng-container>
+</p-dialog>
+
+
+<ng-template #contentDialog>
+    <form [formGroup]="updateUserInfoForm" 
+    (ngSubmit)="updateUser()">
+        <div style="display: flex; flex-direction: column">
+            
+            <label>First Name</label>
+            <input
+                type="text"
+                formControlName="firstName"
+                pInputText
+                placeholder="First name"/>
+            
+                <label style="margin-top: 20px">Last Name</label>
+            <input
+                type="text"
+                pInputText
+                formControlName="lastName"
+                placeholder="Last name"/>
+
+            <label style="margin-top: 20px">Patronymic Name</label>
+            <input
+                type="text"
+                pInputText
+                formControlName="patronymicName"
+                placeholder="Paytronymic name"/>
+
+
+            <label style="margin-top: 20px">Sex</label>
+            <p-dropdown formControlName="sex" [options]="sexs"></p-dropdown>
+
+            <label style="margin-top: 20px">Email</label>
+            <input
+                type="email"
+                pInputText
+                formControlName="email"
+                placeholder="email@gmail.com"/>
+
+            <label style="margin-top: 20px">Phone</label>
+            <input
+                type="text"
+                pInputText
+                formControlName="phone"
+                placeholder="+380 66 666 66 66"/>
+
+            <label  style="margin-top: 20px" for="updUser_dateOfBirth">Date of Birth</label>
+            <p-calendar id="updUser_dateOfBirth"formControlName="dateOfBirth">
+            </p-calendar>
+
+            <label style="margin-top: 20px">Biography</label>
+            <input
+                type="text"
+                pInputText
+                formControlName="biography"
+                placeholder="Tell about yourself"/>
+
+            <button style="margin-top: 20px" class="confirm-update-button" type="submit">Update information</button>
+        </div>
+    </form>
 </ng-template>

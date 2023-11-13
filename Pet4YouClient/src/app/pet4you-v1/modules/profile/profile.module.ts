@@ -5,6 +5,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {ProfileComponent} from "./components/profile.component";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
+import {DialogModule} from "primeng/dialog";
+import {InputTextModule} from 'primeng/inputtext';
+import { Dropdown, DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
+
+
 
 @NgModule({
     imports: [
@@ -12,7 +18,6 @@ import {ProgressSpinnerModule} from "primeng/progressspinner";
         FormsModule,
         HttpClientModule,
         ReactiveFormsModule,
-
         RouterModule.forChild([
             {path: '', redirectTo: 'my', pathMatch: 'full'},
             {
@@ -21,6 +26,10 @@ import {ProgressSpinnerModule} from "primeng/progressspinner";
             }
         ]),
         ProgressSpinnerModule,
+        DialogModule,
+        InputTextModule,
+        DropdownModule,
+        CalendarModule
     ],
     declarations: [
         ProfileComponent

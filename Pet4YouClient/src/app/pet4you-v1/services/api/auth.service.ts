@@ -41,4 +41,9 @@ export class AuthService {
 
         return !this.jwtHelper.isTokenExpired(token);
     }
+
+    logout() {
+        localStorage.removeItem(ACCESS_TOKEN_KEY);
+        this.router.navigate(['sign', 'in'], { relativeTo: this.route }).then();
+    }
 }

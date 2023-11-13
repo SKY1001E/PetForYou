@@ -1,10 +1,11 @@
 import {Inject, Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import { jwtDecode } from "jwt-decode";
 import {ACCESS_TOKEN_KEY} from "./auth.service";
 import {environment} from "../../../../environments/environments";
+import { UpdateUserModel } from "../../shared/others/models/user-models";
 
 @Injectable()
 export class UserService {
@@ -19,6 +20,18 @@ export class UserService {
 
     getUser(): Observable<any> {
         return this.http.get(`${this.apiUrl}api/User/id/${this.getUserInfoFromToken().userId}`);
+    }
+
+    changePassword(oldPassword: string, newPassword: string) : Observable<any> {
+        const userId = this.getUserInfoFromToken().userId;
+        
+        const data = {
+            userId: userId,
+            oldPassword: oldPassword,
+            newPassword: newPassword
+          };
+
+        return this.http.post(`${this.apiUrl}api/User/changePassword`, data);
     }
 
     getUserInfoFromToken(): any {
@@ -37,5 +50,9 @@ export class UserService {
         } catch (Error) {
             return null;
         }
+    }
+
+    updateUser(user: UpdateUserModel) : Observable<any> {
+        return this.http.put(`${this.apiUrl}api/User/update`, user);
     }
 }

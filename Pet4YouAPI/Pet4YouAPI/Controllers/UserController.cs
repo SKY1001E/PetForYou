@@ -30,13 +30,9 @@ namespace Pet4YouAPI.Controllers
             return NoContent();
         }
 
-        [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateUser(int id, [FromBody] UpdateUserModel updatedUser)
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserModel updatedUser)
         {
-            if (id != updatedUser.Id)
-            {
-                return BadRequest();
-            }
 
             var result = await _userService.UpdateUserInfo(updatedUser);
 
@@ -51,9 +47,9 @@ namespace Pet4YouAPI.Controllers
         }
 
         [HttpPost("changePassword")]
-        public async Task<IActionResult> ChangePassword(int userId, string oldPassword, string newPassword)
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordModel changePassword)
         {
-            var result = await _userService.ChangePassword(userId, oldPassword, newPassword);
+            var result = await _userService.ChangePassword(changePassword.UserId, changePassword.OldPassword, changePassword.NewPassword);
 
             if (result == ChangePasswordResult.Success)
             {

@@ -100,11 +100,10 @@ body {
 .footer {
     background-color: #9EDCEF;
     color: black;
-    position: fixed;
     width: 100%;
-    height: 100px;
-    padding: 20px;
-    bottom: -30px;
+    height: 70px;
+    padding: 30px;
+    margin-top: 40px;
     text-align: center;
     @include at-max-width-960px {
         display: none;
@@ -364,8 +363,8 @@ body {
 }
 
 .your-ads-button {
-    position: absolute;
-    top:20%;
+    //position: absolute;
+    //top:20%;
     background-color: $profileButtonAds;
     border: none;
     padding: 10px 50px;
@@ -385,6 +384,28 @@ body {
         background-color: lighten($profileButtonAds, 5%);
     }
 }
+
+.log-out-button {
+    background-color: $profileButtonAds;
+    border: none;
+    padding: 10px 50px;
+
+    @include border-radius(10px);
+    @include at-max-width-960px {
+        padding: 8px 20px;
+    }
+    @include at-max-width-520px {
+        top:25%;
+        padding: 5px 10px;
+        font-size: 10px;
+    }
+
+    &:active {
+        transform: scale(0.97);
+        background-color: lighten($profileButtonAds, 5%);
+    }
+}
+
 .edit-button {
     background-color: $profileEditBtn;
     border: none;
@@ -425,6 +446,33 @@ body {
         background-color: lighten($profilePhotoChangeBtn, 5%);
     }
 }
+
+.confirm-update-button {
+    margin: 0 auto;
+    text-align: center;
+    background-color: $profilePhotoChangeBtn;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 40px;
+    @include at-max-width-960px {
+        font-size: 11px;
+        padding: 11px 8px;
+    }
+    @include at-max-width-520px {
+        font-size: 8px;
+        padding: 5px 2px;
+    } 
+    &.change-photo-button:active {
+        transform: scale(0.97);
+        background-color: lighten($profilePhotoChangeBtn, 5%);
+    }
+}
+
+.confirm-update-button:hover {
+    cursor: pointer;
+}
+
+
 .change-password-label {
     margin: 32px;
     @include fluidFontSize(12px, 17px, 767px, 1280px, 15px);
