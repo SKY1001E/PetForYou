@@ -145,4 +145,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }});
         this.changeDialogState()
     }
+
+    deleteCurrentUser() {
+        this.userService.deleteUser(this.user.id).subscribe({
+            next: (response) => {
+                this.toastService.add({severity: 'success', summary: 'User deleting', detail: 'User successfully deleted'});
+                this.authService.logout();
+            },
+            error: (error) => {
+                console.log(error.error)
+                this.toastService.add({severity: 'error', summary: 'User deleting', detail: error.error})
+            }
+        })
+
+    }
 }
