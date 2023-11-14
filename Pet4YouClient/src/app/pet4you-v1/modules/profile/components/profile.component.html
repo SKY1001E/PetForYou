@@ -1,4 +1,4 @@
-<div *ngIf="!isLoading else loading" class="profile-container" style="padding: 20px; background-color: white;">
+<div *ngIf="!isLoading else loading" class="profile-container" style="padding: 20px; background-color: white; margin-top: 100px;">
     <label class="flex justify-content-center profile-label">Ваш профіль</label>
     <div class="flex justify-content-between">
         <div class="flex flex-direction-column flex-justify-content-end" style="gap: 5px;">
@@ -7,38 +7,33 @@
             <button class="log-out-button" (click)="deleteCurrentUser()" style="background-color: rgb(255, 95, 95); margin-top: 10px;">Delete profile</button>
         </div>
         <div class="profile-icon-container">
-            <label class="profile-icon" for="photo-upload">
+            <label class="profile-icon" style="margin-top: 10px;" for="photo-upload">
                 <i class="pi pi-user"></i>
             </label>
             <input class="photo-upload-input" type="file" id="photo-upload" accept="image/*">
         </div>
-       
     </div>
-   
-    <div class="flex align-center text-center additional-container">
+    <div class="flex align-center text-center additional-container" style="margin-top: 30px;">
         <div class="additional-first detailed-info">
-            <div class="info-label " style="margin-bottom: 20px;">Detailed information</div>
-            <p style="color: gray">Account registraion date: {{user.registrationDate | date : "dd.MM.yyyy" }}</p>    
-            <div class="flex justify-content-around">
-                <div>
-                    <p>First name: {{user.userInfo.firstName ? user.userInfo.firstName : "isn't specified"}}</p>
-                    <p>Last name: {{user.userInfo.lastName ? user.userInfo.lastName : "isn't specified"}}</p>
-                    <p>Patronymic: {{user.userInfo.patronymicName ? user.userInfo.patronymicName : "isn't specified" }}</p>
-                    <p>Sex: {{user.userInfo.sex ? user.userInfo.sex : "isn't specified"}}</p>
+            <div class="info-label">Detailed information</div>
+            <p class="registration-date">Account registration date: {{user.registrationDate | date : "dd.MM.yyyy" }}</p>
+            <div class="flex justify-content-around user-info">
+                <div class="user-info-section">
+                    <p class="info-label"><b>Personal Information</b></p>
+                    <p><span class="info-title">First name:</span> <span class="info-value">{{user.userInfo.firstName ? user.userInfo.firstName : "isn't specified"}}</span></p>
+                    <p><span class="info-title">Last name:</span> <span class="info-value">{{user.userInfo.lastName ? user.userInfo.lastName : "isn't specified"}}</span></p>
+                    <p><span class="info-title">Patronymic:</span> <span class="info-value">{{user.userInfo.patronymicName ? user.userInfo.patronymicName : "isn't specified" }}</span></p>
+                    <p><span class="info-title">Sex:</span> <span class="info-value">{{user.userInfo.sex ? user.userInfo.sex : "isn't specified"}}</span></p>
                 </div>
-                <div>
-                    <p><b>Contacts:</b></p>
-                    <p>Email: {{user.userInfo.email ? user.userInfo.email : "isn't specified"}}</p>
-                    <p>Phone: {{user.userInfo.phone ? user.userInfo.phone : "isn't specified"}}</p>
-                    <p>Date of Birth: {{user.userInfo.dateOfBirth ? (user.userInfo.dateOfBirth | date: 'dd.MM.yyyy') : "isn't specified"}}</p>
+                <div class="user-info-section">
+                    <p class="info-label"><b>Contact Information</b></p>
+                    <p><span class="info-title">Email:</span> <span class="info-value">{{user.userInfo.email ? user.userInfo.email : "isn't specified"}}</span></p>
+                    <p><span class="info-title">Phone:</span> <span class="info-value">{{user.userInfo.phone ? user.userInfo.phone : "isn't specified"}}</span></p>
+                    <p><span class="info-title">Date of Birth:</span> <span class="info-value">{{user.userInfo.dateOfBirth ? (user.userInfo.dateOfBirth | date: 'dd.MM.yyyy') : "isn't specified"}}</span></p>
                 </div>
             </div>
-            
-           
-            <p>Biography: {{user.userInfo.biography ? user.userInfo.biography : "isn't specified"}}</p>
-
+            <p class="user-info-biography">Biography: {{user.userInfo.biography ? user.userInfo.biography : "isn't specified"}}</p>
             <button class="edit-button" (click)="changeDialogState()">Edit</button>
-
         </div>
         <div class="additional-second settings-info">
             <div class="info-label">Налаштування</div>
