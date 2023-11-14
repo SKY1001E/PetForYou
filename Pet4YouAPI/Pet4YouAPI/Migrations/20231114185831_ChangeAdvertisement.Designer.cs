@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pet4YouAPI.DBContext;
 
@@ -11,9 +12,11 @@ using Pet4YouAPI.DBContext;
 namespace Pet4YouAPI.Migrations
 {
     [DbContext(typeof(Pet4YouContext))]
-    partial class Pet4YouContextModelSnapshot : ModelSnapshot
+    [Migration("20231114185831_ChangeAdvertisement")]
+    partial class ChangeAdvertisement
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

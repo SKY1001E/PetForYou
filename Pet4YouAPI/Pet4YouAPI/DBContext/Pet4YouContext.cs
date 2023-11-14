@@ -18,13 +18,13 @@ public class Pet4YouContext : DbContext
 
     public virtual DbSet<Advertisement> Advertisements { get; set; }
 
-    public virtual DbSet<AdvertisementCriterion> AdvertisementCriteria { get; set; }
+    //public virtual DbSet<AdvertisementCriterion> AdvertisementCriteria { get; set; }
 
     public virtual DbSet<AdvertisementDeleting> AdvertisementDeletings { get; set; }
 
     public virtual DbSet<AdvertisementLocation> AdvertisementLocations { get; set; }
 
-    public virtual DbSet<Criteria> Criterias { get; set; }
+    //public virtual DbSet<Criteria> Criterias { get; set; }
 
     public virtual DbSet<OrderRequest> OrderRequests { get; set; }
 
@@ -34,6 +34,7 @@ public class Pet4YouContext : DbContext
 
     public virtual DbSet<UserInfo> UserInfos { get; set; }
 
+    public virtual DbSet<AdvertisementInfo> AdvertisementInfos { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -49,7 +50,7 @@ public class Pet4YouContext : DbContext
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
         });
-
+        /*
         modelBuilder.Entity<AdvertisementCriterion>(entity =>
         {
             entity.HasKey(e => e.Id);
@@ -63,7 +64,7 @@ public class Pet4YouContext : DbContext
             entity.HasOne(d => d.Criteria).WithMany(p => p.AdvertisementCriteria)
                 .HasForeignKey(d => d.CriteriaId)
                 .OnDelete(DeleteBehavior.Cascade);
-        });
+        }); */
 
         modelBuilder.Entity<AdvertisementDeleting>(entity =>
         {
@@ -95,11 +96,20 @@ public class Pet4YouContext : DbContext
                 .HasForeignKey<AdvertisementLocation>(d => d.Id);
         });
 
+        /*
         modelBuilder.Entity<Criteria>(entity =>
         {
             entity.HasKey(e => e.Id);
 
             entity.Property(e => e.Name).HasMaxLength(20);
+        }); */
+
+        modelBuilder.Entity<AdvertisementInfo>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            
+            entity.HasOne(e => e.Advertisement).WithOne(e => e.AdvertisementInfo)
+               .HasForeignKey<AdvertisementInfo>(d => d.Id);
         });
 
         modelBuilder.Entity<OrderRequest>(entity =>
