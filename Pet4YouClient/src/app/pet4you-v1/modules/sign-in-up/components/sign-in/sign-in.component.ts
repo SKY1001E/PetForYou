@@ -61,12 +61,20 @@ export class SignInComponent implements OnInit, OnDestroy, AfterViewInit {
             email: this.form.get('email')?.value,
             password: this.form.get('password')?.value
         }
-
         this.authService.login(authInfo)
             .pipe(takeUntil(this.destroy))
-            .subscribe(() => {
+            .subscribe({
+                next: () => {
+                    this.toastService.add({ severity: 'success', summary: 'Success', detail: 'You are successfully login' });
+                    this.router.navigate(['/']).then();
+                },
+                error: () => {
+                    this.toastService.add({ severity: 'error', summary: 'Error', detail: 'Incorrect email or password' });
+                }
+            })
+            /*.subscribe(() => {
                 this.toastService.add({ severity: 'success', summary: 'Success', detail: 'You are successfully login' });
                 this.router.navigate(['/']).then();
-            });
+            });*/
     }
 }

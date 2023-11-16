@@ -397,29 +397,9 @@ body {
         transform: scale(0.97);
         background-color: lighten($profileEditBtn, 5%);
     }
+
 }
 
-.change-password-button {
-    background-color: $profilePhotoChangeBtn;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 15px;
-    color: black;
-    cursor: pointer;
-    @include at-max-width-960px {
-        font-size: 11px;
-        padding: 11px 8px;
-    }
-    @include at-max-width-520px {
-        font-size: 8px;
-        padding: 5px 2px;
-    }
-
-    &.hover {
-        transform: scale(0.97);
-        background-color: lighten($profilePhotoChangeBtn, 5%);
-    }
-}
 .change-password-label {
     margin: 32px;
     @include fluidFontSize(12px, 17px, 767px, 1280px, 15px);
@@ -443,10 +423,13 @@ body {
         font-size: 8px;
         padding: 5px 8px;
     }
-    &.change-password-button:hover {
-        transform: scale(0.97);
-        background-color: lighten($profileChangePasswBtn, 5%);
+    &:not([disabled]) {
+        &:hover {
+            transform: scale(0.97);
+            background-color: lighten($profileChangePasswBtn, 5%);
+        }
     }
+    
 }
 
 //home-page
