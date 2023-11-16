@@ -13,6 +13,7 @@
                 </ul>
                 <a href="#"
                    class="add-button"
+                   [routerLink]="['announcement']"
                    style="padding: 10px 20px;">
                     Add announcement
                 </a>
@@ -23,7 +24,7 @@
         <button
             pButton
             style="height: 32px; left: 20px"
-            [style.top.px]="uiParts.showHeader ? 50 : 20"
+            [style.margin-top.px]="uiParts.showHeader ? 10 : 20"
             [icon]="'pi pi-arrow-left'"
             [iconPos]="'left'"
             [label]="'Back'"

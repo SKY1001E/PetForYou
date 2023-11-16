@@ -36,24 +36,29 @@ export function tokenGetter() {
 
         RouterModule.forChild([
             {
-              path: '', component: MainPageComponent,
-              children: [
-                {
-                  path: '', redirectTo: 'home', pathMatch: 'full'
-                },
-                {
-                  path: 'home',
-                  component: HomePageComponent
-                },
-                {
-                  path: 'sign',
-                  loadChildren: () => import('./modules/sign-in-up/sign-in-up.module').then((m) => m.SignInUpModule)
-                },
-                {
-                  path: 'profile',
-                  loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfileModule),
-                  canActivate: [AuthRequiredGuard]
-                }
+                path: '', component: MainPageComponent,
+                children: [
+                    {
+                        path: '', redirectTo: 'home', pathMatch: 'full'
+                    },
+                    {
+                        path: 'home',
+                        component: HomePageComponent
+                    },
+                    {
+                        path: 'sign',
+                        loadChildren: () => import('./modules/sign-in-up/sign-in-up.module').then((m) => m.SignInUpModule)
+                    },
+                    {
+                        path: 'profile',
+                        loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfileModule),
+                        canActivate: [AuthRequiredGuard]
+                    },
+                    {
+                        path: 'announcement',
+                        loadChildren: () => import('./modules/announcement/announcement.module').then(m => m.AnnouncementModule),
+                        canActivate: [AuthRequiredGuard]
+                    }
               ]
             },
           ]),

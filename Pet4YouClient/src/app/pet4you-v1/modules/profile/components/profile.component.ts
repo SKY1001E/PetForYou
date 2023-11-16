@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         private toastService: MessageService,
         private authService: AuthService
 
-    ) { 
+    ) {
         this.sexs = [
             { label: '', value: null},
             { label: 'Male', value: 'Male' },
@@ -100,10 +100,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
             next: (response) => {
                 console.log(response, "success")
                 this.toastService.add({severity: 'success', summary: 'Password change', detail: 'Password has changed'})
-            }, 
+            },
             error: (error) => {
                 console.log(error, "error")
-                const errorMessage = 
                 this.toastService.add({severity: 'error', summary: 'Password change', detail: error.error})
             }
         });
@@ -131,7 +130,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
             dateOfBirth: this.updateUserInfoForm.get('dateOfBirth')?.value ? this.updateUserInfoForm.get('dateOfBirth')?.value : this.user.userInfo.dateOfBirth,
             biography: this.updateUserInfoForm.get('biography')?.value ? this.updateUserInfoForm.get('biography')?.value : this.user.userInfo.biography
         }
-        
+
         this.userService.updateUser(updateUser).subscribe({
             next: (response) => {
                 this.toastService.add({severity: 'success', summary: 'Update info', detail: 'Information successfully updated'}),

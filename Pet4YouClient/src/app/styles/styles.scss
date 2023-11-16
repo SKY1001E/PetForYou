@@ -8,7 +8,7 @@ body {
   margin: 0;
   padding: 0;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  background: $petMainBgColor; 
+  background: $petMainBgColor;
 }
 
 //Header
@@ -18,7 +18,7 @@ body {
     .navbar {
         height: 130px;
         width: 100%;
-        
+
         @include at-max-width-960px {
             .navbar {
                 height: 100px;
@@ -35,9 +35,9 @@ body {
                 bottom: 0;
                 left: 0;
                 text-align: center;
-                z-index: 999; 
+                z-index: 999;
             }
-            
+
 
             li {
                 display: inline-block;
@@ -111,7 +111,8 @@ body {
 }
 
 .back-button {
-    position: absolute;
+    position: relative;
+    background: transparent;
 }
 // sign-in page
 
@@ -135,7 +136,7 @@ body {
               overflow-y: auto;
               max-height: 60vh;
               margin-bottom: 20px;
-            } 
+            }
     }
 
     .signIn_logo {
@@ -149,8 +150,8 @@ body {
                     width: 120px;
                     height: 120px;
                     margin-top: -30px;
-                }   
-                  
+                }
+
     }
 
     .form-group label {
@@ -185,16 +186,16 @@ body {
                     font-size: 13px;
                     margin: 10px 0;
                 }
-            
+
                 .sign_btn button:hover, .google_btn button:hover {
                     cursor: pointer;
                     transition: transform 0.5s;
                 }
-            
+
                 .sign_btn button:active, .google_btn button:active {
                     transform: scale(0.94);
                 }
-            
+
           }
     }
     .Google_logo img {
@@ -233,7 +234,7 @@ body {
                 width: 70%;
                 height: 70%;
             }
-        
+
       }
 
 .signUp_logo {
@@ -245,7 +246,7 @@ body {
       height: 80px;
     }
     @include at-max-width-960px {
-      
+
             width: 120px;
             height: 130px;
             margin-top: -50px;
@@ -261,7 +262,7 @@ body {
     margin-top: 100px;
     height: auto;
     @include border-radius(13px);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     @include at-max-width-960px {
         width: 80%;
         margin-bottom: 150px;
@@ -310,7 +311,7 @@ body {
     }
 }
 #photo-upload {
-    display: none; 
+    display: none;
 }
 .additional-container {
     display: flex;
@@ -337,11 +338,11 @@ body {
         border: 1px solid #ccc;
         @include border-radius(5px);
         outline: none;
-        
+
         @include at-max-width-520px {
             height: 20px;
         }
-        
+
         &:focus {
             border-color: dodgerblue;
         }
@@ -419,7 +420,7 @@ body {
     @include at-max-width-520px {
         font-size: 8px;
         padding: 3px 7px;
-    }             
+    }
     &.edit-button:active {
         transform: scale(0.97);
         background-color: lighten($profileEditBtn, 5%);
@@ -440,7 +441,7 @@ body {
     @include at-max-width-520px {
         font-size: 8px;
         padding: 5px 2px;
-    } 
+    }
     &.change-photo-button:active {
         transform: scale(0.97);
         background-color: lighten($profilePhotoChangeBtn, 5%);
@@ -461,7 +462,7 @@ body {
     @include at-max-width-520px {
         font-size: 8px;
         padding: 5px 2px;
-    } 
+    }
     &.change-photo-button:active {
         transform: scale(0.97);
         background-color: lighten($profilePhotoChangeBtn, 5%);
@@ -496,13 +497,13 @@ body {
         font-size: 8px;
         padding: 5px 8px;
 
-    } 
+    }
     &.change-password-button:active {
         transform: scale(0.97);
         background-color: lighten($profileChangePasswBtn, 5%);
     }
 }
-//home-page 
+//home-page
 .dropdown select, .search-box input  {
     border: none;
 }
@@ -531,13 +532,13 @@ body {
   .categories-area {
     flex-wrap: nowrap;
     overflow-x: auto;
-    padding: 10px; 
+    padding: 10px;
     background-color: white;
 }
 .announcement-container {
     position: relative;
     width: 43%;
-    margin: 0 1%; 
+    margin: 0 1%;
     background-color: white;
     padding: 20px;
     margin-top: 20px;
@@ -582,7 +583,7 @@ body {
 .announcement-details{
     @include fluidFontSize(9px, 16px, 767px, 1280px, 12px);
 
-} 
+}
 .all-categories-label{
     @include fluidFontSize(19px, 25px, 767px, 1280px, 22px);
 
@@ -599,4 +600,4 @@ body {
         cursor: pointer;
     }
 }
-   
+
