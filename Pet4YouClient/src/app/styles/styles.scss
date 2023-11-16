@@ -383,7 +383,6 @@ body {
     border: none;
     padding: 9px 40px;
     cursor: pointer;
-
     @include border-radius(10px);
     @include at-max-width-960px {
         font-size: 11px;
@@ -546,3 +545,159 @@ body {
     }
 }
 
+// add-advertisment
+.advertisement-title{
+    @include fluidFontSize(15px, 25px, 767px, 1280px, 20px);
+}
+
+.p-dropdown {
+  display: flex;
+  background: $dropdownBackgroundColor !important;
+  width: 100%;
+  @include _560 {
+    width: 70px;
+    height: 33px;
+  }
+  .p-dropdown-label {
+    @include _560 {
+      font-size: 10px;
+    }
+  }
+  .p-dropdown-trigger {
+    .p-icon {
+      @include _560 {
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
+}
+.p-dropdown-items {
+    @include _560 {
+    font-size: 10px;
+}
+}
+.custom-dropdown{
+    margin-left:5px;
+}
+.add-container {
+    margin: 5px; 
+    p {
+     @include fluidFontSize(10px, 16px, 767px, 1280px, 15px);
+    }
+}
+
+#inputDesc {
+    height: 210px;
+    padding: 10px;
+    box-sizing: border-box;
+    resize: none;
+    border: none;
+    @include border-radius(6px);
+    @include _560{
+        height: 184px;
+    }
+}
+.label-options {
+    margin-left: 9px;
+    @include fluidFontSize(10px, 16px, 767px, 1280px, 15px);
+}
+.setting-container, .photo-upload-container, .info-container{
+    @include border-radius(10px);
+    padding: 35px;
+    background-color: white;
+}
+.setting-container{
+    @include _560{
+        padding: 15px;
+    }
+}
+.info-container, .photo-upload-container{
+    @include _560{
+        padding: 5px;
+    }
+}
+
+.custom-input-style, .info-input {
+    width: 100%;
+    background-color: $inputBackgroundColor !important;
+    @include _560{
+        height: 35px;
+    }
+}
+
+.custom-input-style::placeholder {
+    @include fluidFontSize(8px, 16px, 767px, 1280px, 15px);
+}
+
+.photo-container {
+    position: relative;
+    width: 300px;
+    height: 170px;
+    @include border-radius(10px);
+    overflow: hidden; 
+    background-color: $photoContainerBackgroundColor;
+    margin: 10px;
+    @include at-max-width-960px {
+        height: 110px;
+    }
+    @include _650 {
+        height: 60px;
+    }
+    @include _420{
+        height: 30px;
+        }
+    }
+
+  .uploaded-photo {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;
+  }
+  .add-photo-button {
+    width: 12%; 
+    height: 170px;
+    padding: 8px 20px; 
+    @include border-radius(10px);
+    background-color: $addPhotoButtonBgColor; 
+    border: none;
+    margin: 10px;
+    cursor: pointer;
+    @include at-max-width-960px {
+        padding: 2px 20px; 
+        font-size: 12px; 
+        width: 20%; 
+        height: 110px;
+        margin-top: 10px;
+    }
+    @include _650 {
+        height: 60px;
+        width: 12%; 
+        font-size: 7px; 
+        }
+        @include _420{
+            height: 30px;
+            }
+            &:hover {
+                transform: scale(0.97);
+                background-color: $addPhotoButtonHover;
+              }
+  }  
+ 
+.publish-button {
+    background-color: $publishBtn;
+    padding: 15px 70px;
+    @include border-radius(10px);
+    border: none;
+    &:hover {
+        transform: scale(0.97);
+        background-color: lighten($publishBtn, 5%);
+    }
+    @include at-max-width-960px {
+        margin-bottom: 100px;
+        padding: 10px 60px;
+    }
+    @include _560{
+        padding: 5px 50px;
+        }
+}

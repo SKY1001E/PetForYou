@@ -1,5 +1,98 @@
-<div class="create-announcement">
-    <h1>
-        Create Announcement
-    </h1>
+<div class="add-advertisement">
+    <div class="text-center advertisement-title" style="margin-top: 30px;">Створити оголошення</div>
+
+    <div class="flex align-center setting-container" style="margin: 30px; margin-top: 50px;">
+        <div class="custom-input" style="flex: 1; margin-right: 10px;">
+            <div>
+                <label for="inputName" class="label-options">Назва:</label>
+            </div>
+            <input id="inputName" class="custom-input-style" type="text" pInputText placeholder="Наприклад, Кане Корсо сірі, блакитні" />
+        </div>
+
+        <div class="custom-dropdown">
+            <div>
+                <label for="options" class="label-options">Тип оголошення:</label>
+            </div>
+            <p-dropdown [options]="types" [(ngModel)]="selectedType" optionLabel="label" class="custom-dropdown"></p-dropdown>
+        </div>
+
+        <div class="custom-dropdown">
+            <div>
+                <label for="options" class="label-options">Вид тварини:</label>
+            </div>
+            <p-dropdown [options]="anotherOptions" [(ngModel)]="selectedAnother" optionLabel="label" class="custom-dropdown"></p-dropdown>
+        </div>
+    </div>
+
+    <div class="flex align-center photo-upload-container" style="margin: 30px; ">
+        <button class="flex justify-content-center add-photo-button" (click)="openFileInput()" style="margin-top: 10px; align-items: center;">Додати фото</button>
+        <input type="file" #fileInput style="display: none" accept="image/*" (change)="displayImage($event)">
+
+        <div *ngFor="let photoContainer of photoContainers; let i = index" class="photo-container" (dragstart)="onDragStart(i, $event)" (dragover)="onDragOver($event)" (drop)="onDrop(i, $event)" draggable="true">
+            <img *ngIf="uploadedPhotos[i]" [src]="uploadedPhotos[i]" alt="Uploaded Photo" class="uploaded-photo">
+        </div>
+    </div>
 </div>
+
+<div class="flex info-container" style="margin: 35px; ">
+    <div class="add-container" style="flex: 60%;">
+        <p class = "desc-label" style="margin: 10px 0;">Додайте опис оголошення</p>
+        <div class="custom-input-desc" style="margin-right: 10px;">
+            <textarea id="inputDesc" class="custom-input-style" placeholder="Додайте важливу інформацію про тварину..."></textarea>
+        </div>
+    </div>
+    <div class="flex half-container" style="flex: 40%; flex-direction: column;">
+        <div class="custom-input" style="margin-top: 20px;">
+            <div>
+                <label for="inputCountry" class="label-options">Вкажіть країну: </label>
+            </div>
+            <input id="inputCountry" class="custom-input-style" type="text" pInputText placeholder="Назва країни" />
+        </div>
+
+        <div class="custom-input" style="margin: 10px 0;">
+            <div>
+                <label for="inputRegion" class="label-options">Вкажіть область: </label>
+            </div>
+            <input id="inputRegion" class="custom-input-style" type="text" pInputText placeholder="Назва області" />
+        </div>
+        <div class="custom-input" style="margin: 10px 0;">
+            <div>
+                <label for="inputCity" class="label-options">Вкажіть місто: </label>
+            </div>
+            <input id="inputCity" class="custom-input-style" type="text" pInputText placeholder="Назва міста" />
+        </div>
+    </div>
+</div>
+<div class="flex info-container" style="margin: 35px; ">
+    <div class="custom-input" style="width: 100%; margin-left: 10px;">
+        <div>
+            <label for="inputBreed" class="label-options">Порода:</label>
+        </div>
+        <input id="inputBreed" class="custom-input-style" type="text" pInputText placeholder="Вкажіть породу" />
+    </div>
+
+    <div class="custom-input" style="width: 100%; margin-left: 10px;">
+        <div>
+            <label for="inputGender" class="label-options">Стать:</label>
+        </div>
+        <input id="inputGender" class="custom-input-style" type="text" pInputText placeholder="Вкажіть стать" />
+    </div>
+
+    <div class="custom-input" style="width: 100%; margin-left: 10px;">
+        <div>
+            <label for="inputAge" class="label-options">Вік:</label>
+        </div>
+        <input id="inputAge" class="custom-input-style" type="text" pInputText placeholder="Вкажіть вік" />
+    </div>
+
+    <div class="custom-input" style="width: 100%; margin-left: 10px;">
+        <div>
+            <label for="inputPrice" class="label-options">Вартість:</label>
+        </div>
+        <input id="inputPrice" class="custom-input-style" type="text" pInputText placeholder="Вкажіть ціну" />
+    </div>
+</div>
+<div class=" flex justify-content-center align-center button-container" style="margin-bottom: 30px;">
+    <button class="publish-button">Опублікувати оголошення</button>
+</div>
+
