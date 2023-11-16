@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Pet4YouAPI.Models;
 
@@ -13,5 +14,6 @@ public partial class AdvertisementLocation
 
     public string? Region { get; set; }
 
-    public virtual Advertisement IdNavigation { get; set; } = null!;
+    [JsonIgnore]
+    public virtual Advertisement? IdNavigation { get; set; }
 }

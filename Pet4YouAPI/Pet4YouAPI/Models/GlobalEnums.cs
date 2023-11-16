@@ -22,4 +22,12 @@
         ItemNotFound,
         AccessDenied
     }
+
+    public enum CreationResult
+    {
+        Success,
+        IncorrectRefference,
+        IncorrectData,
+        OtherError
+    }
 }
