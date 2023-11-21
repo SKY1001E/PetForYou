@@ -30,4 +30,12 @@
         IncorrectData,
         OtherError
     }
+
+    public enum ModifyResult
+    {
+        Success,
+        ItemNotFound,
+        AccessDenied,
+        OtherOerror
+    }
 }

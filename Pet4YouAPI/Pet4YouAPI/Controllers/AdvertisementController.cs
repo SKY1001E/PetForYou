@@ -39,5 +39,23 @@ namespace Pet4YouAPI.Controllers
             ICollection<Advertisement> result = await _advertisementService.GetAdvertisements(filters);
             return (List<Advertisement>)result;
         }
+
+        [HttpGet("user/id")]
+        public async Task<ActionResult<List<Advertisement>>> GetAdvertisementByUser(int userId)
+        {
+            ICollection<Advertisement> result = await _advertisementService.GetAdvertisementsByUser(userId);
+            return (List<Advertisement>)result;
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAdvertisement(int id)
+        {
+            DeletingResult result = await _advertisementService.DeleteAdvertisement(id);
+            if (result == DeletingResult.Success)
+                return Ok("Advertisement deleted");
+            if (result == DeletingResult.ItemNotFound)
+                return NotFound("Advertisement not found");
+            return BadRequest();
+        }
     }
 }

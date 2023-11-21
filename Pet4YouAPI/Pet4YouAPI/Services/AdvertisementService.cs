@@ -40,41 +40,25 @@ namespace Pet4YouAPI.Services
             paramsList.Add(filters.AdvertisementType);
             int parametersCount = 1;
 
-
-            // Pet Types and Breeds
-            if (filters.PetTypes != null && filters.PetTypes.Count > 0)
-            {
-                sqlStatement += " AND Advertisements.PetType IN ({" + parametersCount + "})";
-                paramsList.Add(filters.PetTypes.ToArray());
-                parametersCount++;
-            }
-
-            if(filters.PetBreeds != null && filters.PetBreeds.Count > 0)
-            {
-                sqlStatement += " AND AdvertisemenInfos.Breed IN ({" + parametersCount + "})";
-                paramsList.Add(filters.PetBreeds.ToArray());
-                parametersCount++;
-            }
-
             // Location
-            if(filters.Locatinon?.Country != null && filters.Locatinon.Country != "")
+            if(filters.Location?.Country != null && filters.Location.Country != "")
             {
                 sqlStatement += " AND AdvertisementLocations.Country = {" + parametersCount + "}";
-                paramsList.Add(filters.Locatinon.Country);
+                paramsList.Add(filters.Location.Country);
                 parametersCount++;
             }
 
-            if (filters.Locatinon?.Region != null && filters.Locatinon.Region != "")
+            if (filters.Location?.Region != null && filters.Location.Region != "")
             {
                 sqlStatement += " AND AdvertisementLocations.Region = {" + parametersCount + "}";
-                paramsList.Add(filters.Locatinon.Region);
+                paramsList.Add(filters.Location.Region);
                 parametersCount++;
             }
 
-            if (filters.Locatinon?.City != null && filters.Locatinon.City != "")
+            if (filters.Location?.City != null && filters.Location.City != "")
             {
                 sqlStatement += " AND AdvertisementLocations.City = {" + parametersCount + "}";
-                paramsList.Add(filters.Locatinon.City);
+                paramsList.Add(filters.Location.City);
                 parametersCount++;
             }
 
@@ -97,7 +81,7 @@ namespace Pet4YouAPI.Services
 
             if (filters.MaxPrice != null && filters.MaxPrice != 0)
             {
-                sqlStatement += " AND AdvertisementInfos.Price = {" + parametersCount + "}";
+                sqlStatement += " AND AdvertisementInfos.Price <= {" + parametersCount + "}";
                 paramsList.Add(filters.MaxPrice);
                 parametersCount++;
             }
@@ -121,14 +105,54 @@ namespace Pet4YouAPI.Services
                 .FromSqlRaw(sqlStatement, paramsList.ToArray())
                 .Include(a => a.AdvertisementInfo)
                 .Include(a => a.AdvertisementLocation)
+                .Include(a => a.AdvertisementDeletings)
+                .Where(a => a.AdvertisementDeletings.Count == 0 && a.Completed == false)
                 .ToListAsync();
+
+
+            // Pet Types and Breeds
+            if (filters.PetTypes != null && filters.PetTypes.Count > 0)
+            {
+                result = result.Where(a => filters.PetTypes.Contains(a.PetType!)).ToList();
+            }
+
+            if(filters.PetBreeds != null && filters.PetBreeds.Count > 0)
+            {
+                result = result.Where(a => filters.PetBreeds.Contains(a.AdvertisementInfo!.Breed!)).ToList();
+            }
 
             return result;
         }
 
-        public Task<ICollection<Advertisement>> GetUserAdvertisement(int userId)
+        public async Task<ICollection<Advertisement>> GetAdvertisementsByUser(int userId)
         {
-            throw new NotImplementedException();
+            List<Advertisement> result = await _context.Advertisements
+                .Include(a => a.AdvertisementInfo)
+                .Include(a => a.AdvertisementLocation)
+                .Include(a => a.AdvertisementDeletings)
+                .Where(a => a.UserId == userId && a.AdvertisementDeletings.Count == 0)
+                .ToListAsync();
+            return result;
+        }
+
+        public async Task<DeletingResult> DeleteAdvertisement(int advertisementId)
+        {
+            var advertisement = await _context.Advertisements.FindAsync(advertisementId);
+            if (advertisement == null)
+                return DeletingResult.ItemNotFound;
+
+            var deletedBefore = await _context.AdvertisementDeletings.Where(a => a.AdvertisementId == advertisementId).ToListAsync();
+            if (deletedBefore.Count != 0)
+                return DeletingResult.ItemNotFound;
+
+            AdvertisementDeleting deleting = new AdvertisementDeleting();
+            deleting.DeleteDate = DateTime.Now;
+            deleting.AdvertisementId = advertisementId;
+            deleting.Reason = "self";
+            _context.AdvertisementDeletings.Add(deleting);
+            await _context.SaveChangesAsync();
+
+            return DeletingResult.Success;
         }
     }
 }
