@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Pet4YouAPI.DI;
+using Pet4YouAPI.DTO;
 using Pet4YouAPI.Models;
+using System.Collections;
 
 namespace Pet4YouAPI.Controllers
 {
@@ -16,7 +18,7 @@ namespace Pet4YouAPI.Controllers
             _advertisementService = advertisementService;
         }
 
-        [HttpPost]
+        [HttpPost("add")]
         public async Task<IActionResult> AddAdvertisement([FromBody] Advertisement advertisement)
         {
             if (advertisement == null)
@@ -29,6 +31,13 @@ namespace Pet4YouAPI.Controllers
             if (advertisementCreationResult == CreationResult.IncorrectData)
                 return BadRequest("Incorrect input data");
             return BadRequest();
+        }
+
+        [HttpPost("filter")]
+        public async Task<ActionResult<List<Advertisement>>> GetAdvertisements([FromBody] AdvertisementFilterModel filters)
+        {
+            ICollection<Advertisement> result = await _advertisementService.GetAdvertisements(filters);
+            return (List<Advertisement>)result;
         }
     }
 }

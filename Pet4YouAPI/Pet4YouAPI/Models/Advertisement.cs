@@ -20,6 +20,8 @@ public partial class Advertisement
 
     public int? UserId { get; set; }
 
+    public bool Completed { get; set; } = false;
+
     //public virtual ICollection<AdvertisementCriterion> AdvertisementCriteria { get; set; } = new List<AdvertisementCriterion>();
 
     [JsonIgnore]
