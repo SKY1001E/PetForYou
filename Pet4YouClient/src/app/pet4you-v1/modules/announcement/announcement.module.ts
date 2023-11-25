@@ -9,15 +9,11 @@ import {InputTextModule} from 'primeng/inputtext';
 import {CreateAnnouncementComponent} from "./components/create-announcement/create-announcement.component";
 import { DropdownModule } from 'primeng/dropdown';
 import {AnnouncementViewPageComponent} from "./pages/announcement-view-page/announcement-view-page.component";
-<<<<<<< HEAD
 import { TreeSelectModule } from 'primeng/treeselect';
 import { ButtonModule } from 'primeng/button';
 import { GalleriaModule } from 'primeng/galleria';
 import { AvatarModule } from 'primeng/avatar';
-=======
 import { AllAnnouncementsPageComponent } from './pages/all-announcements-page/all-announcements-page.component';
-
->>>>>>> bf5515a (added all announcements page)
 
 @NgModule({
     imports: [
@@ -51,11 +47,7 @@ import { AllAnnouncementsPageComponent } from './pages/all-announcements-page/al
     ],
     declarations: [
         CreateAnnouncementComponent,
-<<<<<<< HEAD
         AnnouncementViewPageComponent
-=======
-        AllAnnouncementsPageComponent
->>>>>>> bf5515a (added all announcements page)
     ],
     exports: [],
     providers: []
