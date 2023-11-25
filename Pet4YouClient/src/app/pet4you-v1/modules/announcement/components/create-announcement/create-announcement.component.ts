@@ -127,26 +127,44 @@ export class CreateAnnouncementComponent implements OnInit, OnDestroy {
 
         const announcement: Announcement = {
             title: this.form.value?.title,
-            type: this.selectedType?.value ? this.selectedType.value : null,
-            description: this.form.value?.description ? this.form.value?.description : null,
-            petType: this.selectedAnother?.value ? this.selectedAnother?.value : null,
+            type: this.selectedType?.value
+                ? this.selectedType.value
+                : null,
+            description: this.form.value?.description
+                ? this.form.value?.description
+                : null,
+            petType: this.selectedAnother?.value
+                ? this.selectedAnother?.value
+                : null,
             publicationDate: new Date(),
             userId: this.userService.getUserInfoFromToken().userId,
             completed: false,
             advertisementLocation: {
-                country: this.form.value?.country ? this.form.value?.country : null,
-                city: this.form.value?.city ? this.form.value?.city : null,
-                region: this.form.value?.region ? this.form.value?.region : null
+                country: this.form.value?.country
+                    ? this.form.value?.country
+                    : null,
+                city: this.form.value?.city
+                    ? this.form.value?.city
+                    : null,
+                region: this.form.value?.region
+                    ? this.form.value?.region
+                    : null
             },
             advertisementInfo: {
-                breed: this.form.value?.breed ? this.form.value?.breed : null,
-                age: this.form.value?.age ? this.form.value?.age : null,
-                price: this.form.value?.price ? this.form.value?.price : null,
-                gender: this.selectedGender?.value ? this.selectedGender?.value : null,
+                breed: this.form.value?.breed
+                    ? this.form.value?.breed
+                    : null,
+                age: this.form.value?.age
+                    ? this.form.value?.age
+                    : null,
+                price: this.form.value?.price
+                    ? this.form.value?.price
+                    : null,
+                gender: this.selectedGender?.value
+                    ? this.selectedGender?.value
+                    : null,
             }
         }
-
-        console.log(announcement)
 
         this.announcementService.addAnnouncement(announcement)
             .pipe(takeUntil(this.destroy))

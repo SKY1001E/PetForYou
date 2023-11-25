@@ -8,6 +8,7 @@ import {DialogModule} from "primeng/dialog";
 import {InputTextModule} from 'primeng/inputtext';
 import {CreateAnnouncementComponent} from "./components/create-announcement/create-announcement.component";
 import { DropdownModule } from 'primeng/dropdown';
+import {AnnouncementViewPageComponent} from "./pages/announcement-view-page/announcement-view-page.component";
 
 
 @NgModule({
@@ -17,13 +18,17 @@ import { DropdownModule } from 'primeng/dropdown';
         HttpClientModule,
         ReactiveFormsModule,
         DropdownModule,
-       
+
 
         RouterModule.forChild([
             {path: '', redirectTo: 'create', pathMatch: 'full'},
             {
                 path: 'create',
                 component: CreateAnnouncementComponent
+            },
+            {
+                path: 'view/:id',
+                component: AnnouncementViewPageComponent
             }
         ]),
         ProgressSpinnerModule,

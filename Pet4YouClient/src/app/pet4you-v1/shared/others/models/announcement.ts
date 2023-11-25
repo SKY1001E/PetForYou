@@ -23,17 +23,20 @@ export interface Announcement {
 }
 
 export enum AnnouncementType {
-    Buy = 'Купівля',
-    Swap = 'Обмін',
-    Sale = 'Продаж'
+    Buy = 'Buy',
+    Swap = 'Swap',
+    Sale = 'Sale',
+    Search = 'Search'
 }
 
 export enum PetType {
-    Dog = 'Собака',
-    Cat = 'Кіт',
+    Dog = 'Dog',
+    Cat = 'Cat',
+    Other = '',
 }
 
 export enum Gender {
-    Male= 'Самець',
-    Female = 'Самка'
+    Male = 'Male',
+    Female = 'Female',
+    Unknown = 'Unknown'
 }
