@@ -9,10 +9,15 @@ import {InputTextModule} from 'primeng/inputtext';
 import {CreateAnnouncementComponent} from "./components/create-announcement/create-announcement.component";
 import { DropdownModule } from 'primeng/dropdown';
 import {AnnouncementViewPageComponent} from "./pages/announcement-view-page/announcement-view-page.component";
+<<<<<<< HEAD
 import { TreeSelectModule } from 'primeng/treeselect';
 import { ButtonModule } from 'primeng/button';
 import { GalleriaModule } from 'primeng/galleria';
 import { AvatarModule } from 'primeng/avatar';
+=======
+import { AllAnnouncementsPageComponent } from './pages/all-announcements-page/all-announcements-page.component';
+
+>>>>>>> bf5515a (added all announcements page)
 
 @NgModule({
     imports: [
@@ -26,7 +31,7 @@ import { AvatarModule } from 'primeng/avatar';
         GalleriaModule,
         AvatarModule,
         RouterModule.forChild([
-            {path: '', redirectTo: 'create', pathMatch: 'full'},
+            {path: '', redirectTo: 'all', pathMatch: 'full'},
             {
                 path: 'create',
                 component: CreateAnnouncementComponent
@@ -34,6 +39,10 @@ import { AvatarModule } from 'primeng/avatar';
             {
                 path: 'view/:id',
                 component: AnnouncementViewPageComponent
+            },
+            {
+                path: 'all',
+                component: AllAnnouncementsPageComponent
             }
         ]),
         ProgressSpinnerModule,
@@ -42,7 +51,11 @@ import { AvatarModule } from 'primeng/avatar';
     ],
     declarations: [
         CreateAnnouncementComponent,
+<<<<<<< HEAD
         AnnouncementViewPageComponent
+=======
+        AllAnnouncementsPageComponent
+>>>>>>> bf5515a (added all announcements page)
     ],
     exports: [],
     providers: []
