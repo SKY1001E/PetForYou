@@ -684,3 +684,54 @@ body {
         padding: 5px 50px;
         }
 }
+
+ //view announcement
+
+ .p-treeselect{
+    width: 300px;
+    @include _420{
+        width: 115px;
+
+    }
+ }
+ .outer-container{
+    @include at-max-width-960px {
+        flex-direction: column;
+    }
+ }
+ .details-container{
+    background-color: white;
+    padding: 10px;
+    @include border-radius(10px);
+ }
+ .description-container {
+    height: auto;
+    padding: 10px;
+    background-color: white;
+    @include border-radius(10px);
+}
+ .image-container {
+    padding: 30px; 
+}
+
+.gallery-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.info-block {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    width: 100%;
+}
+.animal-container {
+    background-color: white;
+    height: 480px;  
+    width: 700px; 
+    @include border-radius(10px);
+    @include at-max-width-960px {
+        height: auto;  
+        width: auto;     
+    }
+}

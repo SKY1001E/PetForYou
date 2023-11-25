@@ -9,7 +9,10 @@ import {InputTextModule} from 'primeng/inputtext';
 import {CreateAnnouncementComponent} from "./components/create-announcement/create-announcement.component";
 import { DropdownModule } from 'primeng/dropdown';
 import {AnnouncementViewPageComponent} from "./pages/announcement-view-page/announcement-view-page.component";
-
+import { TreeSelectModule } from 'primeng/treeselect';
+import { ButtonModule } from 'primeng/button';
+import { GalleriaModule } from 'primeng/galleria';
+import { AvatarModule } from 'primeng/avatar';
 
 @NgModule({
     imports: [
@@ -18,8 +21,10 @@ import {AnnouncementViewPageComponent} from "./pages/announcement-view-page/anno
         HttpClientModule,
         ReactiveFormsModule,
         DropdownModule,
-
-
+        TreeSelectModule,
+        ButtonModule,
+        GalleriaModule,
+        AvatarModule,
         RouterModule.forChild([
             {path: '', redirectTo: 'create', pathMatch: 'full'},
             {
@@ -36,7 +41,8 @@ import {AnnouncementViewPageComponent} from "./pages/announcement-view-page/anno
         InputTextModule,
     ],
     declarations: [
-        CreateAnnouncementComponent
+        CreateAnnouncementComponent,
+        AnnouncementViewPageComponent
     ],
     exports: [],
     providers: []

@@ -1,3 +1,95 @@
-<div class="announcement-view-page">
+<div class="flex announcement-view-page">
+    <div class="flex search-container" style="margin: 25px; width: 100%">
+        <input type="text" pInputText style="width: 90%;" placeholder="What are you looking for?">
+  
+    <p-treeSelect
+      class="md:w-20rem w-full"
+      containerStyleClass="w-full"
+      [(ngModel)]="selectedNodes"
+      [options]="nodes"
+      placeholder="Select Item"
+      style="flex: 2; width: 90%;" 
+    ></p-treeSelect >
+    <p-button icon="pi pi-search"></p-button>
+    </div>
+</div>
+<div>
+    <div class="flex outer-container">
+        <div style="flex-direction: column;">
+        <div class="animal-container" style="margin-left: 20px;">
+            <p-galleria [value]="images"
+            (onValueChange)="onGalleryValueChange($event)"
+            [showIndicators]="true"
+            [showThumbnails]="false"
+            [changeItemOnIndicatorHover]="true"
+            [responsiveOptions]="responsiveOptions"
+            class="custom-galleria">
+    <ng-template pTemplate="item" let-item>
+        <div class="image-container">
+            <img [src]="item.itemImageSrc" class="gallery-image">
+        </div>
+    </ng-template>
+</p-galleria>
+        </div>
+        <div class="text-center description-container" style="margin: 15px 0 15px 15px;">
+            <h2>Description</h2>
+            <div>
+                <p>The kitten needs good care, a loving family, is litter-trained, tactile, gentle, playful, and undemanding about food. Self-pickup, call to arrange.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div style="flex-direction: row; width:100%; margin-left:10px">
+        <div>
+            <div class="details-container" style="margin-bottom: 10px;">
+                <h2>Kitten Looking for a Family</h2>
+                <div>
+                    <p style="color: grey; font-size:15px">Time: 12:00 PM</p>
+                    <p>Type: Advertisement</p>
+                    <p>Price: $100</p>
 
+                </div>
+            </div>
+    <div class="details-container"style="margin-bottom: 10px;">
+        <h2>Location</h2>
+        <div>
+            <p>Country: Ukraine</p>
+            <p>City: Kharkiv</p>
+            <p>Region: Kharkiv Oblast</p>
+        </div>
+    </div>
+    <div class="details-container"style="margin-bottom: 10px;">
+        <h2>User</h2>
+        <div style="display: flex; align-items: center;">
+            <p-avatar icon="pi pi-user" styleClass="mr-2" size="xlarge" style="margin-bottom:10px;"></p-avatar>
+            <p style="margin-left:20px">Nickname</p>
+        </div>
+        <p-button label="Show Contacts"></p-button>
+    </div>
+    <div class="text-center details-container" style="margin-bottom: 10px;">
+        <h2>Information</h2>
+        <div style="display: flex; flex-direction: row; ">
+            <div class="info-block">
+                <p>Gender:</p>
+                <p>Female</p>
+            </div>
+            <div class="info-block">
+                <p>Age:</p>
+                <p>2 months</p>
+            </div>
+            <div class="info-block">
+                <p>Animal Type:</p>
+                <p>Cat</p>
+            </div>
+            <div class="info-block">
+                <p>Breed:</p>
+                <p>Common Cat</p>
+            </div>
+        </div>
+    </div>
+    <div class="text-center contact-btn" style="margin-bottom: 80px">
+        <p-button label="Contact the Seller"></p-button>
+    </div>
+</div>
+    
 </div>
