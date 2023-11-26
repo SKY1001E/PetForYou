@@ -47,7 +47,8 @@ import { AllAnnouncementsPageComponent } from './pages/all-announcements-page/al
     ],
     declarations: [
         CreateAnnouncementComponent,
-        AnnouncementViewPageComponent
+        AnnouncementViewPageComponent,
+        AllAnnouncementsPageComponent
     ],
     exports: [],
     providers: []
