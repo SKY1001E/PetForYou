@@ -11,6 +11,8 @@ namespace Pet4YouAPI.DI
 
         public Task<ICollection<Advertisement>> GetAdvertisementsByUser(int userId);
 
+        public Task<Advertisement> GetAdvertisementsById(int advId);
+
         public Task<DeletingResult> DeleteAdvertisement(int advertisementId);
     }
 }

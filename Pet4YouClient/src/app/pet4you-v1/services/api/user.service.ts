@@ -18,13 +18,13 @@ export class UserService {
     ) {
     }
 
-    getUser(): Observable<any> {
-        return this.http.get(`${this.apiUrl}api/User/id/${this.getUserInfoFromToken().userId}`);
+    getUser(id?: number): Observable<any> {
+        return this.http.get(`${this.apiUrl}api/User/id/${!!id ? id : this.getUserInfoFromToken().userId}`);
     }
 
     changePassword(oldPassword: string, newPassword: string) : Observable<any> {
         const userId = this.getUserInfoFromToken().userId;
-        
+
         const data = {
             userId: userId,
             oldPassword: oldPassword,

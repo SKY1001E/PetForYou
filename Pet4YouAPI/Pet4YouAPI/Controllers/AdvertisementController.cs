@@ -47,6 +47,14 @@ namespace Pet4YouAPI.Controllers
             return (List<Advertisement>)result;
         }
 
+        [HttpGet("{id}")]
+        public async Task<Advertisement> GetAdvertisementsById(int id)
+        {
+            var advertisement = await _advertisementService.GetAdvertisementsById(id);
+
+            return advertisement;
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAdvertisement(int id)
         {

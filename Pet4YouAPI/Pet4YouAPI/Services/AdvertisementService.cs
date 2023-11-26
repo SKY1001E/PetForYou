@@ -135,6 +135,17 @@ namespace Pet4YouAPI.Services
             return result;
         }
 
+        public async Task<Advertisement> GetAdvertisementsById(int advId)
+        {
+            var result = await _context.Advertisements
+                .Include(a => a.AdvertisementInfo)
+                .Include(a => a.AdvertisementLocation)
+                .Include(a => a.AdvertisementDeletings)
+                .FirstOrDefaultAsync(a => a.Id == advId && a.AdvertisementDeletings.Count == 0);
+
+            return result;
+        }
+
         public async Task<DeletingResult> DeleteAdvertisement(int advertisementId)
         {
             var advertisement = await _context.Advertisements.FindAsync(advertisementId);

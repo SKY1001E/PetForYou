@@ -18,4 +18,8 @@ export class AnnouncementService {
     addAnnouncement(announcement: Announcement): Observable<any> {
         return this.http.post(`${this.apiUrl}api/Advertisement/add`, announcement);
     }
+
+    getAnnouncementById(id: number): Observable<any> {
+        return this.http.get(`${this.apiUrl}api/Advertisement/${id}`)
+    }
 }
