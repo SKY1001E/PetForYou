@@ -13,7 +13,10 @@ import { TreeSelectModule } from 'primeng/treeselect';
 import { ButtonModule } from 'primeng/button';
 import { GalleriaModule } from 'primeng/galleria';
 import { AvatarModule } from 'primeng/avatar';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { AllAnnouncementsPageComponent } from './pages/all-announcements-page/all-announcements-page.component';
+import { AnnouncementFiltersComponent } from './components/announcement-filters/announcement-filters.component';
+import { UserAnnouncementsPageComponent } from './pages/user-announcements-page/user-announcements-page.component';
 
 @NgModule({
     imports: [
@@ -26,8 +29,13 @@ import { AllAnnouncementsPageComponent } from './pages/all-announcements-page/al
         ButtonModule,
         GalleriaModule,
         AvatarModule,
+        MultiSelectModule,
         RouterModule.forChild([
-            {path: '', redirectTo: 'all', pathMatch: 'full'},
+            {
+                path: '', 
+                redirectTo: 'all', 
+                pathMatch: 'full'
+            },
             {
                 path: 'create',
                 component: CreateAnnouncementComponent
@@ -39,6 +47,10 @@ import { AllAnnouncementsPageComponent } from './pages/all-announcements-page/al
             {
                 path: 'all',
                 component: AllAnnouncementsPageComponent
+            },
+            {
+                path: 'my',
+                component: UserAnnouncementsPageComponent
             }
         ]),
         ProgressSpinnerModule,
@@ -48,7 +60,9 @@ import { AllAnnouncementsPageComponent } from './pages/all-announcements-page/al
     declarations: [
         CreateAnnouncementComponent,
         AnnouncementViewPageComponent,
-        AllAnnouncementsPageComponent
+        AllAnnouncementsPageComponent,
+        AnnouncementFiltersComponent,
+        UserAnnouncementsPageComponent
     ],
     exports: [],
     providers: []

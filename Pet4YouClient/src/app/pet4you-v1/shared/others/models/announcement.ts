@@ -22,21 +22,45 @@ export interface Announcement {
     }
 }
 
+export interface AnnouncementFilterModel {
+    advertisementType: string;
+    petTypes?: string[];
+    petBreeds?: string[];
+    location:  {
+        country?: string,
+        city?: string,
+        region?: string
+    },
+    gender?: string;
+    minAge?: number;
+    maxAge?: number;
+    minPrice?: number;
+    maxPrice?: number;
+}
+
+
 export enum AnnouncementType {
-    Buy = 'Buy',
-    Swap = 'Swap',
-    Sale = 'Sale',
-    Search = 'Search'
+    Buy = 'buy',
+    Exchange = 'exchange',
+    Free = 'free',
+    Sale = 'sale',
+    Search = 'search'
 }
 
 export enum PetType {
-    Dog = 'Dog',
-    Cat = 'Cat',
-    Other = '',
+    Dog = 'dog',
+    Cat = 'cat',
+    Fish = 'fish',
+    Bird = 'bird',
+    Hamster = 'hamster',
+    Rabbit = 'rabbit',
+    Turtle = 'turtle',
+    Reptile = 'reptile',
+    Other = 'other'
 }
 
 export enum Gender {
-    Male = 'Male',
-    Female = 'Female',
-    Unknown = 'Unknown'
+    Male = 'male',
+    Female = 'female',
+    Unknown = 'unknown'
 }

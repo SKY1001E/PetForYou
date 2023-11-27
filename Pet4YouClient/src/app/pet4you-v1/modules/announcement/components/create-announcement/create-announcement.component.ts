@@ -24,21 +24,31 @@ export class CreateAnnouncementComponent implements OnInit, OnDestroy {
     photoContainers: any[] = Array(6).fill(null);
 
     types: SelectItem[] = [
-        { label: 'Обрати тип', value: null, disabled: true },
-        { label: 'Продаж', value: AnnouncementType.Sale },
-        { label: 'Обмін', value: AnnouncementType.Swap },
-        { label: 'Купівля', value: AnnouncementType.Buy },
+        { label: 'Chose type', value: null, disabled: true },
+        { label: 'Sell', value: AnnouncementType.Sale },
+        { label: 'Exchange', value: AnnouncementType.Exchange },
+        { label: 'Buy', value: AnnouncementType.Buy },
     ];
     anotherOptions: SelectItem[] = [
-        { label: 'Обрати вид', value: null, disabled: true },
-        { label: 'Собака', value: PetType.Dog },
-        { label: 'Кіт', value: PetType.Cat },
+        { label: 'Chose type', value: null, disabled: true },
+        { label: 'Dog', value: PetType.Dog },
+        { label: 'Cat', value: PetType.Cat },
+        { label: 'Bird', value: PetType.Bird },
+        { label: 'Fish', value: PetType.Fish },
+        { label: 'Hamster', value: PetType.Hamster },
+        { label: 'Rabbit', value: PetType.Rabbit },
+        { label: 'Reptile', value: PetType.Reptile },
+        { label: 'Turtle', value: PetType.Turtle },
+        { label: 'Other', value: PetType.Other },
     ];
     genders: SelectItem[] = [
-        { label: 'Обрати вид', value: null, disabled: true },
-        { label: 'Самець', value: Gender.Male },
-        { label: 'Самка', value: Gender.Female },
+        { label: 'Chose type', value: null, disabled: true },
+        { label: 'Male', value: Gender.Male },
+        { label: 'Female', value: Gender.Female },
+        { label: 'Unknown', value: Gender.Female },
     ]
+
+
     selectedType: any;
     selectedAnother: any;
     selectedGender: any;

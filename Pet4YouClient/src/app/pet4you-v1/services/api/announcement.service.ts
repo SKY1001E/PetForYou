@@ -1,7 +1,7 @@
 import {Inject, Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Announcement} from "../../shared/others/models/announcement";
+import {Announcement, AnnouncementFilterModel} from "../../shared/others/models/announcement";
 import {Observable} from "rxjs";
 
 @Injectable()
@@ -21,5 +21,9 @@ export class AnnouncementService {
 
     getAnnouncementById(id: number): Observable<any> {
         return this.http.get(`${this.apiUrl}api/Advertisement/${id}`)
+    }
+
+    getAnnouncementsWithFilters(filters: AnnouncementFilterModel) : Observable<any> {
+        return this.http.post(`${this.apiUrl}api/Advertisement/filter`, filters);
     }
 }

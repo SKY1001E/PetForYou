@@ -1,4 +1,4 @@
-<div class="all-announcements-page">
+<div class="all-announcements-page" style="margin-top: 40px; max-width: 1280px; margin: 0 auto">
     <div class="flex all-announcement-page">
         <div class="flex search-container" style="margin: 25px 20px 7px 10px; width: 100%; gap:3px">
             <input type="text" pInputText style="width: 90%;" placeholder="What are you looking for?">
@@ -12,17 +12,14 @@
             </p-treeSelect>
             <p-button icon="pi pi-search"></p-button>
         </div>
+        <div>
+            <app-announcement-filters style="position: absolute; right: 0; z-index: 1"></app-announcement-filters>
+        </div>
     </div>
     <div class="flex custom-container">
         <label class="sort-label">Sort by:</label>
         <div class="custom-dropdown-container">
-            <p-dropdown [options]="types"
-                        [(ngModel)]="selectedType"
-                        formControlName="type"
-                        optionLabel="label"
-                        class="custom-dropdown"
-                        style="background-color: transparent;">
-            </p-dropdown>
+            <p-button>Chose filters</p-button>
         </div>
     </div>
     <div class="all-announcement-container">
