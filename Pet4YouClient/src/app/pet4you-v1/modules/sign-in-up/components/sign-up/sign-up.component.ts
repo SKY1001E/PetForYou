@@ -80,8 +80,16 @@ export class SignUpComponent implements OnInit, OnDestroy, AfterViewInit {
 
         this.authService.register(authInfo)
             .pipe(takeUntil(this.destroy))
-            .subscribe((res) => {
-                this.toastService.add({ severity: 'success', summary: 'Success', detail: 'You are successfully registered' });
+            .subscribe({
+                next: () => {
+                    this.toastService.add({ severity: 'success', summary: 'Success', detail: 'You have successfully registered' });
+                    this.router.navigate(['/sign', 'in']).then();
+                },
+                error: (res) => {
+                    this.toastService.add({ severity: 'error', summary: 'Error', detail: res.error });
+                }
             });
+
+            
     }
 }

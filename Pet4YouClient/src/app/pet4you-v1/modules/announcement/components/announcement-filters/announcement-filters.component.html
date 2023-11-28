@@ -1,6 +1,6 @@
 <div class="announcement-filters">
     <p style="font-size: 20px">Filters</p>
-    <form [formGroup]="form" class="announcement-filters__form">
+    <form [formGroup]="form" class="announcement-filters__form" (ngSubmit)="submitForm()">
         <div class="form-inner flex">
             <div>
 
@@ -8,54 +8,44 @@
                     <label for="type">Advertisement type</label>
                     <p-dropdown [options]="advertisementTypes"
                     [(ngModel)]="advertisementFilters.advertisementType"
-                    formControlName="type"
-                    optionLabel="label"></p-dropdown>
+                    formControlName="type"></p-dropdown>
                 </div>
                
                 <div class="form-group">
                     <label for="species">Pet types</label>
                     <p-multiSelect [options]="petTypes"
                     [(ngModel)]="advertisementFilters.petTypes"
-                    formControlName="petType"
-                    optionLabel="label"></p-multiSelect>
+                    formControlName="petType"></p-multiSelect>
                 </div>
 
                 <div class="form-group">
-                    <label for="breed">Breed</label>
-                    <input formControlName="country"
-                        [(ngModel)]="advertisementFilters.location.country"
-                        class="custom-input-style"
-                        type="text"
-                        pInputText
-                        class="form-control">
-                  </div>
+                    <label for="breed">Breeds</label>
+                    <p-chips formControlName="country"
+                        [(ngModel)]="advertisementFilters.petBreeds"
+                        type="text"></p-chips>
+                </div>
 
-                  <div class="form-group">
+                <div class="form-group">
                     <label for="sex">Pet gender</label>
                     <p-dropdown [options]="petGenders"
                         [(ngModel)]="advertisementFilters.gender"
-                        formControlName="type"
-                        optionLabel="label"></p-dropdown>
-                  </div>
+                        formControlName="gender"></p-dropdown>
+                </div>
             </div>
             <div>
                 <div class="form-group">
                     <label for="country">Country</label>
                     <input formControlName="country"
                         [(ngModel)]="advertisementFilters.location.country"
-                        class="custom-input-style"
                         type="text"
-                        pInputText
-                        class="form-control">
+                        pInputText>
                 </div>
                 <div class="form-group">
                     <label for="region">Region</label>
                     <input formControlName="region"
                         [(ngModel)]="advertisementFilters.location.region"
-                        class="custom-input-style"
                         type="text"
-                        pInputText
-                        class="form-control">
+                        pInputText>
                 </div>
                 <div class="form-group">
                     <label for="city">City</label>
@@ -73,43 +63,33 @@
                         Age (month)
                         <div class="flex">
                             <label for="minAge">Min</label>
-                            <input formControlName="minAge"
-                                [(ngModel)]="advertisementFilters.location.country"
+                            <p-inputNumber formControlName="minAge"
+                                [(ngModel)]="advertisementFilters.minAge"
                                 class="custom-input-style"
-                                type="text"
-                                pInputText
-                                class="form-control">
+                                class="form-control"></p-inputNumber>
                             <label for="maxAge">Max</label>
-                            <input formControlName="maxAge"
-                                [(ngModel)]="advertisementFilters.location.country"
+                            <p-inputNumber formControlName="maxAge"
+                                [(ngModel)]="advertisementFilters.maxAge"
                                 class="custom-input-style"
-                                type="text"
-                                pInputText
-                                class="form-control">
+                                class="form-control"></p-inputNumber>
                         </div>
                     </div>
                     <div class="form-group">
                         Price
                         <div class="flex">
                             <label for="minPrice">Min</label>
-                            <input formControlName="minAge"
-                                [(ngModel)]="advertisementFilters.location.country"
-                                class="custom-input-style"
-                                type="text"
-                                pInputText
-                                class="form-control">
+                            <p-inputNumber formControlName="minAge"
+                                [(ngModel)]="advertisementFilters.minPrice"
+                                mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
                             <label for="maxPrice">Max</label>
-                            <input formControlName="maxAge"
-                                [(ngModel)]="advertisementFilters.location.country"
-                                class="custom-input-style"
-                                type="text"
-                                pInputText
-                                class="form-control">
+                            <p-inputNumber formControlName="maxAge"
+                                [(ngModel)]="advertisementFilters.maxPrice"
+                                mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <p-button type="submit" style="position: absolute; right: 10px; bottom: 10px;" class="btn btn-primary">Apply filters</p-button>
+        <p-button type="submit" [ngStyle]="{position: 'absolute', right: '10px', bottom: '10px'}" class="btn btn-primary">Apply filters</p-button>
     </form>
 </div>

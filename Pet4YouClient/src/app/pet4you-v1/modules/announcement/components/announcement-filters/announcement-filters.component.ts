@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Form, FormControl, FormGroup } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 import { AnnouncementFilterModel, AnnouncementType, Gender, PetType } from 'src/app/pet4you-v1/shared/others/models/announcement';
@@ -11,9 +11,10 @@ export class AnnouncementFiltersComponent {
     form! : FormGroup;
     advertisementFilters : AnnouncementFilterModel;
 
+    @Output() dataEvent = new EventEmitter<AnnouncementFilterModel>();
+
     advertisementTypes: SelectItem[] = [
-        { label: 'Chose type', value: null, disabled: true },
-        { label: 'Sell', value: AnnouncementType.Sale },
+        { label: 'Sell', value: AnnouncementType.Sell },
         { label: 'Exchange', value: AnnouncementType.Exchange },
         { label: 'Search', value: AnnouncementType.Buy },
     ];
@@ -32,7 +33,7 @@ export class AnnouncementFiltersComponent {
     ];
     
     petGenders: SelectItem[] = [
-        { label: 'Chose type', value: null, disabled: true },
+        { label: 'Chose type', value: null },
         { label: 'Male', value: Gender.Male },
         { label: 'Female', value: Gender.Female },
         { label: 'Unknown', value: Gender.Female },
@@ -57,5 +58,14 @@ export class AnnouncementFiltersComponent {
             minPrice: new FormControl(''),
             maxPrice: new FormControl(''),
         })
+    }
+
+    submitForm() {
+        console.log(this.advertisementFilters);
+        this.sendDataToParent(this.advertisementFilters);
+    }
+
+    sendDataToParent(advertisementFilters: AnnouncementFilterModel) {
+        this.dataEvent.emit(advertisementFilters);
     }
 }

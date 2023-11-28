@@ -139,7 +139,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 })
             },
             error: (error) => {
-                console.log(error.error)
                 this.toastService.add({severity: 'error', summary: 'Update info', detail: error.error})
     }});
         this.changeDialogState()
@@ -152,7 +151,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 this.authService.logout();
             },
             error: (error) => {
-                console.log(error.error)
                 this.toastService.add({severity: 'error', summary: 'User deleting', detail: error.error})
             }
         })

@@ -25,7 +25,7 @@ export class CreateAnnouncementComponent implements OnInit, OnDestroy {
 
     types: SelectItem[] = [
         { label: 'Chose type', value: null, disabled: true },
-        { label: 'Sell', value: AnnouncementType.Sale },
+        { label: 'Sell', value: AnnouncementType.Sell },
         { label: 'Exchange', value: AnnouncementType.Exchange },
         { label: 'Buy', value: AnnouncementType.Buy },
     ];

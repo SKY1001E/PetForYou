@@ -22,11 +22,11 @@ export class AuthService {
 
     register(authInfo: AuthResponseModel): Observable<any> {
         return this.http.post(`${this.apiUrl}api/Auth/register`, authInfo)
-            .pipe(tap(res => {
+            /*.pipe(tap(res => {
                 if(res) {
                     this.router.navigate(['sign', 'in'], { relativeTo: this.route }).then();
                 }
-            }))
+            }))*/
     }
 
     login(authInfo: AuthResponseModel): Observable<any> {

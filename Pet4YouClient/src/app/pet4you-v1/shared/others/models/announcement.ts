@@ -43,7 +43,7 @@ export enum AnnouncementType {
     Buy = 'buy',
     Exchange = 'exchange',
     Free = 'free',
-    Sale = 'sale',
+    Sell = 'sell',
     Search = 'search'
 }
 

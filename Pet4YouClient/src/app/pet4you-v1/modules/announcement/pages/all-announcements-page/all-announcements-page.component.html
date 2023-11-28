@@ -1,19 +1,15 @@
 <div class="all-announcements-page" style="margin-top: 40px; max-width: 1280px; margin: 0 auto">
-    <div class="flex all-announcement-page">
+    <div class="main-announcement-title" style="margin-top: 30px; margin-left:25px">All Announcements</div>
+    <div style="position: relative" class="flex all-announcement-page">
         <div class="flex search-container" style="margin: 25px 20px 7px 10px; width: 100%; gap:3px">
-            <input type="text" pInputText style="width: 90%;" placeholder="What are you looking for?">
-            <p-treeSelect
-                class="md:w-20rem w-full"
-                containerStyleClass="w-full"
-                [(ngModel)]="selectedNodes"
-                [options]="nodes"
-                placeholder="Select Item"
-                style="flex: 2; width: 90%;">
-            </p-treeSelect>
+            <input type="text" pInputText style="flex-grow: 1;" placeholder="What are you looking for?">
+            <div>
+                <button iconPos="right" icon="pi pi-angle-down" iconPos="right" class="p-button-outlined" pButton label="Chose filters" (click)="changeFilterOpens()"></button>
+            </div>
             <p-button icon="pi pi-search"></p-button>
         </div>
-        <div>
-            <app-announcement-filters style="position: absolute; right: 0; z-index: 1"></app-announcement-filters>
+        <div *ngIf="isFiltersOpened">
+            <app-announcement-filters (dataEvent)="receiveDataFromChild($event)" style="position: absolute; top: 80px; right: 0; z-index: 1"></app-announcement-filters>
         </div>
     </div>
     <div class="flex custom-container">
@@ -23,7 +19,6 @@
         </div>
     </div>
     <div class="all-announcement-container">
-        <div class="main-announcement-title" style="margin-top: 30px; margin-left:25px">All Announcements</div>
         <div class="flex new-announcement-container">
             <div class="announcement-container-photo">
                 <img src="assets/turtle.jpg" alt="turtle">

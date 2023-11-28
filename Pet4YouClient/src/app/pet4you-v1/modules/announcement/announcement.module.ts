@@ -13,10 +13,13 @@ import { TreeSelectModule } from 'primeng/treeselect';
 import { ButtonModule } from 'primeng/button';
 import { GalleriaModule } from 'primeng/galleria';
 import { AvatarModule } from 'primeng/avatar';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { ChipsModule } from 'primeng/chips';
 import { AllAnnouncementsPageComponent } from './pages/all-announcements-page/all-announcements-page.component';
 import { AnnouncementFiltersComponent } from './components/announcement-filters/announcement-filters.component';
 import { UserAnnouncementsPageComponent } from './pages/user-announcements-page/user-announcements-page.component';
+import { AdvertisementComponent } from './components/advertisement/advertisement.component';
 
 @NgModule({
     imports: [
@@ -30,6 +33,8 @@ import { UserAnnouncementsPageComponent } from './pages/user-announcements-page/
         GalleriaModule,
         AvatarModule,
         MultiSelectModule,
+        InputNumberModule,
+        ChipsModule,
         RouterModule.forChild([
             {
                 path: '', 
@@ -62,7 +67,8 @@ import { UserAnnouncementsPageComponent } from './pages/user-announcements-page/
         AnnouncementViewPageComponent,
         AllAnnouncementsPageComponent,
         AnnouncementFiltersComponent,
-        UserAnnouncementsPageComponent
+        UserAnnouncementsPageComponent,
+        AdvertisementComponent
     ],
     exports: [],
     providers: []
