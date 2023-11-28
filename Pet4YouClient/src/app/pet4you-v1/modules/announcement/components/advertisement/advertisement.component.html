@@ -18,7 +18,7 @@
         </div>
         <div class="price-label">{{ getCorrectPrice() }}  </div>
         <div class="decs-cont" style="margin-left:15px ">
-            <div class="desc-label">Description: {{ announcementData?.description }}</div>
+            <div class="desc-label">Description: {{ getCorrectDescription() }}</div>
         </div>
         <a class="announcement-details-link" [href]="'announcement/view/' + announcementData?.id">Details</a>
     </div>

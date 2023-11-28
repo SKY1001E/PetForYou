@@ -24,8 +24,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     sexs!: SelectItem[];
 
     constructor(
-        private route: ActivatedRoute,
-        private router: Router,
+        public route: ActivatedRoute,
+        public router: Router,
         private uiParts: UIPartsController,
         private userService: UserService,
         private toastService: MessageService,

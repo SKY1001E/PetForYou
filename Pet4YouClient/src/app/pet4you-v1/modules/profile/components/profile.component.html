@@ -1,8 +1,8 @@
 <div *ngIf="!isLoading else loading" class="profile-container" style="padding: 20px; background-color: white; margin-top: 100px;">
-    <label class="flex justify-content-center profile-label">Ваш профіль</label>
+    <label class="flex justify-content-center profile-label">Your profile</label>
     <div class="flex justify-content-between">
         <div class="flex flex-direction-column flex-justify-content-end" style="gap: 5px;">
-            <button class="your-ads-button" style="margin-top: 10px;">Your Ads</button>
+            <button class="your-ads-button" (click)="router.navigate(['/announcement', 'my'])" style="margin-top: 10px;">Your Ads</button>
             <button class="log-out-button" (click)="logout()" style="margin-top: 10px;">Log out</button>
             <button class="log-out-button" (click)="deleteCurrentUser()" style="background-color: rgb(255, 95, 95); margin-top: 10px;">Delete profile</button>
         </div>
@@ -36,19 +36,19 @@
             <button class="edit-button" (click)="changeDialogState()">Edit</button>
         </div>
         <div class="additional-second settings-info">
-            <div class="info-label">Налаштування</div>
-            <button class="change-photo-button">Змінити фото профіля</button>
+            <div class="info-label">Settings</div>
+            <button class="change-photo-button">Change photo</button>
 
             <div class="password-fields">
                 <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
-                    <div class="change-password-label">Зміна паролю</div>
-                    <label for="old-password">Старий пароль:</label>
+                    <div class="change-password-label">Password change</div>
+                    <label for="old-password">Old password:</label>
                     <input formControlName="oldPassword" type="password" id="old-password" name="old-password" required><br>
 
-                    <label for="new-password">Новий пароль:</label>
+                    <label for="new-password">New password:</label>
                     <input formControlName="newPassword" type="password" id="new-password" name="new-password" required><br>
 
-                    <label for="confirm-new-password">Повторити новий пароль:</label>
+                    <label for="confirm-new-password">Repeat new password:</label>
                     <input formControlName="newPasswordConfirm" type="password" id="confirm-new-password" name="confirm-new-password" required><br>
 
                     <button type="submit" class="change-password-button" [disabled]="changePasswordForm.invalid">Змінити пароль</button>

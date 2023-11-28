@@ -3,7 +3,7 @@ import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core
 import {Subject, takeUntil} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UIPartsController} from '../../../../services/ui-parts-controller.service';
-import {SelectItem} from 'primeng/api';
+import {MessageService, SelectItem} from 'primeng/api';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Announcement, AnnouncementType, Gender, PetType} from "../../../../shared/others/models/announcement";
 import {AnnouncementService} from "../../../../services/api/announcement.service";
@@ -28,6 +28,7 @@ export class CreateAnnouncementComponent implements OnInit, OnDestroy {
         { label: 'Sell', value: AnnouncementType.Sell },
         { label: 'Exchange', value: AnnouncementType.Exchange },
         { label: 'Buy', value: AnnouncementType.Buy },
+        { label: 'Adoption', value: AnnouncementType.Free },
     ];
     anotherOptions: SelectItem[] = [
         { label: 'Chose type', value: null, disabled: true },
@@ -61,7 +62,8 @@ export class CreateAnnouncementComponent implements OnInit, OnDestroy {
         private router: Router,
         private uiParts: UIPartsController,
         private announcementService: AnnouncementService,
-        private userService: UserService
+        private userService: UserService,
+        private toastService: MessageService
         ) {}
 
     ngOnDestroy() {
@@ -178,8 +180,14 @@ export class CreateAnnouncementComponent implements OnInit, OnDestroy {
 
         this.announcementService.addAnnouncement(announcement)
             .pipe(takeUntil(this.destroy))
-            .subscribe(w => {
-                console.log(w);
+            .subscribe({
+                next: (response) => {
+                    this.toastService.add({severity: 'success', summary: 'Success', detail: 'Advertisement has been added successfully'})
+                    this.router.navigate(['/announcement', 'my'])
+                },
+                error: (error) => {
+                    this.toastService.add({severity: 'error', summary: 'error', detail: 'Error occured during adding an advertisement'})
+                }
             })
     }
 }
