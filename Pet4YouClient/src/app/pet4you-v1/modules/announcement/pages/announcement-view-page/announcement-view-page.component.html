@@ -1,5 +1,5 @@
 <div *ngIf="!isLoading else loadingTemplate" class="announcement-view-page">
-    <div class="flex">
+    <!--<div class="flex">
         <div class="flex search-container" style="margin: 25px; gap:3px; width: 100%">
             <input type="text" pInputText style="width: 90%;" placeholder="What are you looking for?">
 
@@ -14,8 +14,8 @@
 
             <p-button icon="pi pi-search"></p-button>
         </div>
-    </div>
-    <div>
+    </div>-->
+    <div style="margin-top: 50px">
         <div class="flex outer-container">
             <div style="flex-direction: column;">
                 <div class="animal-container">
@@ -45,9 +45,9 @@
             <div style="flex-direction: row; width:100%; margin-left:10px">
                 <div>
                     <div class="details-container" style="margin-bottom: 10px;">
-                        <h2>Kitten Looking for a Family</h2>
+                        <h2>{{ annoncement?.title }}</h2>
                         <div>
-                            <p style="color: grey; font-size:15px">Time: {{annoncement?.publicationDate | date: 'hh:mm'}}</p>
+                            <p style="color: grey; font-size:15px">Publication date: {{annoncement?.publicationDate | date: 'dd:MM:yyyy hh:mm'}}</p>
                             <p>Type: {{annoncement?.type}}</p>
                             <p>Price: {{annoncement?.advertisementInfo?.price}}</p>
 

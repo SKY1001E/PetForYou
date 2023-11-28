@@ -4,16 +4,22 @@
     </div>
     <div class="info-container-announcement" style="width: 100%; text-align:center">
         <div class="flex justify-content-between">
-            <div class="text-center category-label" style="margin-left: 10px;">Category: Reptiles</div>
-            <div class="text-center announc-label">Aquarium Turtle</div>
+            <div>
+                <div class="category-label" style="margin-left: 10px;">Category: {{ announcementData?.type }}</div>
+                <div class="category-label" style="margin-left: 10px;">Pet: {{ announcementData?.petType }}</div>
+            </div>
+            <div class="text-center announc-label">{{ announcementData?.title }}</div>
             <div class="text-center location-time-label">
-                <span class="location" style="margin-right:10px">Kharkiv region</span>
-                <span class="time">Today 15:30:00</span>
+                <span class="location" style="margin-right:10px">
+                    {{ getCorrectLocation() }}
+                </span>
+                <span class="time">{{ announcementData?.publicationDate | date : "dd.MM.yyyy hh:mm" }}</span>
             </div>
         </div>
-        <div class="price-label">400 UAH</div>
+        <div class="price-label">{{ getCorrectPrice() }}  </div>
         <div class="decs-cont" style="margin-left:15px ">
-            <div class="desc-label">Description: Red-eared turtle, size 5-6 cm. Delivery across Ukraine, also the possibility of self-pickup from our warehouse in Kharkiv.</div>
+            <div class="desc-label">Description: {{ announcementData?.description }}</div>
         </div>
+        <a class="announcement-details-link" [href]="'announcement/view/' + announcementData?.id">Details</a>
     </div>
 </div>

@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { SelectItem } from 'primeng/api';  // Add this import statement
+import { MessageService, SelectItem } from 'primeng/api';  // Add this import statement
 import { Announcement, AnnouncementFilterModel } from 'src/app/pet4you-v1/shared/others/models/announcement';
 import { AnnouncementService } from 'src/app/pet4you-v1/services/api/announcement.service';
 
@@ -23,7 +23,10 @@ export class AllAnnouncementsPageComponent {
         { label: 'Most expensive', value: null }, 
     ];
 
-    constructor(private router: Router, private route: ActivatedRoute, private announcementService: AnnouncementService) {}
+    constructor(private router: Router, 
+        private route: ActivatedRoute, 
+        private announcementService: AnnouncementService, 
+        private toastService: MessageService) {}
 
     selectedType: any;
 
@@ -32,7 +35,13 @@ export class AllAnnouncementsPageComponent {
         this.destroy.complete();
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.announcementService.getAnnouncementsWithFilters({advertisementType: "sell", location: {}})
+        .subscribe({
+            next: (res) => this.announcementsList = res,
+            error: () => this.toastService.add({severity:'error', summary:'Error',detail:'Error occured during trying to get advertisements'})
+        })
+    }
 
     ngAfterViewInit() {}
 
@@ -44,7 +53,8 @@ export class AllAnnouncementsPageComponent {
     getAnnouncementsWithFilters(data: AnnouncementFilterModel) {
         this.announcementService.getAnnouncementsWithFilters(data)
         .subscribe({
-            next: (res) => console.log(res)
+            next: (res) => this.announcementsList = res,
+            error: () => this.toastService.add({severity:'error', summary:'Error',detail:'Error occured during trying to get advertisements'})
         })
     }
 

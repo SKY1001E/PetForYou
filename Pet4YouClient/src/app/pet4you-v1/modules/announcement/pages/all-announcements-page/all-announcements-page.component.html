@@ -1,7 +1,7 @@
 <div class="all-announcements-page" style="margin-top: 40px; max-width: 1280px; margin: 0 auto">
-    <div class="main-announcement-title" style="margin-top: 30px; margin-left:25px">All Announcements</div>
+    <div class="main-announcement-title" style="margin-top: 40px;">All Announcements</div>
     <div style="position: relative" class="flex all-announcement-page">
-        <div class="flex search-container" style="margin: 25px 20px 7px 10px; width: 100%; gap:3px">
+        <div class="flex search-container" style="margin-top: 15px; width: 100%; gap: 15px">
             <input type="text" pInputText style="flex-grow: 1;" placeholder="What are you looking for?">
             <div>
                 <button iconPos="right" icon="pi pi-angle-down" iconPos="right" class="p-button-outlined" pButton label="Chose filters" (click)="changeFilterOpens()"></button>
@@ -12,52 +12,16 @@
             <app-announcement-filters (dataEvent)="receiveDataFromChild($event)" style="position: absolute; top: 80px; right: 0; z-index: 1"></app-announcement-filters>
         </div>
     </div>
-    <div class="flex custom-container">
+    <div class="flex custom-container" style="margin-top: 30px">
         <label class="sort-label">Sort by:</label>
         <div class="custom-dropdown-container">
-            <p-button>Chose filters</p-button>
+            <p-dropdown [style]="{'width': '180px'}">Sorting type</p-dropdown>
         </div>
     </div>
-    <div class="all-announcement-container">
-        <div class="flex new-announcement-container">
-            <div class="announcement-container-photo">
-                <img src="assets/turtle.jpg" alt="turtle">
-            </div>
-            <div class="info-container-announcement" style="width: 100%; text-align:center">
-                <div class="flex justify-content-between">
-                    <div class="text-center category-label" style="margin-left: 10px;">Category: Reptiles</div>
-                    <div class="text-center announc-label">Aquarium Turtle</div>
-                    <div class="text-center location-time-label">
-                        <span class="location" style="margin-right:10px">Kharkiv region</span>
-                        <span class="time">Today 15:30:00</span>
-                    </div>
-                </div>
-                <div class="price-label">400 UAH</div>
-                <div class="decs-cont" style="margin-left:15px ">
-                    <div class="desc-label">Description: Red-eared turtle, size 5-6 cm. Delivery across Ukraine, also the possibility of self-pickup from our warehouse in Kharkiv.</div>
-                </div>
-            </div>
-        </div>
+    <div *ngFor="let announcement of announcementsList" class="all-announcement-container">
+        <app-advertisement [announcementData]="announcement"></app-advertisement>
     </div>
-    <div class="all-announcement-container" style="margin-bottom: 100px;">
-        <div class="flex new-announcement-container">
-            <div class="announcement-container-photo">
-                <img src="assets/chinchilla.jpg" alt="chinchilla">
-            </div>
-            <div class="info-container-announcement" style="width: 100%; text-align:center">
-                <div class="flex justify-content-between">
-                    <div class="text-center category-label" style="margin-left: 10px;">Category: Rodents</div>
-                    <div class="text-center announc-label">Chinchilla</div>
-                    <div class="text-center location-time-label">
-                        <span class="location" style="margin-right:10px">Sumy region</span>
-                        <span class="time">30.12.2022</span>
-                    </div>
-                </div>
-                <div class="price-label">800 UAH</div>
-                <div class="decs-cont" style="margin-left:15px ">
-                    <div class="desc-label">Description: Selling charming chinchillas. Age 2 months. Playful, active, hand-reared. Eat independently.</div>
-                </div>
-            </div>
-        </div>
+    <div *ngIf="announcementsList == null || announcementsList?.length == 0">
+        There is no advertisements. Try to apply other filters.
     </div>
 </div>

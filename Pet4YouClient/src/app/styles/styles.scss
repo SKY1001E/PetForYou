@@ -760,7 +760,6 @@ body {
     
     .custom-container {
         justify-content: flex-end;
-        padding-right: 20px;
     }
     
     .sort-label {
@@ -774,75 +773,6 @@ body {
         @include fluidFontSize(18px, 35px, 767px, 1280px, 25px);
     }
 
-    .new-announcement-container {
-        background-color: white;
-        margin: 30px;
-        padding: 20px;
-        position: relative;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-        .announcement-container-photo img {
-            width: 450px;
-            height: 320px;
-            @include at-max-width-960px {
-                width: 250px;
-                height: 200px;
-                @include _560 {
-                    width: 140px;
-                    height:120px;
-                }
-            }
-        }
-    }
-  
-    .announc-label {
-        @include fluidFontSize(12px,30px, 767px, 1280px, 20px);
-    }
-
-    .location-time-label, .category-label {
-        @include fluidFontSize(5px, 15px, 767px, 1280px, 12px);
-        color: grey;
-        @include _420{
-            font-size: 4px;
-        }
-    }
-    .price-label {
-        justify-content: flex-start;
-    }
-
-    .price-label {
-        @include fluidFontSize(12px, 25px, 767px, 1280px, 20px);
-        position: absolute;
-        right:20px;
-        margin-top: 40px;
-        @include _420 {
-            margin-top: 20px;
-        }
-    }
-
-    .decs-cont {
-        width:75%;
-        @include at-max-width-960px {
-          width: 60%;
-        }
-        .desc-label {
-        @include fluidFontSize(10px, 30px, 767px, 1280px, 16px);
-        margin-top: 40px;
-        text-align: justify;
-        font-family: monospace;
-        line-height: 1.5;
-        @include _560{
-            line-height: 1.0;
-            margin-top: 15px;
-            font-size: 11px;
-        }
-        @include _420{
-            line-height: 1.0;
-            margin-top: 10px;
-            font-size: 8px;
-        }
-      }
-    }
 }
 
 // announcement-filters component
@@ -850,7 +780,7 @@ body {
 .announcement-filters {
     padding: 17px;
     border-radius: 10px;
-    background-color: rgba(148, 175, 224, 0.8)
+    background-color: rgba(183, 192, 209, 0.8)
 }
 
 // my-announcement
@@ -868,4 +798,93 @@ body {
 }
 .custom-droptomn-my-announc .p-dropdown{
     background-color: white !important;
+}
+
+// announcement-component
+
+
+.new-announcement-container {
+    background-color: white;
+    margin: 30px;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    .announcement-container-photo img {
+        width: 450px;
+        height: 320px;
+        @include at-max-width-960px {
+            width: 250px;
+            height: 200px;
+            @include _560 {
+                width: 140px;
+                height:120px;
+            }
+        }
+    }
+}
+
+.announc-label {
+    @include fluidFontSize(12px,30px, 767px, 1280px, 20px);
+}
+
+.location-time-label, .category-label {
+    @include fluidFontSize(5px, 15px, 767px, 1280px, 12px);
+    color: grey;
+    @include _420{
+        font-size: 4px;
+    }
+}
+.price-label {
+    justify-content: flex-start;
+}
+
+.price-label {
+    @include fluidFontSize(12px, 25px, 767px, 1280px, 20px);
+    position: absolute;
+    right:20px;
+    margin-top: 40px;
+    @include _420 {
+        margin-top: 20px;
+    }
+}
+
+.decs-cont {
+    width:75%;
+    @include at-max-width-960px {
+      width: 60%;
+    }
+    .desc-label {
+    @include fluidFontSize(10px, 30px, 767px, 1280px, 16px);
+    margin-top: 40px;
+    text-align: justify;
+    font-family: monospace;
+    line-height: 1.5;
+    @include _560{
+        line-height: 1.0;
+        margin-top: 15px;
+        font-size: 11px;
+    }
+    @include _420{
+        line-height: 1.0;
+        margin-top: 10px;
+        font-size: 8px;
+    }
+  }
+}
+
+.announcement-details-link {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 20px;
+    text-decoration: none;
+    border: 2px solid rgb(40, 95, 214);
+    border-radius: 7px;
+    padding: 5px 15px;
+
+    &:hover {
+        border: 2px solid rgb(93, 135, 228);
+        color: rgb(93, 135, 228);
+    }
 }

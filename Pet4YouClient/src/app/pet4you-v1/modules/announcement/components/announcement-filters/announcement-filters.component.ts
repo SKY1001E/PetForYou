@@ -16,7 +16,8 @@ export class AnnouncementFiltersComponent {
     advertisementTypes: SelectItem[] = [
         { label: 'Sell', value: AnnouncementType.Sell },
         { label: 'Exchange', value: AnnouncementType.Exchange },
-        { label: 'Search', value: AnnouncementType.Buy },
+        { label: 'Search', value: AnnouncementType.Search },
+        { label: 'Adoption', value: AnnouncementType.Free}
     ];
 
     petTypes: SelectItem[] = [

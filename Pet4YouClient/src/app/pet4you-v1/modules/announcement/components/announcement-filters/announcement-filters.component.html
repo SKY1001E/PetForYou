@@ -1,7 +1,7 @@
 <div class="announcement-filters">
     <p style="font-size: 20px">Filters</p>
     <form [formGroup]="form" class="announcement-filters__form" (ngSubmit)="submitForm()">
-        <div class="form-inner flex">
+        <div class="form-inner flex" style="gap: 15px">
             <div>
 
                 <div class="form-group">
@@ -12,14 +12,15 @@
                 </div>
                
                 <div class="form-group">
-                    <label for="species">Pet types</label>
+                    <label for="species" style="display: block">Pet types</label>
                     <p-multiSelect [options]="petTypes"
                     [(ngModel)]="advertisementFilters.petTypes"
-                    formControlName="petType"></p-multiSelect>
+                    formControlName="petType"
+                    [style]="{width: '250px'}"></p-multiSelect>
                 </div>
 
                 <div class="form-group">
-                    <label for="breed">Breeds</label>
+                    <label style="display: block" for="breed">Breeds</label>
                     <p-chips formControlName="country"
                         [(ngModel)]="advertisementFilters.petBreeds"
                         type="text"></p-chips>
@@ -34,21 +35,21 @@
             </div>
             <div>
                 <div class="form-group">
-                    <label for="country">Country</label>
+                    <label  style="display: block" for="country">Country</label>
                     <input formControlName="country"
                         [(ngModel)]="advertisementFilters.location.country"
                         type="text"
                         pInputText>
                 </div>
                 <div class="form-group">
-                    <label for="region">Region</label>
+                    <label  style="display: block" for="region">Region</label>
                     <input formControlName="region"
                         [(ngModel)]="advertisementFilters.location.region"
                         type="text"
                         pInputText>
                 </div>
                 <div class="form-group">
-                    <label for="city">City</label>
+                    <label  style="display: block" for="city">City</label>
                     <input formControlName="city"
                         [(ngModel)]="advertisementFilters.location.city"
                         class="custom-input-style"
