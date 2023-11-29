@@ -26,4 +26,8 @@ export class AnnouncementService {
     getAnnouncementsWithFilters(filters: AnnouncementFilterModel) : Observable<any> {
         return this.http.post(`${this.apiUrl}api/Advertisement/filter`, filters);
     }
+
+    getUserAnnouncements(id: number) : Observable<any> {
+        return this.http.get(`${this.apiUrl}api/Advertisement/user/id?userId=${id}`);
+    }
 }

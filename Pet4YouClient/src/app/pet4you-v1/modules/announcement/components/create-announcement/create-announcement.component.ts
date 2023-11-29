@@ -28,6 +28,7 @@ export class CreateAnnouncementComponent implements OnInit, OnDestroy {
         { label: 'Sell', value: AnnouncementType.Sell },
         { label: 'Exchange', value: AnnouncementType.Exchange },
         { label: 'Buy', value: AnnouncementType.Buy },
+        { label: 'Adoption', value: AnnouncementType.Free },
     ];
     anotherOptions: SelectItem[] = [
         { label: 'Chose type', value: null, disabled: true },
@@ -62,7 +63,8 @@ export class CreateAnnouncementComponent implements OnInit, OnDestroy {
         private uiParts: UIPartsController,
         private toastService: MessageService,
     private announcementService: AnnouncementService,
-        private userService: UserService
+        private userService: UserService,
+        private toastService: MessageService
         ) {}
 
     ngOnDestroy() {
@@ -188,5 +190,17 @@ export class CreateAnnouncementComponent implements OnInit, OnDestroy {
                     : null,
             }
         }
+
+        this.announcementService.addAnnouncement(announcement)
+            .pipe(takeUntil(this.destroy))
+            .subscribe({
+                next: (response) => {
+                    this.toastService.add({severity: 'success', summary: 'Success', detail: 'Advertisement has been added successfully'})
+                    this.router.navigate(['/announcement', 'my'])
+                },
+                error: (error) => {
+                    this.toastService.add({severity: 'error', summary: 'error', detail: 'Error occured during adding an advertisement'})
+                }
+            })
     }
 }
