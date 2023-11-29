@@ -3,7 +3,7 @@ import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core
 import {Subject, takeUntil} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UIPartsController} from '../../../../services/ui-parts-controller.service';
-import {SelectItem} from 'primeng/api';
+import {MessageService, SelectItem} from 'primeng/api';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Announcement, AnnouncementType, Gender, PetType} from "../../../../shared/others/models/announcement";
 import {AnnouncementService} from "../../../../services/api/announcement.service";
@@ -60,7 +60,8 @@ export class CreateAnnouncementComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private router: Router,
         private uiParts: UIPartsController,
-        private announcementService: AnnouncementService,
+        private toastService: MessageService,
+    private announcementService: AnnouncementService,
         private userService: UserService
         ) {}
 
@@ -135,7 +136,19 @@ export class CreateAnnouncementComponent implements OnInit, OnDestroy {
             return;
         }
 
-        const announcement: Announcement = {
+        const announcement: Announcement = this.getAnnouncementData();
+
+        this.announcementService.addAnnouncement(announcement)
+            .pipe(takeUntil(this.destroy))
+            .subscribe(w => {
+                this.router.navigate(['../all'], { relativeTo: this.route }).then(() => {
+                    this.toastService.add({ severity: 'success', summary: 'Success', detail: 'You have successfully added an advertisement' });
+                });
+            })
+    }
+
+    private getAnnouncementData(): Announcement {
+        return {
             title: this.form.value?.title,
             type: this.selectedType?.value
                 ? this.selectedType.value
@@ -175,11 +188,5 @@ export class CreateAnnouncementComponent implements OnInit, OnDestroy {
                     : null,
             }
         }
-
-        this.announcementService.addAnnouncement(announcement)
-            .pipe(takeUntil(this.destroy))
-            .subscribe(w => {
-                console.log(w);
-            })
     }
 }
