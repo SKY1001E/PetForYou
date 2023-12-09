@@ -61,8 +61,7 @@ export class CreateAnnouncementComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private router: Router,
         private uiParts: UIPartsController,
-        private toastService: MessageService,
-    private announcementService: AnnouncementService,
+        private announcementService: AnnouncementService,
         private userService: UserService,
         private toastService: MessageService
         ) {}
@@ -139,14 +138,17 @@ export class CreateAnnouncementComponent implements OnInit, OnDestroy {
         }
 
         const announcement: Announcement = this.getAnnouncementData();
-
         this.announcementService.addAnnouncement(announcement)
-            .pipe(takeUntil(this.destroy))
-            .subscribe(w => {
-                this.router.navigate(['../all'], { relativeTo: this.route }).then(() => {
-                    this.toastService.add({ severity: 'success', summary: 'Success', detail: 'You have successfully added an advertisement' });
-                });
-            })
+        .pipe(takeUntil(this.destroy))
+        .subscribe({
+            next: (response) => {
+                this.toastService.add({severity: 'success', summary: 'Success', detail: 'Advertisement has been added successfully'})
+                this.router.navigate(['/announcement', 'my'])
+            },
+            error: (error) => {
+                this.toastService.add({severity: 'error', summary: 'error', detail: 'Error occured during adding an advertisement'})
+            }
+        })
     }
 
     private getAnnouncementData(): Announcement {
@@ -190,17 +192,5 @@ export class CreateAnnouncementComponent implements OnInit, OnDestroy {
                     : null,
             }
         }
-
-        this.announcementService.addAnnouncement(announcement)
-            .pipe(takeUntil(this.destroy))
-            .subscribe({
-                next: (response) => {
-                    this.toastService.add({severity: 'success', summary: 'Success', detail: 'Advertisement has been added successfully'})
-                    this.router.navigate(['/announcement', 'my'])
-                },
-                error: (error) => {
-                    this.toastService.add({severity: 'error', summary: 'error', detail: 'Error occured during adding an advertisement'})
-                }
-            })
     }
 }
