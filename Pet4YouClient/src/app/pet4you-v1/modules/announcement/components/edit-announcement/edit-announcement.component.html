@@ -1,0 +1,58 @@
+<div class="edit-advertisement">
+    <div class="text-center edit-title" style="margin: 90px 30px 20px 30px;">
+        Edit Advertisement
+    </div>
+    <div class="change-photo-title" style="margin-left: 40px;">Change Photos</div>
+    <div class="change-photo-desc" style="margin-left: 40px; margin-top: 10px;">The first photo will be the cover of the advertisement. Drag to change the photo order.</div>
+    <div class="flex align-center photo-upload-container" style="margin: 30px; margin-top: 20px;">
+        <button class="flex justify-content-center add-photo-button" (click)="openFileInput()" style="margin-top: 10px; align-items: center;">Add Photo</button>
+        <input type="file" #fileInput style="display: none" accept="image/*" (change)="displayImage($event)">
+        <div *ngFor="let photoContainer of photoContainers; let i = index" class="photo-container" (dragstart)="onDragStart(i, $event)" (dragover)="onDragOver($event)" (drop)="onDrop(i, $event)" draggable="true">
+            <img *ngIf="uploadedPhotos[i]" [src]="uploadedPhotos[i]" alt="Uploaded Photo" class="uploaded-photo">
+        </div>
+    </div>
+    <div class="change-desc-title" style="margin-left: 40px;">Change Description</div>
+    <div class="flex info-container" style="margin: 20px 30px 20px 30px ">
+        <div class="add-container" style="flex: 60%;">
+            <div class="custom-input-desc" style="margin-right: 10px; margin-top:  10px;">
+                <textarea id="inputDesc"
+                          class="custom-input-style"
+                          formControlName="description"
+                          placeholder="Add important information about the animal..."></textarea>
+            </div>
+        </div>
+        <div class="flex half-container" style="flex: 40%; flex-direction: column; gap:10px">
+            <div class="custom-input">
+                <div>
+                    <label for="announcementTitle" class="label-options">Change Advertisement Title: </label>
+                </div>
+                <input id="announcementTitle"
+                       formControlName="announcement"
+                       class="custom-input-style"
+                       type="text"
+                       pInputText
+                       placeholder="For example, Cane Corso" />
+            </div>
+            <div class="custom-dropdown-type" style=" width: 90%;">
+                <div>
+                    <label for="options" class="label-options">Animal Type:</label>
+                </div>
+                <p-dropdown [options]="types"
+                            [(ngModel)]="selectedType"
+                            optionLabel="label"
+                            class="custom-dropdown-type"></p-dropdown>
+            </div>
+            <div class="custom-input" style="width: 80%;">
+                <div>
+                    <label for="announcementPrice" class="label-options">Change Price: </label>
+                </div>
+                <input id="announcementPrice"
+                       formControlName="price"
+                       class="custom-input-style"
+                       type="text"
+                       pInputText
+                       placeholder="Specify the price" />
+            </div>
+        </div>
+    </div>
+</div>

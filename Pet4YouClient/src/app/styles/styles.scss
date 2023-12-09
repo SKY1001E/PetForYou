@@ -888,3 +888,30 @@ body {
         color: rgb(93, 135, 228);
     }
 }
+.edit-title{
+    @include fluidFontSize(15px, 28px, 767px, 1280px, 23px);
+
+}
+.change-photo-title,
+.change-desc-title{
+    @include fluidFontSize(13px, 23px, 767px, 1280px, 20px);
+
+}
+.change-photo-desc{
+    color: grey;
+    @include fluidFontSize(10px, 15px, 767px, 1280px, 12px);
+
+}
+.custom-dropdown-type .p-dropdown{
+    margin-right: 30px;
+    @include _560{
+        width: 180px;
+        
+     }
+}
+.custom-dropdown-type .p-dropdown .p-dropdown-label{
+    @include _650{
+        font-size: 10px;
+        
+     }
+}
