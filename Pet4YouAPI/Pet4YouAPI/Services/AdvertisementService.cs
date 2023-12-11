@@ -10,6 +10,8 @@ namespace Pet4YouAPI.Services
 {
     public class AdvertisementService : IAdvertisementService
     {
+
+        private const string advertisementMediaPath = "\\media\\ad\\pictures";
         private Pet4YouContext _context;
 
         public AdvertisementService(Pet4YouContext context)
@@ -164,6 +166,31 @@ namespace Pet4YouAPI.Services
             await _context.SaveChangesAsync();
 
             return DeletingResult.Success;
+        }
+
+        public async Task<CreationResult> AddPicturesToAdvertisement(int advertisementId, IFormFileCollection files)
+        {
+            if (_context.Advertisements.Find(advertisementId) == null)
+                return CreationResult.IncorrectData;
+
+            var uploadPath = Directory.GetCurrentDirectory() + advertisementMediaPath + "\\" + advertisementId;
+            Directory.CreateDirectory(uploadPath);
+
+
+            int i = 0;
+            foreach (var file in files)
+            {
+                string fileExtension = Path.GetExtension(file.FileName);
+                string fullPath = $"{uploadPath}\\{i}{fileExtension}";
+                Console.WriteLine(fullPath);
+                using (var fileStream = new FileStream(fullPath, FileMode.Create))
+                {
+                    await file.CopyToAsync(fileStream);
+                }
+                i++;
+            }
+
+            return CreationResult.Success;
         }
     }
 }

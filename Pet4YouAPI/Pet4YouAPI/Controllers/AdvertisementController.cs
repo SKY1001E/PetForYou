@@ -65,5 +65,19 @@ namespace Pet4YouAPI.Controllers
                 return NotFound("Advertisement not found");
             return BadRequest();
         }
+
+        [HttpPost]
+        [Route("add-pictures/{id}")]
+        public async Task<IActionResult> AddPictures(int id)
+        {
+            var httpRequest = HttpContext.Request;
+            if (httpRequest.Form.Files.Count == 0)
+                return BadRequest("There are no pictures in requrest");
+            CreationResult result = await _advertisementService.AddPicturesToAdvertisement(id, httpRequest.Form.Files);
+            if (result == CreationResult.IncorrectData)
+                return BadRequest("Incorrect advertisement Id");
+            return Ok("Pictures added successfully");
+        }
+
     }
 }
