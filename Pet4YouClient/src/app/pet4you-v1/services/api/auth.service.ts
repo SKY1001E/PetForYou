@@ -17,16 +17,11 @@ export class AuthService {
         private jwtHelper: JwtHelperService,
         private router: Router,
         private route: ActivatedRoute
-    ) {
-    }
+    ) 
+    {}
 
     register(authInfo: AuthResponseModel): Observable<any> {
         return this.http.post(`${this.apiUrl}api/Auth/register`, authInfo)
-            /*.pipe(tap(res => {
-                if(res) {
-                    this.router.navigate(['sign', 'in'], { relativeTo: this.route }).then();
-                }
-            }))*/
     }
 
     login(authInfo: AuthResponseModel): Observable<any> {
@@ -38,7 +33,6 @@ export class AuthService {
 
     isAuthenticated(): boolean {
         const token = localStorage.getItem(ACCESS_TOKEN_KEY);
-
         return !this.jwtHelper.isTokenExpired(token);
     }
 

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {delay, map, Subject, switchMap, takeUntil, tap} from 'rxjs';
 import {AnnouncementService} from "../../../../services/api/announcement.service";
@@ -24,10 +24,9 @@ export class AnnouncementViewPageComponent implements OnInit, OnDestroy, AfterVi
     constructor(private router: Router,
                 private route: ActivatedRoute,
                 private userService: UserService,
-                private announcementService: AnnouncementService) {
-        this.images.push({ itemImageSrc: 'assets/announcement1.png' });
-        this.images.push({ itemImageSrc: 'assets/announcement2.png' });
-      }
+                @Inject('API_URL') private apiUrl: string,
+                private announcementService: AnnouncementService) 
+    {}
 
     ngOnDestroy() {
         this.destroy.next(null);
@@ -35,7 +34,8 @@ export class AnnouncementViewPageComponent implements OnInit, OnDestroy, AfterVi
     }
 
     ngOnInit() {
-        this.getAnnouncement()
+        this.getAnnouncement();
+        
     }
 
     ngAfterViewInit() {
@@ -59,12 +59,28 @@ export class AnnouncementViewPageComponent implements OnInit, OnDestroy, AfterVi
             .subscribe(({ announcement, user }: { announcement: any, user: any }) => {
                 this.annoncement = announcement;
                 this.owner = user;
-
                 this.isLoading = false;
             });
+
+        this.getAnnouncementPictures(id);
     }
 
-    onGalleryValueChange(event: any) {
-        console.log(event)
+    private getAnnouncementPictures(id: number) {
+        this.announcementService.getAnnouncementPicturesURLs(id).subscribe({
+            next: (response) => {
+                console.log(response);
+                if(response.length != 0) {
+                    for (var img of response) {
+                        this.images.push({ itemImageSrc: this.apiUrl + img });
+                    }
+                }
+                else {
+                    this.images.push({ itemImageSrc: 'assets/image-placeholder.jpg'})
+                }
+            },
+            error: () => {
+                this.images.push({ itemImageSrc: 'assets/image-placeholder.jpg'})
+            } 
+        })
     }
 }
