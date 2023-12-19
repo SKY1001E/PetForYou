@@ -30,6 +30,7 @@ export class CreateAnnouncementComponent implements OnInit, OnDestroy {
         { label: 'Buy', value: AnnouncementType.Buy },
         { label: 'Adoption', value: AnnouncementType.Free },
     ];
+
     anotherOptions: SelectItem[] = [
         { label: 'Chose type', value: null, disabled: true },
         { label: 'Dog', value: PetType.Dog },
@@ -101,6 +102,7 @@ export class CreateAnnouncementComponent implements OnInit, OnDestroy {
             fileInput.click();
         }
     }
+
     displayImage(event: Event) {
         const input = event.target as HTMLInputElement;
         const file = input.files?.[0];
@@ -116,6 +118,7 @@ export class CreateAnnouncementComponent implements OnInit, OnDestroy {
             reader.readAsDataURL(file);
         }
     }
+
     onDragStart(index: number, event: any) {
         event.dataTransfer.setData('text/plain', index.toString());
     }
@@ -144,11 +147,15 @@ export class CreateAnnouncementComponent implements OnInit, OnDestroy {
             next: (response) => {
                 this.toastService.add({severity: 'success', summary: 'Success', detail: 'Advertisement has been added successfully'})
                 this.router.navigate(['/announcement', 'my'])
+                var advertisementId = response
+                this.uploadImages(advertisementId); 
             },
             error: (error) => {
                 this.toastService.add({severity: 'error', summary: 'error', detail: 'Error occured during adding an advertisement'})
             }
         })
+
+        
     }
 
     private getAnnouncementData(): Announcement {
@@ -193,4 +200,32 @@ export class CreateAnnouncementComponent implements OnInit, OnDestroy {
             }
         }
     }
+
+    private uploadImages(announcementId: number) {
+        var formData = new FormData();
+        for (let i = 0; i < this.uploadedPhotos.length; i++) {
+            formData.append('files', this.dataURItoBlob(this.uploadedPhotos[i]), `file${i}.png`);
+        }
+        this.announcementService.uploadImages(formData, announcementId).subscribe({
+            next: (response) => {
+                console.log(response);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+    }
+
+    private dataURItoBlob(dataURI: string): Blob {
+        const byteString = atob(dataURI.split(',')[1]);
+        const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+        const ab = new ArrayBuffer(byteString.length);
+        const ia = new Uint8Array(ab);
+    
+        for (let i = 0; i < byteString.length; i++) {
+          ia[i] = byteString.charCodeAt(i);
+        }
+    
+        return new Blob([ab], { type: mimeString });
+      }
 }
