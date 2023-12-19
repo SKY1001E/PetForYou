@@ -10,13 +10,15 @@ import {InputTextModule} from 'primeng/inputtext';
 import { Dropdown, DropdownModule } from 'primeng/dropdown'; 
 import { CalendarModule } from 'primeng/calendar'; 
 import { SellerProfileComponent } from './seller-profile/seller-profile.component'; 
- 
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+
  
  
 @NgModule({ 
     imports: [ 
         CommonModule, 
         FormsModule, 
+        ConfirmDialogModule,
         HttpClientModule, 
         ReactiveFormsModule, 
         RouterModule.forChild([ 

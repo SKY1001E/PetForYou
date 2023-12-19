@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {UIPartsController} from "../../../services/ui-parts-controller.service";
 import {UserService} from "../../../services/api/user.service";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MessageService, SelectItem } from 'primeng/api';
+import { ConfirmationService, MessageService, SelectItem } from 'primeng/api';
 import { UpdateUserModel, User } from 'src/app/pet4you-v1/shared/others/models/user-models';
 import { AuthService } from 'src/app/pet4you-v1/services/api/auth.service';
 
@@ -29,7 +29,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
         private uiParts: UIPartsController,
         private userService: UserService,
         private toastService: MessageService,
-        private authService: AuthService
+        private authService: AuthService,
+        private confirmationService: ConfirmationService
 
     ) {
         this.sexs = [
@@ -74,7 +75,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     renderUpdateUserInfoForm() {
-        console.log(this.user);
         this.updateUserInfoForm = new FormGroup({
             firstName: new FormControl(this.user.userInfo.firstName),
             lastName: new FormControl(this.user.userInfo.lastName),
@@ -155,5 +155,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
             }
         })
 
+    }
+
+    confirmDeletingAccount(event: Event) {
+        this.confirmationService.confirm({
+            target: event.target as EventTarget,
+            message: 'Are you really want to delete your account?',
+            header: 'Delete account',
+            icon: 'pi pi-exclamation-triangle',
+            rejectButtonStyleClass: "p-button-text",
+            accept: () => {
+                this.deleteCurrentUser();
+            }
+        });
     }
 }

@@ -9,7 +9,7 @@ import {UIPartsController} from "./services/ui-parts-controller.service";
 import {ACCESS_TOKEN_KEY, AuthService} from "./services/api/auth.service";
 import {JwtModule} from "@auth0/angular-jwt";
 import {environment} from "../../environments/environments";
-import {MessageService} from "primeng/api";
+import {ConfirmationService, MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {AuthRequiredGuard} from "./guards/auth-required.guard";
 import {UserService} from "./services/api/user.service";
@@ -22,7 +22,8 @@ const providers = [
     MessageService,
     UserService,
     AnnouncementService,
-    AuthRequiredGuard
+    AuthRequiredGuard,
+    ConfirmationService
 ]
 
 export function tokenGetter() {

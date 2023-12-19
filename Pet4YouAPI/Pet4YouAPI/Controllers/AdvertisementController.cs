@@ -50,7 +50,7 @@ namespace Pet4YouAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<Advertisement> GetAdvertisementsById(int id)
+        public async Task<Advertisement> GetAdvertisementById(int id)
         {
             var advertisement = await _advertisementService.GetAdvertisementsById(id);
 
@@ -96,5 +96,25 @@ namespace Pet4YouAPI.Controllers
                 return BadRequest("Incorrect advertisement id ");
             }
         }
+
+        [HttpPost]
+        [Route("filter/title")]
+        public async Task<ActionResult<ICollection<Advertisement>>> GetAdvertisementsByName([FromBody] string title)
+        {
+            ICollection<Advertisement> advertisements = await _advertisementService.GetAdvertisementsByName(title);
+            return Ok(advertisements);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> ChangeAdvertisement([FromBody] Advertisement advertisement)
+        {
+            ModifyResult modifyResult = await _advertisementService.ChangeAdvertisement(advertisement);
+            if (modifyResult == ModifyResult.ItemNotFound)
+                return NotFound();
+            if (modifyResult == ModifyResult.Success)
+                return Ok();
+            return BadRequest();
+        }
+
     }
 }

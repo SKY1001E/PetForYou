@@ -18,5 +18,9 @@ namespace Pet4YouAPI.DI
         public Task<CreationResult> AddPicturesToAdvertisement(int advertisementId, IFormFileCollection files);
 
         public ICollection<string> GetAdvertisementPicturesURLs(int advertisementId);
+
+        public Task<ICollection<Advertisement>> GetAdvertisementsByName(string title);
+
+        public Task<ModifyResult> ChangeAdvertisement(Advertisement advertisement);
     }
 }

@@ -62,7 +62,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
                 component: UserAnnouncementsPageComponent
             },
             {
-                path:'edit',
+                path:'edit/:id',
                 component:EditAnnouncementComponent
             }
         ]),

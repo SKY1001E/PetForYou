@@ -38,4 +38,8 @@ export class AnnouncementService {
     getAnnouncementPicturesURLs(advertisementId: number) : Observable<any> {
         return this.http.get(`${this.apiUrl}api/Advertisement/pictures/${advertisementId}`)
     }
+
+    changeAnnouncement(announcement: Announcement) : Observable<any> {
+        return this.http.put(`${this.apiUrl}api/Advertisement`, announcement);
+    }
 }

@@ -2,24 +2,31 @@
     <div class="announcement-container-photo">
         <img src="{{ getCorrectImg() }}" alt="img">
     </div>
-    <div class="info-container-announcement" style="width: 100%; text-align:center">
-        <div class="flex justify-content-between">
-            <div>
-                <div class="category-label" style="margin-left: 10px;">Category: {{ announcementData?.type }}</div>
-                <div class="category-label" style="margin-left: 10px;">Pet: {{ announcementData?.petType }}</div>
+    <div class="flex flex-direction-column" style="flex: 1; justify-content: space-between;">
+        <div class="info-container-announcement" style="width: 100%; text-align:center">
+            <div class="flex justify-content-between">
+                <div class="flex flex-direction-column" style="flex: 1">
+                    <div class="category-label" style="margin-left: 10px;">Category: {{ announcementData?.type }}</div>
+                    <div class="category-label" style="margin-left: 10px;">Pet: {{ announcementData?.petType }}</div>
+                </div>
+                <div class="text-center announc-label" style="flex: 2">{{ announcementData?.title }}</div>
+                <div class="location-time-label"  style="flex: 1">
+                    <div class="location">
+                        {{ getCorrectLocation() }}
+                    </div>
+                    <div class="time">{{ announcementData?.publicationDate | date : "dd.MM.yyyy hh:mm" }}</div>
+                </div>
             </div>
-            <div class="text-center announc-label">{{ announcementData?.title }}</div>
-            <div class="text-center location-time-label">
-                <span class="location" style="margin-right:10px">
-                    {{ getCorrectLocation() }}
-                </span>
-                <span class="time">{{ announcementData?.publicationDate | date : "dd.MM.yyyy hh:mm" }}</span>
+            <div class="price-label">{{ getCorrectPrice() }}  </div>
+            <div class="decs-cont" style="margin-left:15px ">
+                <div class="desc-label">Description: {{ getCorrectDescription() }}</div>
             </div>
         </div>
-        <div class="price-label">{{ getCorrectPrice() }}  </div>
-        <div class="decs-cont" style="margin-left:15px ">
-            <div class="desc-label">Description: {{ getCorrectDescription() }}</div>
+        <div class="actions flex" style="gap: 10px; align-self: flex-end;">
+            <button *ngIf="detailButtonDisplay" pButton class="p-button-info" [routerLink]="['/announcement', 'view', announcementData?.id]">Details</button>
+            <button *ngIf="selfAnnouncementButtonsDisplay" pButton class="p-button-warning" [routerLink]="['/announcement', 'edit', announcementData?.id]">Edit</button>
+            <button *ngIf="selfAnnouncementButtonsDisplay" pButton class="p-button-danger">Delete</button>
+            <button *ngIf="adminButtonsDisplay" pButton class="p-button-danger">Delete</button>
         </div>
-        <a class="announcement-details-link" [routerLink]="['/announcement','view',announcementData?.id]">Details</a>
     </div>
 </div>

@@ -12,7 +12,8 @@
                        class="custom-input-style"
                        type="text"
                        pInputText
-                       placeholder="For example, gray, blue Cane Corso is on sale" />
+                       placeholder="For example, gray, blue Cane Corso is on sale" 
+                       style="margin-left: 10px;"/>
             </div>
 
             <div class="custom-dropdown">
@@ -38,17 +39,23 @@
             </div>
         </div>
 
-        <div class="flex align-center photo-upload-container" style="margin: 30px; ">
-            <button class="flex justify-content-center add-photo-button" (click)="openFileInput()" style="margin-top: 10px; align-items: center;">Add photos</button>
-            <input type="file" #fileInput style="display: none" accept="image/*" (change)="displayImage($event)">
-
-            <div *ngFor="let photoContainer of photoContainers; let i = index" class="photo-container" (dragstart)="onDragStart(i, $event)" (dragover)="onDragOver($event)" (drop)="onDrop(i, $event)" draggable="true">
-                <img *ngIf="uploadedPhotos[i]" [src]="uploadedPhotos[i]" alt="Uploaded Photo" class="uploaded-photo">
+        <div style="margin: 30px;" class="align-center photo-upload-container">
+            <div>
+                <div style="margin-left: 10px">Photos</div>
+                <div class="change-photo-desc" style="margin-left: 10px; margin-top: 10px;">The first photo will be the cover of the advertisement. Drag to change the photo order.</div>
+            </div>
+            <div class="align-center flex" >
+                <button class="flex justify-content-center add-photo-button" (click)="openFileInput()" style="margin-top: 10px; align-items: center;">Add photos</button>
+                <input type="file" #fileInput style="display: none" accept="image/*" (change)="displayImage($event)">
+                <div *ngFor="let photoContainer of photoContainers; let i = index" class="photo-container" (dragstart)="onDragStart(i, $event)" (dragover)="onDragOver($event)" (drop)="onDrop(i, $event)" draggable="true">
+                    <img *ngIf="uploadedPhotos[i]" [src]="uploadedPhotos[i]" alt="Uploaded Photo" class="uploaded-photo">
+                </div>
             </div>
         </div>
+       
     </div>
 
-    <div class="flex info-container" style="margin: 35px; ">
+    <div class="flex info-container" style="margin: 30px; ">
         <div class="add-container" style="flex: 60%;">
             <p class = "desc-label" style="margin: 10px 0;">Description</p>
             <div class="custom-input-desc" style="margin-right: 10px;">
@@ -97,7 +104,7 @@
             </div>
         </div>
     </div>
-    <div class="flex info-container" style="margin: 35px; ">
+    <div class="flex info-container" style="margin: 30px; ">
         <div class="custom-input" style="width: 100%; margin-left: 10px;">
             <div>
                 <label for="inputBreed" class="label-options">Breed</label>

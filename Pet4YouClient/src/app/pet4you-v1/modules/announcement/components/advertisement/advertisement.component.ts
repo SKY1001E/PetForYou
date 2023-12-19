@@ -13,6 +13,15 @@ export class AdvertisementComponent implements OnInit {
 
     announcementImage?: string;
 
+    @Input()
+    detailButtonDisplay: boolean = true;
+
+    @Input()
+    adminButtonsDisplay: boolean = false;
+
+    @Input()
+    selfAnnouncementButtonsDisplay: boolean = false;
+
     constructor(
         @Inject('API_URL') private apiUrl: string,
         private announcementService: AnnouncementService

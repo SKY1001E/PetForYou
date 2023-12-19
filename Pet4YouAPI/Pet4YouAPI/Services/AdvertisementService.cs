@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Pet4YouAPI.DTO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.WebUtilities;
+using System.Text.RegularExpressions;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Pet4YouAPI.Services
 {
@@ -199,6 +201,47 @@ namespace Pet4YouAPI.Services
             var filesDirectory = Path.Combine(_webHostEnvironment.WebRootPath, advertisementMediaPath, advertisementId.ToString());
             var filePaths = Directory.GetFiles(filesDirectory);
             return filePaths.Select(e => Path.GetRelativePath(_webHostEnvironment.WebRootPath, e)).ToList();
+        }
+
+        public async Task<ICollection<Advertisement>> GetAdvertisementsByName(string title)
+        {
+            ICollection<Advertisement> advertisements =
+                await _context.Advertisements
+                .Where(e => e.Title.Contains(title))
+                .Include(e => e.AdvertisementInfo)
+                .Include(e => e.AdvertisementDeletings)
+                .Include(e => e.AdvertisementLocation)
+                .Where(e => e.AdvertisementDeletings.Count == 0 && e.Completed == false)
+                .ToListAsync();
+
+            return advertisements;
+        }
+
+        public async Task<ModifyResult> ChangeAdvertisement(Advertisement advertisement)
+        {
+            Advertisement? foundAdvertisement = await _context.Advertisements
+                .Where(e => e.Id == advertisement.Id)
+                .Include(advertisement => advertisement.AdvertisementInfo)
+                .Include(advertisement => advertisement.AdvertisementLocation)
+                .FirstOrDefaultAsync();
+            if (foundAdvertisement == null)
+                return ModifyResult.ItemNotFound;
+            foundAdvertisement.Description = advertisement.Description;
+            foundAdvertisement.Title = advertisement.Title;
+            foundAdvertisement.PetType = advertisement.PetType;
+            foundAdvertisement.Type = advertisement.Type;
+            foundAdvertisement.Completed = advertisement.Completed;
+            if(advertisement.AdvertisementInfo != null)
+            {
+                foundAdvertisement.AdvertisementInfo = advertisement.AdvertisementInfo;
+            }
+            if(advertisement.AdvertisementLocation != null)
+            {
+                foundAdvertisement.AdvertisementLocation = advertisement.AdvertisementLocation;
+            }
+            await _context.SaveChangesAsync();
+            return ModifyResult.Success;
+
         }
     }
 }

@@ -835,6 +835,15 @@ body {
         font-size: 4px;
     }
 }
+
+.location-time-label {
+    text-align: right;
+}
+
+.category-label {
+    text-align: left;
+}
+
 .price-label {
     justify-content: flex-start;
 }
@@ -873,21 +882,8 @@ body {
   }
 }
 
-.announcement-details-link {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    font-size: 20px;
-    text-decoration: none;
-    border: 2px solid rgb(40, 95, 214);
-    border-radius: 7px;
-    padding: 5px 15px;
 
-    &:hover {
-        border: 2px solid rgb(93, 135, 228);
-        color: rgb(93, 135, 228);
-    }
-}
+
 .edit-title{
     @include fluidFontSize(15px, 28px, 767px, 1280px, 23px);
 
