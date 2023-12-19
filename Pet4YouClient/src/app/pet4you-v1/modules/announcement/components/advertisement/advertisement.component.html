@@ -1,6 +1,6 @@
 <div class="flex new-announcement-container">
     <div class="announcement-container-photo">
-        <img src="assets/turtle.jpg" alt="turtle">
+        <img src="{{ getCorrectImg() }}" alt="img">
     </div>
     <div class="info-container-announcement" style="width: 100%; text-align:center">
         <div class="flex justify-content-between">
@@ -20,6 +20,6 @@
         <div class="decs-cont" style="margin-left:15px ">
             <div class="desc-label">Description: {{ getCorrectDescription() }}</div>
         </div>
-        <a class="announcement-details-link" [href]="'announcement/view/' + announcementData?.id">Details</a>
+        <a class="announcement-details-link" [routerLink]="['/announcement','view',announcementData?.id]">Details</a>
     </div>
 </div>

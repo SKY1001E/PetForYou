@@ -10,25 +10,27 @@ namespace Pet4YouAPI.Services
 {
     public class AdvertisementService : IAdvertisementService
     {
-
-        private const string advertisementMediaPath = "\\media\\ad\\pictures";
+        private const string advertisementMediaPath = "media\\ad\\pictures";
         private Pet4YouContext _context;
+        private IWebHostEnvironment _webHostEnvironment;
 
-        public AdvertisementService(Pet4YouContext context)
+        public AdvertisementService(Pet4YouContext context, 
+            IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
-        public async Task<CreationResult> CreateAdvertisement(Advertisement advertisement)
+        public async Task<(CreationResult, int)> CreateAdvertisement(Advertisement advertisement)
         {
             if (advertisement.AdvertisementInfo == null || advertisement.AdvertisementLocation == null)
-                return CreationResult.IncorrectData;
+                return (CreationResult.IncorrectData, -1);
             var user = await _context.Users.FindAsync(advertisement.UserId);
             if (user == null)
-                return CreationResult.IncorrectRefference;
+                return (CreationResult.IncorrectRefference, -1);
             _context.Add(advertisement);
             await _context.SaveChangesAsync();
-            return CreationResult.Success;
+            return (CreationResult.Success, advertisement.Id);
         }
 
         public async Task<ICollection<Advertisement>> GetAdvertisements(AdvertisementFilterModel filters)
@@ -173,9 +175,8 @@ namespace Pet4YouAPI.Services
             if (_context.Advertisements.Find(advertisementId) == null)
                 return CreationResult.IncorrectData;
 
-            var uploadPath = Directory.GetCurrentDirectory() + advertisementMediaPath + "\\" + advertisementId;
+            var uploadPath = _webHostEnvironment.WebRootPath + advertisementMediaPath + "\\" + advertisementId;
             Directory.CreateDirectory(uploadPath);
-
 
             int i = 0;
             foreach (var file in files)
@@ -191,6 +192,13 @@ namespace Pet4YouAPI.Services
             }
 
             return CreationResult.Success;
+        }
+
+        public ICollection<string> GetAdvertisementPicturesURLs(int advertisementId)
+        {
+            var filesDirectory = Path.Combine(_webHostEnvironment.WebRootPath, advertisementMediaPath, advertisementId.ToString());
+            var filePaths = Directory.GetFiles(filesDirectory);
+            return filePaths.Select(e => Path.GetRelativePath(_webHostEnvironment.WebRootPath, e)).ToList();
         }
     }
 }

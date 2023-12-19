@@ -39,8 +39,9 @@ export class UserService {
         const tokenInfo = this.getDecodedAccessToken(jwtToken!);
 
         return {
-            email: tokenInfo.email,
-            userId: +tokenInfo.userId
+            username: tokenInfo.name,
+            userId: +tokenInfo.userId,
+            role: tokenInfo.role
         };
     }
 

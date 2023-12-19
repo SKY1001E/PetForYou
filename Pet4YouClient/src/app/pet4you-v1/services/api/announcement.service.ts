@@ -30,4 +30,12 @@ export class AnnouncementService {
     getUserAnnouncements(id: number) : Observable<any> {
         return this.http.get(`${this.apiUrl}api/Advertisement/user/id?userId=${id}`);
     }
+
+    uploadImages(formData: FormData, announcementId: number) : Observable<any> {
+        return this.http.post(`${this.apiUrl}api/Advertisement/add-pictures/${announcementId}`, formData)
+    }
+
+    getAnnouncementPicturesURLs(advertisementId: number) : Observable<any> {
+        return this.http.get(`${this.apiUrl}api/Advertisement/pictures/${advertisementId}`)
+    }
 }

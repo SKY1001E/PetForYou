@@ -5,7 +5,7 @@ namespace Pet4YouAPI.DI
 {
     public interface IAdvertisementService
     {
-        public Task<CreationResult> CreateAdvertisement(Advertisement advertisement);
+        public Task<(CreationResult, int)> CreateAdvertisement(Advertisement advertisement);
 
         public Task<ICollection<Advertisement>> GetAdvertisements(AdvertisementFilterModel filters);
 
@@ -16,5 +16,7 @@ namespace Pet4YouAPI.DI
         public Task<DeletingResult> DeleteAdvertisement(int advertisementId);
 
         public Task<CreationResult> AddPicturesToAdvertisement(int advertisementId, IFormFileCollection files);
+
+        public ICollection<string> GetAdvertisementPicturesURLs(int advertisementId);
     }
 }

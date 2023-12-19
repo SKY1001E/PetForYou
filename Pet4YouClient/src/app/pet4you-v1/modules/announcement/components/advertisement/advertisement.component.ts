@@ -1,13 +1,34 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { AnnouncementService } from 'src/app/pet4you-v1/services/api/announcement.service';
 import { Announcement } from 'src/app/pet4you-v1/shared/others/models/announcement';
 
 @Component({
   selector: 'app-advertisement',
   templateUrl: './advertisement.component.html'
 })
-export class AdvertisementComponent {
+export class AdvertisementComponent implements OnInit {
+
     @Input()
     announcementData?: Announcement;
+
+    announcementImage?: string;
+
+    constructor(
+        @Inject('API_URL') private apiUrl: string,
+        private announcementService: AnnouncementService
+        )
+    {}
+
+    ngOnInit(): void {
+        if(this.announcementData?.id != null) {
+            this.announcementService.getAnnouncementPicturesURLs(this.announcementData?.id).subscribe({
+                next: (response) => {
+                    if(response.length != 0)
+                        this.announcementImage = this.apiUrl + response[0];
+                }
+            })
+        }
+    }
 
     getCorrectPrice() {
         if(this.announcementData?.type == "free") {
@@ -44,5 +65,14 @@ export class AdvertisementComponent {
             return description;
         }
         return "No description"
+    }
+
+    getCorrectImg() {
+        if(this.announcementImage == undefined || this.announcementImage == null) {
+            return "/assets/image-placeholder.jpg";
+        }
+        else {
+            return this.announcementImage
+        }
     }
 }

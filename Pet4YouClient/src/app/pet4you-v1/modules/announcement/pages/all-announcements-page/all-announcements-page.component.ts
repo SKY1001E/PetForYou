@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { MessageService, SelectItem } from 'primeng/api';  // Add this import statement
+import { MessageService, SelectItem } from 'primeng/api';
 import { Announcement, AnnouncementFilterModel } from 'src/app/pet4you-v1/shared/others/models/announcement';
 import { AnnouncementService } from 'src/app/pet4you-v1/services/api/announcement.service';
 
@@ -46,7 +46,6 @@ export class AllAnnouncementsPageComponent {
     ngAfterViewInit() {}
 
     receiveDataFromChild(data: AnnouncementFilterModel) {
-        console.log(data);
         this.getAnnouncementsWithFilters(data);
     }
 

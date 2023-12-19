@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Pet4YouAPI.DI;
 using Pet4YouAPI.DTO;
@@ -23,9 +24,10 @@ namespace Pet4YouAPI.Controllers
         {
             if (advertisement == null)
                 return BadRequest();
-            var advertisementCreationResult = await _advertisementService.CreateAdvertisement(advertisement);
+            (var advertisementCreationResult, var advertisementId) = await _advertisementService.CreateAdvertisement(advertisement);
+            Console.WriteLine(advertisementId);
             if (advertisementCreationResult == CreationResult.Success)
-                return Ok();
+                return Ok(advertisementId);
             if (advertisementCreationResult == CreationResult.IncorrectRefference)
                 return BadRequest("Incorrect refference to User");
             if (advertisementCreationResult == CreationResult.IncorrectData)
@@ -79,5 +81,20 @@ namespace Pet4YouAPI.Controllers
             return Ok("Pictures added successfully");
         }
 
+        [HttpGet]
+        [Route("pictures/{advertisementId}")]
+        public IActionResult GetPicturesUrls(int advertisementId)
+        {
+            try
+            {
+                ICollection<string> urls = _advertisementService.GetAdvertisementPicturesURLs(advertisementId);
+                ICollection<string> result = urls.Select(url => Url.Content(url)).ToList();
+                return Ok(urls);
+            }
+            catch
+            {
+                return BadRequest("Incorrect advertisement id ");
+            }
+        }
     }
 }
