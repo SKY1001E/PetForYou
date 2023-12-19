@@ -59,8 +59,8 @@ export class AdvertisementComponent implements OnInit {
     getCorrectDescription() {
         let description = this.announcementData?.description;
         if(description != null) {
-            if(description.length > 160) {
-                description = description.slice(0, 160) + "..."
+            if(description.length > 130) {
+                description = description.slice(0, 130) + "..."
             }
             return description;
         }

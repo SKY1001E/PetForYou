@@ -22,8 +22,6 @@ public partial class Advertisement
 
     public bool Completed { get; set; } = false;
 
-    //public virtual ICollection<AdvertisementCriterion> AdvertisementCriteria { get; set; } = new List<AdvertisementCriterion>();
-
     [JsonIgnore]
     public virtual ICollection<AdvertisementDeleting> AdvertisementDeletings { get; set; } = new List<AdvertisementDeleting>();
 

@@ -175,7 +175,7 @@ namespace Pet4YouAPI.Services
             if (_context.Advertisements.Find(advertisementId) == null)
                 return CreationResult.IncorrectData;
 
-            var uploadPath = _webHostEnvironment.WebRootPath + advertisementMediaPath + "\\" + advertisementId;
+            var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, advertisementMediaPath, advertisementId.ToString());
             Directory.CreateDirectory(uploadPath);
 
             int i = 0;

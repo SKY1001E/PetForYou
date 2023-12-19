@@ -21,6 +21,9 @@ import { AnnouncementFiltersComponent } from './components/announcement-filters/
 import { UserAnnouncementsPageComponent } from './pages/user-announcements-page/user-announcements-page.component';
 import { AdvertisementComponent } from './components/advertisement/advertisement.component';
 import { EditAnnouncementComponent } from './components/edit-announcement/edit-announcement';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+
+
 @NgModule({
     imports: [
         CommonModule,
@@ -35,6 +38,7 @@ import { EditAnnouncementComponent } from './components/edit-announcement/edit-a
         MultiSelectModule,
         InputNumberModule,
         ChipsModule,
+        InputTextareaModule,
         RouterModule.forChild([
             {
                 path: '', 

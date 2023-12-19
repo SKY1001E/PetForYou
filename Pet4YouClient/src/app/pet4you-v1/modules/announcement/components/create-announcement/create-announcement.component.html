@@ -1,23 +1,23 @@
 <form [formGroup]="form" (ngSubmit)="publicAnnouncement($event)">
     <div class="add-advertisement">
-        <div class="text-center advertisement-title" style="margin-top: 30px;">Створити оголошення</div>
+        <div class="text-center advertisement-title" style="margin-top: 30px;">Create announcement</div>
 
         <div class="flex align-center setting-container" style="margin: 30px; margin-top: 50px;">
             <div class="custom-input" style="flex: 1; margin-right: 10px;">
                 <div>
-                    <label for="inputName" class="label-options">Назва:</label>
+                    <label for="inputName" class="label-options">Title</label>
                 </div>
                 <input id="inputName"
                        formControlName="title"
                        class="custom-input-style"
                        type="text"
                        pInputText
-                       placeholder="Наприклад, Кане Корсо сірі, блакитні" />
+                       placeholder="For example, gray, blue Cane Corso is on sale" />
             </div>
 
             <div class="custom-dropdown">
                 <div>
-                    <label for="options" class="label-options">Тип оголошення:</label>
+                    <label for="options" class="label-options">Type</label>
                 </div>
                 <p-dropdown [options]="types"
                             [(ngModel)]="selectedType"
@@ -28,7 +28,7 @@
 
             <div class="custom-dropdown">
                 <div>
-                    <label for="options" class="label-options">Вид тварини:</label>
+                    <label for="options" class="label-options">Pet type</label>
                 </div>
                 <p-dropdown [options]="anotherOptions"
                             [(ngModel)]="selectedAnother"
@@ -39,7 +39,7 @@
         </div>
 
         <div class="flex align-center photo-upload-container" style="margin: 30px; ">
-            <button class="flex justify-content-center add-photo-button" (click)="openFileInput()" style="margin-top: 10px; align-items: center;">Додати фото</button>
+            <button class="flex justify-content-center add-photo-button" (click)="openFileInput()" style="margin-top: 10px; align-items: center;">Add photos</button>
             <input type="file" #fileInput style="display: none" accept="image/*" (change)="displayImage($event)">
 
             <div *ngFor="let photoContainer of photoContainers; let i = index" class="photo-container" (dragstart)="onDragStart(i, $event)" (dragover)="onDragOver($event)" (drop)="onDrop(i, $event)" draggable="true">
@@ -50,67 +50,69 @@
 
     <div class="flex info-container" style="margin: 35px; ">
         <div class="add-container" style="flex: 60%;">
-            <p class = "desc-label" style="margin: 10px 0;">Додайте опис оголошення</p>
+            <p class = "desc-label" style="margin: 10px 0;">Description</p>
             <div class="custom-input-desc" style="margin-right: 10px;">
-                <textarea id="inputDesc"
-                          class="custom-input-style"
-                          formControlName="description"
-                          placeholder="Додайте важливу інформацію про тварину..."></textarea>
+                <textarea
+                    pInputTextarea
+                    id="inputDesc"
+                    class="custom-input-style"
+                    formControlName="description"
+                    placeholder="You can add some important information about your pet here..."></textarea>
             </div>
         </div>
         <div class="flex half-container" style="flex: 40%; flex-direction: column;">
             <div class="custom-input" style="margin-top: 20px;">
                 <div>
-                    <label for="inputCountry" class="label-options">Вкажіть країну: </label>
+                    <label for="inputCountry" class="label-options">Country</label>
                 </div>
                 <input id="inputCountry"
                        formControlName="country"
                        class="custom-input-style"
                        type="text"
                        pInputText
-                       placeholder="Назва країни" />
+                       placeholder="Country name" />
             </div>
 
             <div class="custom-input" style="margin: 10px 0;">
                 <div>
-                    <label for="inputRegion" class="label-options">Вкажіть область: </label>
+                    <label for="inputRegion" class="label-options">Region</label>
                 </div>
                 <input id="inputRegion"
                        class="custom-input-style"
                        formControlName="region"
                        type="text"
                        pInputText
-                       placeholder="Назва області" />
+                       placeholder="Region name" />
             </div>
             <div class="custom-input" style="margin: 10px 0;">
                 <div>
-                    <label for="inputCity" class="label-options">Вкажіть місто: </label>
+                    <label for="inputCity" class="label-options">City</label>
                 </div>
                 <input id="inputCity"
                        class="custom-input-style"
                        formControlName="city"
                        type="text"
                        pInputText
-                       placeholder="Назва міста" />
+                       placeholder="City name" />
             </div>
         </div>
     </div>
     <div class="flex info-container" style="margin: 35px; ">
         <div class="custom-input" style="width: 100%; margin-left: 10px;">
             <div>
-                <label for="inputBreed" class="label-options">Порода:</label>
+                <label for="inputBreed" class="label-options">Breed</label>
             </div>
             <input id="inputBreed"
                    class="custom-input-style"
                    formControlName="breed"
                    type="text"
                    pInputText
-                   placeholder="Вкажіть породу" />
+                   placeholder="Pet breed" />
         </div>
 
         <div class="custom-dropdown">
             <div>
-                <label for="options" class="label-options">Стать:</label>
+                <label for="options" class="label-options">Sex</label>
             </div>
             <p-dropdown [options]="genders"
                         [(ngModel)]="selectedGender"
@@ -121,31 +123,31 @@
 
         <div class="custom-input" style="width: 100%; margin-left: 10px;">
             <div>
-                <label for="inputAge" class="label-options">Вік (у місяцях):</label>
+                <label for="inputAge" class="label-options">Age (months):</label>
             </div>
             <input id="inputAge"
                    class="custom-input-style"
                    formControlName="age"
                    type="text"
                    pInputText
-                   placeholder="Вкажіть вік" />
+                   placeholder="Pet age" />
         </div>
 
         <div class="custom-input" style="width: 100%; margin-left: 10px;">
             <div>
-                <label for="inputPrice" class="label-options">Вартість:</label>
+                <label for="inputPrice" class="label-options">Price</label>
             </div>
             <input id="inputPrice"
                    class="custom-input-style"
                    formControlName="price"
                    type="text"
                    pInputText
-                   placeholder="Вкажіть ціну" />
+                   placeholder="Price in UAH" />
         </div>
     </div>
     <div class=" flex justify-content-center align-center button-container" style="margin-bottom: 30px;">
         <button
             [disabled]="form.invalid"
-            class="publish-button">Опублікувати оголошення</button>
+            class="publish-button">Create advertisement</button>
     </div>
 </form>
