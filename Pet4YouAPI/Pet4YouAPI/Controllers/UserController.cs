@@ -95,5 +95,14 @@ namespace Pet4YouAPI.Controllers
 
             return user;
         }
+
+        [HttpPost("ban/{id}")]
+        public async Task<IActionResult> BanUser(int id)
+        {
+            bool result = await _userService.BanUser(id);
+            if (result == false)
+                return BadRequest("User not found or have already been banned");
+            return Ok();
+        }
     }
 }

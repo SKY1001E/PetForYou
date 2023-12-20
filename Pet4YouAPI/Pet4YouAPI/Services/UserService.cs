@@ -100,5 +100,15 @@ namespace Pet4YouAPI.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<bool> BanUser(int userId)
+        {
+            var user = await _context.Users.Where(e => e.Id == userId && e.Deleted == false && e.Banned == false).FirstOrDefaultAsync();
+            if (user == null)
+                return false;
+            user.Banned = true;
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }

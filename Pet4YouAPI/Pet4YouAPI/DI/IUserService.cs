@@ -18,5 +18,8 @@ namespace Pet4YouAPI.DI
         public Task<bool> AddPhotoToUser(int userId, string photoPath);
 
         public Task<DeletingResult> DeleteUser(int userId);
+
+        public Task<bool> BanUser(int userId);
+
     }
 }
