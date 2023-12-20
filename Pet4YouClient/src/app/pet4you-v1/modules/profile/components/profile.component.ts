@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     destroy = new Subject<any>();
     private prevUIParts: any;
     user!: User;
-    isLoading: boolean = false;
+    isLoading: boolean = true;
     isDialogOpened: boolean = false;
     changePasswordForm!: FormGroup;
     updateUserInfoForm!: FormGroup;
@@ -41,13 +41,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
           ];
     }
 
-    ngOnDestroy() {
-        this.destroy.next(null);
-        this.destroy.complete();
-
-        this.uiParts.restoreValue(this.prevUIParts);
-    }
-
     ngOnInit(): void {
         this.prevUIParts = this.uiParts.storeValue();
 
@@ -56,11 +49,17 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 tap(() => this.isLoading = true))
             .subscribe(u => {
                 this.user = u;
-                this.isLoading = false;
                 this.renderChangePasswordForm();
                 this.renderUpdateUserInfoForm();
+                this.isLoading = false;
             })
+    }
 
+
+    ngOnDestroy() {
+        this.destroy.next(null);
+        this.destroy.complete();
+        this.uiParts.restoreValue(this.prevUIParts);
     }
 
     renderChangePasswordForm() {

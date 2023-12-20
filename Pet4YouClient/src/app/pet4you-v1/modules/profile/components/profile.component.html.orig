@@ -1,22 +1,21 @@
 <div *ngIf="!isLoading else loading" class="profile-container" style="padding: 20px; background-color: white; margin-top: 100px;">
-    <label class="flex justify-content-center profile-label">Your profile {{ user.admin ? "(You are admin)" : "" }}</label>
+    <label class="flex justify-content-center profile-label">Your profile</label>
     <div class="flex justify-content-between">
         <div class="flex flex-justify-content-end"
              style="gap: 20px;">
             <div class="flex flex-direction-column" style="gap: 5px">
                <button class="your-ads-button" (click)="router.navigate(['/announcement', 'my'])" style="margin-top: 10px;">Your Ads</button>
                <button class="log-out-button" (click)="logout()" style="margin-top: 10px;">Log out</button>
-               <button class="log-out-button" (click)="confirmDeletingAccount($event)" style="background-color: rgb(255, 95, 95); margin-top: 10px;">Delete profile</button>
             </div>
             <div class="flex flex-direction-column" style="gap: 5px">
                 <button
-                    *ngIf="user?.admin"
+                    *ngIf="!user?.admin"
                     class="log-out-button"
                     (click)="confirmDeletingAccount($event)"
                     style="background-color: rgb(255, 95, 95); margin-top: 10px;">Delete profile</button>
 
                 <button
-                    *ngIf="user?.admin"
+                    *ngIf="!user?.admin"
                     class="log-out-button"
                     (click)="onBannedAccount($event)"
                     style="background-color: rgb(255, 95, 95); margin-top: 10px;">Banned Account</button>
@@ -150,4 +149,8 @@
         </div>
     </form>
 </ng-template>
+<<<<<<< HEAD
 </div>
+=======
+</div>
+>>>>>>> 9116b23afa5b87ec4345cc5563955d62dfd1352e

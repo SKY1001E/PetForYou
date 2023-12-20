@@ -12,5 +12,7 @@ namespace Pet4YouAPI.DI
         public Task<ICollection<OrderRequest>> GetUserCompletedOrders(int userId);
 
         public Task<CreationResult> AddOrderRequest(OrderRequest orderRequest);
+
+        public Task<ModifyResult> ChangeOrderRequestStatus(OrderRequest orderRequest);
     }
 }

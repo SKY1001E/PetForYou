@@ -64,4 +64,21 @@ export class UserService {
     bannedUser(userId: number): Observable<any> {
         return this.http.post(`${this.apiUrl}api/User/ban/${userId}`, userId)
     }
+
+    
+    isCurrentUserAdmin(): Promise<boolean> {
+        return new Promise<boolean>((resolve, reject) => {
+          const userId = this.getUserInfoFromToken().userId;
+          
+          this.getUser(userId).subscribe({
+            next: (response) => {
+              resolve(response.admin);
+            },
+            error: (error) => {
+              reject(error);
+            }
+          });
+        });
+    }
+    
 }
