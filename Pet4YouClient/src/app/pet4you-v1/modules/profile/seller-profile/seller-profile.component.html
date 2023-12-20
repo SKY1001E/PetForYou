@@ -13,7 +13,14 @@
                 <label class="name-label" for="firstName">{{ getCorrectFullName() }} </label> 
                 <div>{{ user.userInfo.biography }}</div>
             </div> 
-            <div class="date-register">Registration date: {{ user.registrationDate | date }}</div> 
+            <div class="date-register">
+                <div>Registration date: {{ user.registrationDate | date }}</div> 
+                <button
+                    *ngIf="isCanBeBanned"
+                    class="log-out-button"
+                    (click)="onBannedAccount($event)"
+                    style="background-color: rgb(255, 95, 95); margin-top: 10px;">Ban this account</button>
+            </div>
         </div> 
         <div class="text-center info-reviews">Rating and reviews</div> 
         <div class="review-container"> 
