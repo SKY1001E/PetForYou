@@ -197,7 +197,6 @@ namespace Pet4YouAPI.Services
             return DeletingResult.Success;
         }
 
-
         public async Task<CreationResult> AddPicturesToAdvertisement(int advertisementId, IFormFileCollection files)
         {
             if (_context.Advertisements.Find(advertisementId) == null)

@@ -51,14 +51,12 @@
                     <label for="confirm-new-password">Repeat new password:</label>
                     <input formControlName="newPasswordConfirm" type="password" id="confirm-new-password" name="confirm-new-password" required><br>
 
-                    <button type="submit" class="change-password-button" [disabled]="changePasswordForm.invalid">Змінити пароль</button>
+                    <button type="submit" class="change-password-button" [disabled]="changePasswordForm.invalid">Change password</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-<p-button (click)="confirmDeletingAccount($event)" icon="pi pi-check" label="Confirm"></p-button>
 
 <ng-template #loading>
     <p-progressSpinner></p-progressSpinner>

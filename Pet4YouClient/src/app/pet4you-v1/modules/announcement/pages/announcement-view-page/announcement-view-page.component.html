@@ -1,106 +1,95 @@
 <div *ngIf="!isLoading else loadingTemplate" class="announcement-view-page">
-    <div style="margin-top: 50px">
-        <div class="flex outer-container">
-            <div style="flex-direction: column; max-width: 700px;">
-                <div class="animal-container">
-                    <p-galleria [value]="images"
-                                [showIndicators]="true"
-                                [showThumbnails]="false"
-                                [changeItemOnIndicatorHover]="false"
-                                [responsiveOptions]="responsiveOptions"
-                                class="custom-galleria">
-                        <ng-template pTemplate="item" let-item>
-                            <div class="image-container">
-                                <img [src]="item.itemImageSrc" style="width: 100%; height: 365px" class="gallery-image">
-                            </div>
-                        </ng-template>
-                    </p-galleria>
+    <div style="margin: 0 auto; max-width: 1280px">
+        <h1 style="margin-top: 50px">Announcement</h1>
+        <div>
+            <div class="flex outer-container">
+                <div style="flex-direction: column; max-width: 700px;">
+                    <div class="animal-container">
+                        <p-galleria [value]="images"
+                                    [showIndicators]="true"
+                                    [showThumbnails]="false"
+                                    [changeItemOnIndicatorHover]="false"
+                                    [responsiveOptions]="responsiveOptions"
+                                    class="custom-galleria">
+                            <ng-template pTemplate="item" let-item>
+                                <div class="image-container">
+                                    <img [src]="item.itemImageSrc" style="width: 100%; height: 365px" class="gallery-image">
+                                </div>
+                            </ng-template>
+                        </p-galleria>
+                    </div>
+                    <div class="text-center description-container"
+                        style="max-height: 305px; height: 100%; margin: 15px 0">
+                        <h2>Description</h2>
+                        <div>
+                            <p>{{annoncement?.description}}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="text-center description-container"
-                     style="max-height: 305px; height: 100%; margin: 15px 0">
-                    <h2>Description</h2>
+
+                <div style="flex-direction: row; width:100%; margin-left: 10px">
                     <div>
-                        <p>{{annoncement?.description}}</p>
-                    </div>
-                </div>
-            </div>
+                        <div class="details-container" style="margin-bottom: 10px;">
+                            <h2>{{ annoncement?.title }}</h2>
+                            <div>
+                                <p style="color: grey; font-size:15px">Publication date: {{annoncement?.publicationDate | date: 'dd.MM.yyyy hh:mm'}}</p>
+                                <p>Type: {{annoncement?.type}}</p>
+                                <p>Price: {{annoncement?.advertisementInfo?.price}}</p>
 
-            <div style="flex-direction: row; width:100%; margin-left:10px">
-                <div>
-                    <div class="details-container" style="margin-bottom: 10px;">
-                        <h2>{{ annoncement?.title }}</h2>
-                        <div>
-                            <p style="color: grey; font-size:15px">Publication date: {{annoncement?.publicationDate | date: 'dd.MM.yyyy hh:mm'}}</p>
-                            <p>Type: {{annoncement?.type}}</p>
-                            <p>Price: {{annoncement?.advertisementInfo?.price}}</p>
-
+                            </div>
                         </div>
-                    </div>
-                    <div class="details-container" style="margin-bottom: 10px;">
-                        <h2>Location</h2>
-                        <div>
-                            <p>Country: {{annoncement?.advertisementLocation?.country}}</p>
-                            <p>City: {{annoncement?.advertisementLocation?.city}}</p>
-                            <p>Region: {{annoncement?.advertisementLocation?.region}}</p>
+                        <div class="details-container" style="margin-bottom: 10px;">
+                            <h2>Location</h2>
+                            <div>
+                                <p>Country: {{annoncement?.advertisementLocation?.country}}</p>
+                                <p>City: {{annoncement?.advertisementLocation?.city}}</p>
+                                <p>Region: {{annoncement?.advertisementLocation?.region}}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="details-container" style="margin-bottom: 10px;">
-                        <h2>User</h2>
-                        <div style="display: flex; align-items: center;">
-                            <p-avatar icon="pi pi-user" styleClass="mr-2" size="xlarge" style="margin-bottom:10px;"></p-avatar>
-                            <p style="margin-left:20px">{{owner.userInfo.firstName + " " + owner.userInfo.lastName}}</p>
+                        <div class="details-container" style="margin-bottom: 10px;">
+                            <h2>Author</h2>
+                            <div style="display: flex; align-items: center;">
+                                <p-avatar icon="pi pi-user" styleClass="mr-2" size="xlarge" style="margin-bottom:10px;"></p-avatar>
+                                <p style="margin-left:20px">{{ getCorrectFullName() }}</p>
+                            </div>
+                            <div class="flex" style="gap: 15px;">
+                                <p-button label="Show Contacts" (click)="isContactsVisible = true"></p-button>
+                                <p-button label="User profile" [routerLink]="['/profile', owner.id]"></p-button>
+                                <p-button label="Write a message" [routerLink]="['/profile', owner.id]"></p-button>
+                            </div>
+                            <p-dialog header="User contacts" [(visible)]="isContactsVisible" [style]="{width: '400px'}">
+                                <div class="flex flex-direction-column" style="gap: 10px; font-size: 16px;">
+                                    <div style="flex: 1">{{ owner.userInfo.firstName + " " + owner.userInfo.lastName + " " + owner.userInfo.patronymicName }}</div>
+                                    <div>Phone: {{ owner.userInfo.phone }}</div>
+                                    <div>Email: {{ owner.userInfo.email }} </div>
+                                </div>  
+                            </p-dialog>
                         </div>
-                        <p-button label="Show Contacts" (click)="isContactsVisible = true"></p-button>
-                        <p-dialog header="User contacts" [(visible)]="isContactsVisible" [style]="{width: '400px'}">
-                            <div class="flex flex-direction-column" style="gap: 10px; font-size: 16px;">
-                                <div style="flex: 1">{{ owner.userInfo.firstName + " " + owner.userInfo.lastName + " " + owner.userInfo.patronymicName }}</div>
-                                <div>Phone: {{ owner.userInfo.phone }}</div>
-                                <div>Email: {{ owner.userInfo.email }} </div>
-                            </div>
-                            
-                        </p-dialog>
-
-                    </div>
-                    <div class="text-center details-container" style="margin-bottom: 10px;">
-                        <h2>Information</h2>
-                        <div style="display: flex; flex-direction: row; ">
-                            <div class="info-block">
-                                <p>Gender:</p>
-                                <p>{{annoncement?.advertisementInfo?.gender}}</p>
-                            </div>
-                            <div class="info-block">
-                                <p>Age:</p>
-                                <p>{{annoncement?.advertisementInfo?.age}} months</p>
-                            </div>
-                            <div class="info-block">
-                                <p>Animal Type:</p>
-                                <p>{{annoncement?.petType}}</p>
-                            </div>
-                            <div class="info-block">
-                                <p>Breed:</p>
-                                <p>{{annoncement?.advertisementInfo?.breed}}</p>
+                        <div class="text-center details-container" style="margin-bottom: 10px;">
+                            <h2>Information</h2>
+                            <div style="display: flex; flex-direction: row; ">
+                                <div class="info-block">
+                                    <p>Gender:</p>
+                                    <p>{{annoncement?.advertisementInfo?.gender}}</p>
+                                </div>
+                                <div class="info-block">
+                                    <p>Age:</p>
+                                    <p>{{annoncement?.advertisementInfo?.age}} months</p>
+                                </div>
+                                <div class="info-block">
+                                    <p>Animal Type:</p>
+                                    <p>{{annoncement?.petType}}</p>
+                                </div>
+                                <div class="info-block">
+                                    <p>Breed:</p>
+                                    <p>{{annoncement?.advertisementInfo?.breed}}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="flex align-items-center justify-content-center details-container text-center contact-btn"
-         style="gap: 15px; margin: 20px 0">
-        <button
-            pButton
-            class="p-button"
-            [label]="'Call the owner'"
-        ></button>
-
-        <button
-            pButton
-            class="p-button"
-            [label]="'Write a message'"
-        >
-        </button>
     </div>
 </div>
 

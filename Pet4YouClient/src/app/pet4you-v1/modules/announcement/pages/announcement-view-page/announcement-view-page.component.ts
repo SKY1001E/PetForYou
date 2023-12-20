@@ -85,7 +85,10 @@ export class AnnouncementViewPageComponent implements OnInit, OnDestroy, AfterVi
         })
     }
 
-    showContacts() {
-        console.log(this.owner)
+    getCorrectFullName() {
+        var result = "";
+        result += this.owner.userInfo.firstName != null ? this.owner.userInfo.firstName + " " : '';
+        result += this.owner.userInfo.lastName != null ? this.owner.userInfo.lastName + " " : '';
+        return result;
     }
 }

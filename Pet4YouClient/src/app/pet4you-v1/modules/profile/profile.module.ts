@@ -28,7 +28,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
                 component: ProfileComponent 
             }, 
             { 
-                path:"seller", 
+                path:":id", 
                 component: SellerProfileComponent 
             } 
         ]), 
