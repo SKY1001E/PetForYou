@@ -374,6 +374,7 @@ body {
     &:hover {
         transform: scale(0.97);
         background-color: lighten($profileButtonAds, 5%);
+        cursor: pointer;
     }
 
 }
@@ -396,6 +397,7 @@ body {
     &:hover {
         transform: scale(0.97);
         background-color: lighten($profileEditBtn, 5%);
+        cursor: pointer;
     }
 
 }
@@ -675,6 +677,7 @@ body {
     &:hover {
         transform: scale(0.97);
         background-color: lighten($publishBtn, 5%);
+        cursor: pointer;
     }
     @include at-max-width-960px {
         margin-bottom: 100px;
@@ -1042,6 +1045,7 @@ body {
     &:hover {
         transform: scale(0.97);
         background-color: lighten(#91C3FF, 5%);
+        cursor: pointer;
     }
     @include _560{
         padding: 3px 10px;
@@ -1057,6 +1061,7 @@ body {
     &:hover {
         transform: scale(0.97);
         background-color: lighten(#FF6C6C, 5%);
+        cursor: pointer;
     }
     @include _560{
         padding: 3px 10px;
@@ -1073,6 +1078,7 @@ body {
     &:hover {
         transform: scale(0.97);
         background-color: lighten(#91C3FF, 5%);
+        cursor: pointer;
     }
     @include _560{
         padding: 3px 10px;

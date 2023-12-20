@@ -1,0 +1,22 @@
+<div style="margin: 0 auto; max-width: 1280px;">
+    <div class="order-message" style="min-height: 100vh;">
+        <div class = "text-center message" style="margin-top: 50px;">Order requests</div>
+        <div class=" text-center receive-send-btn">
+            <button class="received-btn" type="button" [routerLink]="['/order','in']">Received</button>
+            <button class="send-btn" type="button" [routerLink]="['/order','out']">Sent</button>
+            <button class="send-btn" type="button" [routerLink]="['/order','archive']">Archive</button>
+        </div>
+        <div>
+            <h2 style="margin-left: 30px">{{ currentChosenTypeTitle }}</h2>
+        </div>
+        <div *ngFor="let order of orderRequests" class="message-container">
+            <div class=" flex adv-block">
+                <div style="width: 20%" class="adv-label">{{ order.advertisement?.title }}</div>
+                <div style="width: 80%" class="adv-desc">{{ order.message }}</div>
+            </div>
+            <div class="flex agreement-container" style="margin-top: 30px; justify-content: flex-end; gap:20px;">
+                <div>Unreaded</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -66,7 +66,7 @@ namespace Pet4YouAPI.Services
             string sqlExpression = "SELECT * FROM OrderRequests " +
                 "WHERE AdvertisementId IN " +
                 "(SELECT Id FROM Advertisements WHERE UserId = {0}) " +
-                "AND Status <> 'completed'";
+                "AND Status = 'new'";
 
             ICollection<OrderRequest> orders = await _context.OrderRequests
                 .FromSqlRaw(sqlExpression, paramsArray)
@@ -79,7 +79,7 @@ namespace Pet4YouAPI.Services
         public async Task<ICollection<OrderRequest>> GetUserOutputOrders(int userId)
         {
             ICollection<OrderRequest> orders = await _context.OrderRequests
-                .Where(e => e.UserId == userId && e.Status != "completed")
+                .Where(e => e.UserId == userId && e.Status == "new")
                 .Include(e => e.Advertisement)
                 .ToListAsync();
             return orders;

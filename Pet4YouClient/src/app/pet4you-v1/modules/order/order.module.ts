@@ -1,25 +1,37 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OrderListPageComponent } from './pages/order-list-page/order-list-page.component';
+import { OrderListInComponent } from './pages/order-list-in/order-list-in.component';
 import { RouterModule } from '@angular/router';
+import { OrderListOutComponent } from './pages/order-list-out/order-list-out.component';
+import { OrderListArchiveComponent } from './pages/order-list-archive/order-list-archive.component';
 
 
 
 @NgModule({
   declarations: [
-    OrderListPageComponent
+    OrderListInComponent,
+    OrderListOutComponent,
+    OrderListArchiveComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild([
         {
             path: '', 
-            redirectTo: 'list', 
+            redirectTo: 'in', 
             pathMatch: 'full'
         },
         {
-            path: 'list',
-            component: OrderListPageComponent
+            path: 'in',
+            component: OrderListInComponent
+        },
+        {
+            path: 'out',
+            component: OrderListOutComponent
+        },
+        {
+            path: 'archive',
+            component: OrderListArchiveComponent
         },
     ])
   ]
