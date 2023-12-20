@@ -169,4 +169,27 @@ export class ProfileComponent implements OnInit, OnDestroy {
             }
         });
     }
+
+    onBannedAccount(event: any) {
+        this.confirmationService.confirm({
+            target: event.target as EventTarget,
+            message: 'Are you really want to banned this account?',
+            header: 'Banned account',
+            icon: 'pi pi-exclamation-triangle',
+            rejectButtonStyleClass: "p-button-text",
+            accept: () => {
+                this.bannedUser();
+            }
+        });
+    }
+
+    private bannedUser() {
+        this.userService.bannedUser(this.user.id)
+            .pipe(
+                takeUntil(this.destroy)
+            )
+            .subscribe(() => {
+                this.toastService.add({severity: 'success', summary: 'User banned', detail: 'User successfully banned'});
+            });
+    }
 }

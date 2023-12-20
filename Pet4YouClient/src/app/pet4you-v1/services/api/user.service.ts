@@ -60,4 +60,14 @@ export class UserService {
     deleteUser(userId: number) : Observable<any> {
         return this.http.delete(`${this.apiUrl}api/User/${userId}`);
     }
+
+    bannedUser(userId: number): Observable<any> {
+        return this.http.post(`${this.apiUrl}api/User/ban`,
+            userId,
+            {
+                params: {
+                    id: userId
+                }
+            })
+    }
 }

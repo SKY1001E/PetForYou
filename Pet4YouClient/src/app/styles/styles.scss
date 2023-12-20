@@ -302,7 +302,6 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
     gap: 10px;
 }
 
@@ -314,7 +313,6 @@ body {
 .additional-first,
 .additional-second {
     flex: 1;
-    height: 400px;
     background-color: #E5E5E5;
     padding: 10px;
 
@@ -757,16 +755,16 @@ body {
             height: 40px;
          }
     }
-    
+
     .custom-container {
         justify-content: flex-end;
     }
-    
+
     .sort-label {
         @include fluidFontSize(15px, 20px, 767px, 1280px, 18px);
         margin-right:20px;
         margin-top: 10px;
-    
+
     }
 
     .main-announcement-title {
@@ -787,7 +785,7 @@ body {
 .search-my-announc input::placeholder {
     color: #999;
     @include _560 {
-        font-size: 10px; 
+        font-size: 10px;
 
     }
 }
@@ -902,138 +900,138 @@ body {
     margin-right: 30px;
     @include _560{
         width: 180px;
-        
+
      }
 }
 .custom-dropdown-type .p-dropdown .p-dropdown-label{
     @include _650{
         font-size: 10px;
-        
+
      }
 }
-//seller profile 
-.info-user{ 
-    @include fluidFontSize(15px, 28px, 767px, 1280px, 23px); 
-} 
-.seller-container, .review-container { 
-    background-color: #fff;  
-    padding: 20px; 
-    border: 1px solid #ddd;  
-    border-radius: 8px; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
-    margin: 30px;  
- 
-} 
-   .nickname-container{ 
-    display: flex; 
-    flex-direction: column; 
-    margin-left: 50px; 
-} 
- 
-.nickname-label { 
-    @include fluidFontSize(12px, 28px, 767px, 1280px, 23px); 
-    margin-bottom: 15px; 
-    margin-top: 10px; 
-} 
-.date-register { 
-    margin-left: auto;  
-    margin-top: 10px; 
-    @include fluidFontSize(10px, 21px, 767px, 1280px, 20px); 
-} 
-.name-label, .surname-label { 
-    margin-bottom: 15px; 
-    font-size: 20px;  
-    color: #333;  
-    @include _560{ 
-        font-size: 10px; 
-    } 
- 
-} 
-.info-reviews,  .info-contact{ 
-    @include fluidFontSize(15px, 28px, 767px, 1280px, 23px); 
- 
-} 
-.rating-label{ 
-    @include fluidFontSize(12px, 28px, 767px, 1280px, 23px); 
- 
-}   
-.out-of-five { 
-    @include fluidFontSize(9px, 21px, 767px, 1280px, 16px); 
-    color: #555; 
-} 
- 
-.number-rating-label{ 
-    @include fluidFontSize(12px, 22px, 767px, 1280px, 19px); 
- 
-} 
-.assesment-title { 
-    @include fluidFontSize(12px, 28px, 767px, 1280px, 23px); 
-    margin-top: 10px;  
-} 
-.review-block { 
-    background-color: #9EDCEF; 
-    border-radius: 10px; 
-    padding: 10px; 
-    margin-top: 10px; 
-    width: 400px; 
-} 
-.review-title{ 
-    @include fluidFontSize(10px, 19px, 767px, 1280px, 18px); 
-    margin-top: 10px; 
-    margin-bottom: 10px; 
-} 
-.user-assesment{ 
-    @include fluidFontSize(10px, 19px, 767px, 1280px, 18px); 
-    margin-bottom: 10px; 
-    font-weight: bold; 
-} 
-.time-publication{ 
-    @include fluidFontSize(6px, 13px, 767px, 1280px, 13px); 
-    color: rgb(109, 108, 108); 
- 
-} 
-.user-review{ 
-    @include fluidFontSize(8px, 16px, 767px, 1280px, 13px); 
-    margin-top: 10px; 
-    margin-bottom: 10px; 
-} 
-.contact-info-container{ 
-    background-color: #9EDCEF;  
-    padding: 20px; 
-    border: 1px solid #ddd;  
-    border-radius: 8px; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
-    margin: 30px;  
-} 
-.contact-info-container { 
-    flex-direction: column; 
-} 
- 
-.info-item { 
-    width: 100%; 
-    justify-content: space-between; 
+//seller profile
+.info-user{
+    @include fluidFontSize(15px, 28px, 767px, 1280px, 23px);
+}
+.seller-container, .review-container {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 30px;
+
+}
+   .nickname-container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+}
+
+.nickname-label {
+    @include fluidFontSize(12px, 28px, 767px, 1280px, 23px);
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+.date-register {
+    margin-left: auto;
+    margin-top: 10px;
+    @include fluidFontSize(10px, 21px, 767px, 1280px, 20px);
+}
+.name-label, .surname-label {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #333;
+    @include _560{
+        font-size: 10px;
+    }
+
+}
+.info-reviews,  .info-contact{
+    @include fluidFontSize(15px, 28px, 767px, 1280px, 23px);
+
+}
+.rating-label{
+    @include fluidFontSize(12px, 28px, 767px, 1280px, 23px);
+
+}
+.out-of-five {
+    @include fluidFontSize(9px, 21px, 767px, 1280px, 16px);
+    color: #555;
+}
+
+.number-rating-label{
+    @include fluidFontSize(12px, 22px, 767px, 1280px, 19px);
+
+}
+.assesment-title {
+    @include fluidFontSize(12px, 28px, 767px, 1280px, 23px);
+    margin-top: 10px;
+}
+.review-block {
+    background-color: #9EDCEF;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    width: 400px;
+}
+.review-title{
+    @include fluidFontSize(10px, 19px, 767px, 1280px, 18px);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.user-assesment{
+    @include fluidFontSize(10px, 19px, 767px, 1280px, 18px);
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.time-publication{
+    @include fluidFontSize(6px, 13px, 767px, 1280px, 13px);
+    color: rgb(109, 108, 108);
+
+}
+.user-review{
+    @include fluidFontSize(8px, 16px, 767px, 1280px, 13px);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.contact-info-container{
+    background-color: #9EDCEF;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 30px;
+}
+.contact-info-container {
+    flex-direction: column;
+}
+
+.info-item {
+    width: 100%;
+    justify-content: space-between;
 }
 //message
 .message{
-@include fluidFontSize(15px, 26px, 767px, 1280px, 23px); 
+@include fluidFontSize(15px, 26px, 767px, 1280px, 23px);
 
 }
 .message-container{
-    background-color: white;  
-    padding: 20px; 
-    border: 1px solid #ddd;  
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ddd;
     @include border-radius(8px);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
-    margin: 30px;  
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 30px;
 }
 .adv-label{
-    @include fluidFontSize(14px, 24px, 767px, 1280px, 19px); 
+    @include fluidFontSize(14px, 24px, 767px, 1280px, 19px);
     white-space: nowrap;
 }
 .adv-desc{
     margin-left: 30px;
     text-align: justify;
-    @include fluidFontSize(10px, 16px, 767px, 1280px, 13px); 
+    @include fluidFontSize(10px, 16px, 767px, 1280px, 13px);
 
 }
 .agree-btn {
@@ -1045,7 +1043,7 @@ body {
         transform: scale(0.97);
         background-color: lighten(#91C3FF, 5%);
     }
-    @include _560{ 
+    @include _560{
         padding: 3px 10px;
         font-size: 10px;
     }
@@ -1060,7 +1058,7 @@ body {
         transform: scale(0.97);
         background-color: lighten(#FF6C6C, 5%);
     }
-    @include _560{ 
+    @include _560{
         padding: 3px 10px;
         font-size: 10px;
     }
@@ -1076,14 +1074,14 @@ body {
         transform: scale(0.97);
         background-color: lighten(#91C3FF, 5%);
     }
-    @include _560{ 
+    @include _560{
         padding: 3px 10px;
         font-size: 10px;
-        
+
     }
 }
 .time-publish{
     margin-top: 8px;
-    @include fluidFontSize(10px, 16px, 767px, 1280px, 13px); 
+    @include fluidFontSize(10px, 16px, 767px, 1280px, 13px);
 
 }
