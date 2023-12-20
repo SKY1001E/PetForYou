@@ -56,7 +56,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 tap(() => this.isLoading = true))
             .subscribe(u => {
                 this.user = u;
-                console.log(this.user)
                 this.isLoading = false;
                 this.renderChangePasswordForm();
                 this.renderUpdateUserInfoForm();
@@ -98,11 +97,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
         }
         this.userService.changePassword(oldPassword, newPassword).subscribe({
             next: (response) => {
-                console.log(response, "success")
                 this.toastService.add({severity: 'success', summary: 'Password change', detail: 'Password has changed'})
             },
             error: (error) => {
-                console.log(error, "error")
                 this.toastService.add({severity: 'error', summary: 'Password change', detail: error.error})
             }
         });
@@ -189,7 +186,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 takeUntil(this.destroy)
             )
             .subscribe(() => {
-                this.toastService.add({severity: 'success', summary: 'User banned', detail: 'User successfully banned'});
+                this.toastService.add({severity: 'success', summary: 'User banned', detail: 'User was successfully banned'});
+                this.logout();
             });
     }
 }

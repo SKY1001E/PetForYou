@@ -38,7 +38,7 @@ namespace Pet4YouAPI.Services
                 }
             }
 
-            if (user != null && _hashService.VerifyPassword(userLogin.Password, user.PasswordHash) && user.Deleted == false && user.Banned == false)
+            if (user != null && _hashService.VerifyPassword(userLogin.Password, user.PasswordHash) && user.Deleted == false)
             {
                 return user;
             }

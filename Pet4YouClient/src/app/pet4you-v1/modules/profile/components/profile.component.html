@@ -9,13 +9,13 @@
             </div>
             <div class="flex flex-direction-column" style="gap: 5px">
                 <button
-                    *ngIf="!user?.admin"
+                    *ngIf="user?.admin"
                     class="log-out-button"
                     (click)="confirmDeletingAccount($event)"
                     style="background-color: rgb(255, 95, 95); margin-top: 10px;">Delete profile</button>
 
                 <button
-                    *ngIf="!user?.admin"
+                    *ngIf="user?.admin"
                     class="log-out-button"
                     (click)="onBannedAccount($event)"
                     style="background-color: rgb(255, 95, 95); margin-top: 10px;">Banned Account</button>

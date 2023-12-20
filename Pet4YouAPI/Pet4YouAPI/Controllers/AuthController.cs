@@ -61,13 +61,23 @@ namespace Pet4YouAPI.Controllers
                 return Unauthorized();
             }
 
+            if (user.Banned)
+            {
+                return new ObjectResult("Access forbidden")
+                {
+                    StatusCode = 403
+                };
+            }
+
             var token = GenerateJwtToken(user);
 
+  
             return Ok(new
             {
                 token,
                 user
             });
+           
         }
 
         private string GenerateJwtToken(User user)

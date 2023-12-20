@@ -62,12 +62,6 @@ export class UserService {
     }
 
     bannedUser(userId: number): Observable<any> {
-        return this.http.post(`${this.apiUrl}api/User/ban`,
-            userId,
-            {
-                params: {
-                    id: userId
-                }
-            })
+        return this.http.post(`${this.apiUrl}api/User/ban/${userId}`, userId)
     }
 }
