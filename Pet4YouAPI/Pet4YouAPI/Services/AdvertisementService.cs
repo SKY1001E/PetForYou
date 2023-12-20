@@ -203,8 +203,8 @@ namespace Pet4YouAPI.Services
                 return CreationResult.IncorrectData;
 
             var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, advertisementMediaPath, advertisementId.ToString());
+            Console.WriteLine(uploadPath.ToString());
             Directory.CreateDirectory(uploadPath);
-
             int i = 0;
             foreach (var file in files)
             {

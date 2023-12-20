@@ -73,10 +73,12 @@
     </div>
 </div>
 
+
 <ng-template #loading>
     <p-progressSpinner></p-progressSpinner>
 </ng-template>
 
+<div *ngIf="!isLoading">
 <p-dialog
     header="Profile editing"
     [(visible)]="isDialogOpened"
@@ -147,3 +149,4 @@
         </div>
     </form>
 </ng-template>
+</div>

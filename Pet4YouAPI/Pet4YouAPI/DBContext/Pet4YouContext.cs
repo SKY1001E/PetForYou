@@ -13,18 +13,13 @@ public class Pet4YouContext : DbContext
 
     public Pet4YouContext(DbContextOptions<Pet4YouContext> options)
         : base(options)
-    {
-    }
+    { }
 
     public virtual DbSet<Advertisement> Advertisements { get; set; }
-
-    //public virtual DbSet<AdvertisementCriterion> AdvertisementCriteria { get; set; }
 
     public virtual DbSet<AdvertisementDeleting> AdvertisementDeletings { get; set; }
 
     public virtual DbSet<AdvertisementLocation> AdvertisementLocations { get; set; }
-
-    //public virtual DbSet<Criteria> Criterias { get; set; }
 
     public virtual DbSet<OrderRequest> OrderRequests { get; set; }
 
@@ -50,21 +45,6 @@ public class Pet4YouContext : DbContext
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
         });
-        /*
-        modelBuilder.Entity<AdvertisementCriterion>(entity =>
-        {
-            entity.HasKey(e => e.Id);
-
-            entity.Property(e => e.Value).HasMaxLength(150);
-
-            entity.HasOne(d => d.Advertisement).WithMany(p => p.AdvertisementCriteria)
-                .HasForeignKey(d => d.AdvertisementId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            entity.HasOne(d => d.Criteria).WithMany(p => p.AdvertisementCriteria)
-                .HasForeignKey(d => d.CriteriaId)
-                .OnDelete(DeleteBehavior.Cascade);
-        }); */
 
         modelBuilder.Entity<AdvertisementDeleting>(entity =>
         {
@@ -95,14 +75,6 @@ public class Pet4YouContext : DbContext
             entity.HasOne(d => d.IdNavigation).WithOne(p => p.AdvertisementLocation)
                 .HasForeignKey<AdvertisementLocation>(d => d.Id);
         });
-
-        /*
-        modelBuilder.Entity<Criteria>(entity =>
-        {
-            entity.HasKey(e => e.Id);
-
-            entity.Property(e => e.Name).HasMaxLength(20);
-        }); */
 
         modelBuilder.Entity<AdvertisementInfo>(entity =>
         {

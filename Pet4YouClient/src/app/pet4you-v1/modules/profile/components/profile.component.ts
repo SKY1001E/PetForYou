@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     destroy = new Subject<any>();
     private prevUIParts: any;
     user!: User;
-    isLoading: boolean = false;
+    isLoading: boolean = true;
     isDialogOpened: boolean = false;
     changePasswordForm!: FormGroup;
     updateUserInfoForm!: FormGroup;
@@ -41,13 +41,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
           ];
     }
 
-    ngOnDestroy() {
-        this.destroy.next(null);
-        this.destroy.complete();
-
-        this.uiParts.restoreValue(this.prevUIParts);
-    }
-
     ngOnInit(): void {
         this.prevUIParts = this.uiParts.storeValue();
 
@@ -56,12 +49,17 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 tap(() => this.isLoading = true))
             .subscribe(u => {
                 this.user = u;
-                console.log(this.user)
-                this.isLoading = false;
                 this.renderChangePasswordForm();
                 this.renderUpdateUserInfoForm();
+                this.isLoading = false;
             })
+    }
 
+
+    ngOnDestroy() {
+        this.destroy.next(null);
+        this.destroy.complete();
+        this.uiParts.restoreValue(this.prevUIParts);
     }
 
     renderChangePasswordForm() {
@@ -98,11 +96,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
         }
         this.userService.changePassword(oldPassword, newPassword).subscribe({
             next: (response) => {
-                console.log(response, "success")
                 this.toastService.add({severity: 'success', summary: 'Password change', detail: 'Password has changed'})
             },
             error: (error) => {
-                console.log(error, "error")
                 this.toastService.add({severity: 'error', summary: 'Password change', detail: error.error})
             }
         });
