@@ -1066,6 +1066,22 @@ body {
     }
 
 }
+.received-btn, .send-btn{
+    background-color: #91C3FF;
+    padding: 10px 50px;
+    @include border-radius(10px);
+    border: none;
+    margin: 20px;
+    &:hover {
+        transform: scale(0.97);
+        background-color: lighten(#91C3FF, 5%);
+    }
+    @include _560{ 
+        padding: 3px 10px;
+        font-size: 10px;
+        
+    }
+}
 .time-publish{
     margin-top: 8px;
     @include fluidFontSize(10px, 16px, 767px, 1280px, 13px); 
