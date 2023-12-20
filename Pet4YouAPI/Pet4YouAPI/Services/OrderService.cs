@@ -33,6 +33,17 @@ namespace Pet4YouAPI.Services
             return CreationResult.Success;
         }
 
+        public async Task<ModifyResult> ChangeOrderRequestStatus(OrderRequest orderRequest)
+        {
+            var foundOrderRequest = await _context.OrderRequests.FindAsync(orderRequest.Id);
+            if (foundOrderRequest == null)
+                return ModifyResult.ItemNotFound;
+
+            foundOrderRequest.Status = orderRequest.Status;
+            await _context.SaveChangesAsync();
+            return ModifyResult.Success;
+        }
+
         public async Task<ICollection<OrderRequest>> GetUserCompletedOrders(int userId)
         {
             object[] paramsArray = new object[] { userId };

@@ -51,5 +51,16 @@ namespace Pet4YouAPI.Controllers
             return (List<OrderRequest>)result;
         }
 
+        [HttpPatch]
+        public async Task<IActionResult> ChangeOrderRequestStatus(OrderRequest orderRequest)
+        {
+            ModifyResult result = await _orderService.ChangeOrderRequestStatus(orderRequest);
+            if (result == ModifyResult.ItemNotFound)
+                return NotFound();
+            if (result == ModifyResult.Success)
+                return Ok();
+            return BadRequest();
+        }
+
     }
 }
