@@ -2,11 +2,11 @@
     <div class="main-announcement-title" style="margin-top: 40px;">All Announcements</div>
     <div style="position: relative" class="flex all-announcement-page">
         <div class="flex search-container" style="margin-top: 15px; width: 100%; gap: 15px">
-            <input type="text" pInputText style="flex-grow: 1;" placeholder="What are you looking for?">
+            <input [(ngModel)]="currentSearchQuery" type="text" pInputText style="flex-grow: 1;" placeholder="What are you looking for?">
             <div>
                 <button iconPos="right" icon="pi pi-angle-down" iconPos="right" class="p-button-outlined" pButton label="Chose filters" (click)="changeFilterOpens()"></button>
             </div>
-            <p-button icon="pi pi-search"></p-button>
+            <p-button icon="pi pi-search" (click)="getAnnouncementBySearch()"></p-button>
         </div>
         <div *ngIf="isFiltersOpened">
             <app-announcement-filters (dataEvent)="receiveDataFromChild($event)" style="position: absolute; top: 80px; right: 0; z-index: 1"></app-announcement-filters>

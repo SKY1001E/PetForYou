@@ -112,9 +112,9 @@ namespace Pet4YouAPI.Controllers
 
         [HttpPost]
         [Route("filter/title")]
-        public async Task<ActionResult<ICollection<Advertisement>>> GetAdvertisementsByName([FromBody] string title)
+        public async Task<ActionResult<ICollection<Advertisement>>> GetAdvertisementsByName([FromBody] SearchQuery title)
         {
-            ICollection<Advertisement> advertisements = await _advertisementService.GetAdvertisementsByName(title);
+            ICollection<Advertisement> advertisements = await _advertisementService.GetAdvertisementsByName(title.query);
             return Ok(advertisements);
         }
 

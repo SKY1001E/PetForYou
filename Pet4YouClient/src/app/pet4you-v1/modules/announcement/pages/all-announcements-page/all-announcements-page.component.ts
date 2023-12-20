@@ -11,9 +11,11 @@ import { AnnouncementService } from 'src/app/pet4you-v1/services/api/announcemen
     templateUrl: './all-announcements-page.component.html',
 })
 export class AllAnnouncementsPageComponent {
+
     destroy = new Subject<any>();
     isFiltersOpened: boolean = false;
     announcementsList?: Announcement[];
+    currentSearchQuery: string = "";
 
     types: SelectItem[] = [
         { label: 'Choose sorting', value: null, disabled: true },
@@ -54,6 +56,14 @@ export class AllAnnouncementsPageComponent {
         .subscribe({
             next: (res) => this.announcementsList = res,
             error: () => this.toastService.add({severity:'error', summary:'Error',detail:'Error occured during trying to get advertisements'})
+        })
+    }
+
+    getAnnouncementBySearch() {
+        console.log(this.currentSearchQuery);
+        this.announcementService.getAdvertisementsBySearch(this.currentSearchQuery).subscribe({
+            next: (response) => this.announcementsList = response,
+            error: (error) => console.log(error)
         })
     }
 

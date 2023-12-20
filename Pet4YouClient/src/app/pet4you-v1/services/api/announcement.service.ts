@@ -46,4 +46,8 @@ export class AnnouncementService {
     deleteAdvertisement(advertisementId: number) : Observable<any> {
         return this.http.delete(`${this.apiUrl}api/Advertisement/${advertisementId}`, { responseType: 'text' });
     }
+
+    getAdvertisementsBySearch(query: string) : Observable<any> {
+        return this.http.post(`${this.apiUrl}api/Advertisement/filter/title`,{query: query});
+    }
 }
