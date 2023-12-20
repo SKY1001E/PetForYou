@@ -172,6 +172,32 @@ namespace Pet4YouAPI.Services
             return DeletingResult.Success;
         }
 
+        public async Task<DeletingResult> DeleteAdvertisementWithReason(AdminAdvertisementDeletingModel deletingModel)
+        {
+            var advertisement = await _context.Advertisements.FindAsync(deletingModel.AdvertisementId);
+            if (advertisement == null)
+                return DeletingResult.ItemNotFound;
+
+            var deletedBefore = await _context.AdvertisementDeletings.Where(a => a.AdvertisementId == deletingModel.AdvertisementId).ToListAsync();
+            if (deletedBefore.Count != 0)
+                return DeletingResult.ItemNotFound;
+
+            var isUserAdmin = await _context.Users.Where(e => e.Id == deletingModel.AdminId && e.Admin == true).AnyAsync();
+            if (isUserAdmin == false)
+                return DeletingResult.AccessDenied;
+
+            AdvertisementDeleting deleting = new AdvertisementDeleting();
+            deleting.DeleteDate = DateTime.Now;
+            deleting.AdvertisementId = deletingModel.AdvertisementId;
+            deleting.Reason = deletingModel.Reason;
+            deleting.AdminUserId = deletingModel.AdminId;
+            _context.AdvertisementDeletings.Add(deleting);
+            await _context.SaveChangesAsync();
+
+            return DeletingResult.Success;
+        }
+
+
         public async Task<CreationResult> AddPicturesToAdvertisement(int advertisementId, IFormFileCollection files)
         {
             if (_context.Advertisements.Find(advertisementId) == null)

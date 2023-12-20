@@ -50,7 +50,16 @@
                             <p-avatar icon="pi pi-user" styleClass="mr-2" size="xlarge" style="margin-bottom:10px;"></p-avatar>
                             <p style="margin-left:20px">{{owner.userInfo.firstName + " " + owner.userInfo.lastName}}</p>
                         </div>
-                        <p-button label="Show Contacts"></p-button>
+                        <p-button label="Show Contacts" (click)="isContactsVisible = true"></p-button>
+                        <p-dialog header="User contacts" [(visible)]="isContactsVisible" [style]="{width: '400px'}">
+                            <div class="flex flex-direction-column" style="gap: 10px; font-size: 16px;">
+                                <div style="flex: 1">{{ owner.userInfo.firstName + " " + owner.userInfo.lastName + " " + owner.userInfo.patronymicName }}</div>
+                                <div>Phone: {{ owner.userInfo.phone }}</div>
+                                <div>Email: {{ owner.userInfo.email }} </div>
+                            </div>
+                            
+                        </p-dialog>
+
                     </div>
                     <div class="text-center details-container" style="margin-bottom: 10px;">
                         <h2>Information</h2>

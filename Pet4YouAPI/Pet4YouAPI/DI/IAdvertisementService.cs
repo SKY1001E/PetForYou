@@ -15,6 +15,8 @@ namespace Pet4YouAPI.DI
 
         public Task<DeletingResult> DeleteAdvertisement(int advertisementId);
 
+        public Task<DeletingResult> DeleteAdvertisementWithReason(AdminAdvertisementDeletingModel deletingModel);
+
         public Task<CreationResult> AddPicturesToAdvertisement(int advertisementId, IFormFileCollection files);
 
         public ICollection<string> GetAdvertisementPicturesURLs(int advertisementId);

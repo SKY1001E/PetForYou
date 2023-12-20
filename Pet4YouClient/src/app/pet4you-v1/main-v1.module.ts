@@ -15,6 +15,7 @@ import {AuthRequiredGuard} from "./guards/auth-required.guard";
 import {UserService} from "./services/api/user.service";
 import {HomePageComponent} from "./pages/home-page/home-page.component";
 import {AnnouncementService} from "./services/api/announcement.service";
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 const providers = [
     UIPartsController,
@@ -74,6 +75,7 @@ export function tokenGetter() {
         }),
         ButtonModule,
         ToastModule,
+        ConfirmDialogModule
     ],
   declarations: [
     MainPageComponent,

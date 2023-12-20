@@ -42,4 +42,8 @@ export class AnnouncementService {
     changeAnnouncement(announcement: Announcement) : Observable<any> {
         return this.http.put(`${this.apiUrl}api/Advertisement`, announcement);
     }
+
+    deleteAdvertisement(advertisementId: number) : Observable<any> {
+        return this.http.delete(`${this.apiUrl}api/Advertisement/${advertisementId}`, { responseType: 'text' });
+    }
 }

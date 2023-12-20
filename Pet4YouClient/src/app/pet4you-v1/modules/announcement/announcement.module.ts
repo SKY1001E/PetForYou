@@ -22,6 +22,7 @@ import { UserAnnouncementsPageComponent } from './pages/user-announcements-page/
 import { AdvertisementComponent } from './components/advertisement/advertisement.component';
 import { EditAnnouncementComponent } from './components/edit-announcement/edit-announcement';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
         DropdownModule,
         TreeSelectModule,
         ButtonModule,
+        ConfirmDialogModule,
         GalleriaModule,
         AvatarModule,
         MultiSelectModule,

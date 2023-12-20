@@ -20,6 +20,7 @@ export class AnnouncementViewPageComponent implements OnInit, OnDestroy, AfterVi
     annoncement!: Announcement;
     owner!: User;
     isLoading: boolean = true;
+    isContactsVisible: boolean = false;
 
     constructor(private router: Router,
                 private route: ActivatedRoute,
@@ -82,5 +83,9 @@ export class AnnouncementViewPageComponent implements OnInit, OnDestroy, AfterVi
                 this.images.push({ itemImageSrc: 'assets/image-placeholder.jpg'})
             } 
         })
+    }
+
+    showContacts() {
+        console.log(this.owner)
     }
 }

@@ -1,4 +1,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { AnnouncementService } from 'src/app/pet4you-v1/services/api/announcement.service';
 import { Announcement } from 'src/app/pet4you-v1/shared/others/models/announcement';
 
@@ -24,7 +26,10 @@ export class AdvertisementComponent implements OnInit {
 
     constructor(
         @Inject('API_URL') private apiUrl: string,
-        private announcementService: AnnouncementService
+        private announcementService: AnnouncementService,
+        private confirmationService: ConfirmationService,
+        private messageService: MessageService,
+        private router: Router
         )
     {}
 
@@ -83,5 +88,28 @@ export class AdvertisementComponent implements OnInit {
         else {
             return this.announcementImage
         }
+    }
+
+    deleteSelfAdvertisement(event: Event) {
+        this.confirmationService.confirm({
+            target: event.target as EventTarget,
+            message: 'Are you you want to delete this advertisement?',
+            header: 'Advertisement deletion',
+            icon: 'pi pi-exclamation-triangle',
+            rejectButtonStyleClass:"p-button-text",
+            accept: () => {
+                this.announcementService.deleteAdvertisement(this.announcementData!.id!).subscribe({
+                    next: (response) => {
+                        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'You have successfully deleted the ad' });
+                        window.location.reload()
+                    },
+                    error: (error) => {
+                        console.log(error);
+                        this.messageService.add({severity:'error', summary:'Error',detail:'An error occued while deleting the ad'})
+                    }
+                })
+                
+            },
+        });
     }
 }

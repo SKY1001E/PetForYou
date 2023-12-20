@@ -62,9 +62,22 @@ namespace Pet4YouAPI.Controllers
         {
             DeletingResult result = await _advertisementService.DeleteAdvertisement(id);
             if (result == DeletingResult.Success)
-                return Ok("Advertisement deleted");
+                return Ok();
             if (result == DeletingResult.ItemNotFound)
                 return NotFound("Advertisement not found");
+            return BadRequest();
+        }
+
+        [HttpDelete("admin")]
+        public async Task<IActionResult> DeleteAdvertisement([FromBody] AdminAdvertisementDeletingModel deletingModel )
+        {
+            DeletingResult result = await _advertisementService.DeleteAdvertisementWithReason(deletingModel);
+            if (result == DeletingResult.Success)
+                return Ok();
+            if (result == DeletingResult.ItemNotFound)
+                return NotFound("Incorrect data");
+            if (result == DeletingResult.AccessDenied)
+                return StatusCode(403, "You need to be admin to delete advertisements");
             return BadRequest();
         }
 
