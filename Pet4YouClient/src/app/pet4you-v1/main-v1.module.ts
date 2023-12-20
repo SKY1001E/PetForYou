@@ -62,6 +62,10 @@ export function tokenGetter() {
                         path: 'announcement',
                         loadChildren: () => import('./modules/announcement/announcement.module').then(m => m.AnnouncementModule),
                         canActivate: [AuthRequiredGuard]
+                    },
+                    {
+                        path: 'order',
+                        loadChildren: () => import('./modules/order/order.module').then(m => m.OrderModule)
                     }
               ]
             },

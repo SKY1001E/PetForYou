@@ -20,7 +20,7 @@ import { AllAnnouncementsPageComponent } from './pages/all-announcements-page/al
 import { AnnouncementFiltersComponent } from './components/announcement-filters/announcement-filters.component';
 import { UserAnnouncementsPageComponent } from './pages/user-announcements-page/user-announcements-page.component';
 import { AdvertisementComponent } from './components/advertisement/advertisement.component';
-import { EditAnnouncementComponent } from './components/edit-announcement/edit-announcement';
+import { EditAnnouncementComponent } from './pages/edit-announcement/edit-announcement';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
