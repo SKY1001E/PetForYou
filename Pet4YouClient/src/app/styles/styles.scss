@@ -1013,3 +1013,61 @@ body {
     width: 100%; 
     justify-content: space-between; 
 }
+//message
+.message{
+@include fluidFontSize(15px, 26px, 767px, 1280px, 23px); 
+
+}
+.message-container{
+    background-color: white;  
+    padding: 20px; 
+    border: 1px solid #ddd;  
+    @include border-radius(8px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
+    margin: 30px;  
+}
+.adv-label{
+    @include fluidFontSize(14px, 24px, 767px, 1280px, 19px); 
+    white-space: nowrap;
+}
+.adv-desc{
+    margin-left: 30px;
+    text-align: justify;
+    @include fluidFontSize(10px, 16px, 767px, 1280px, 13px); 
+
+}
+.agree-btn {
+    background-color: #91C3FF;
+    padding: 10px 50px;
+    @include border-radius(10px);
+    border: none;
+    &:hover {
+        transform: scale(0.97);
+        background-color: lighten(#91C3FF, 5%);
+    }
+    @include _560{ 
+        padding: 3px 10px;
+        font-size: 10px;
+    }
+
+}
+.reject-btn{
+    background-color: #FF6C6C;
+    padding: 10px 50px;
+    @include border-radius(10px);
+    border: none;
+    &:hover {
+        transform: scale(0.97);
+        background-color: lighten(#FF6C6C, 5%);
+    }
+    @include _560{ 
+        padding: 3px 10px;
+        font-size: 10px;
+    }
+
+}
+.time-publish{
+    margin-top: 8px;
+    @include fluidFontSize(10px, 16px, 767px, 1280px, 13px); 
+
+}
