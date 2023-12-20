@@ -13,6 +13,8 @@ public partial class Rating
 
     public short? Score { get; set; }
 
+    public string? Comment { get; set; }
+
     public DateTime? RatingDate { get; set; }
 
     public virtual User? RaterUser { get; set; }
