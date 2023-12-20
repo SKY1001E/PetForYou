@@ -15,7 +15,7 @@
     <div class="flex custom-container" style="margin-top: 30px">
         <label class="sort-label">Sort by:</label>
         <div class="custom-dropdown-container">
-            <p-dropdown [style]="{'width': '180px'}">Sorting type</p-dropdown>
+            <p-dropdown (onChange)="sortAdvertisements()" [(ngModel)]="selectedSorting" [options]="sortTypesItems" [style]="{'width': '180px'}" placeholder="Sorting type"></p-dropdown>
         </div>
     </div>
     <div *ngFor="let announcement of announcementsList" class="all-announcement-container">

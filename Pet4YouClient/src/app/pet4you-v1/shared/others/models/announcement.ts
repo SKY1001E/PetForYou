@@ -64,3 +64,10 @@ export enum Gender {
     Female = 'female',
     Unknown = 'unknown'
 }
+
+export enum SortType {
+    PriceAsc = "price_asc",
+    PriceDesc = "price_desc",
+    DateAsc = "date_asc",
+    DateDesc = "date_desc"
+}

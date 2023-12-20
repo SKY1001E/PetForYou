@@ -65,7 +65,8 @@ export function tokenGetter() {
                     },
                     {
                         path: 'order',
-                        loadChildren: () => import('./modules/order/order.module').then(m => m.OrderModule)
+                        loadChildren: () => import('./modules/order/order.module').then(m => m.OrderModule),
+                        canActivate: [AuthRequiredGuard]
                     }
               ]
             },

@@ -10,29 +10,29 @@ import {UIPartsController} from '../../services/ui-parts-controller.service';
 })
 export class MainPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  destroy = new Subject<any>();
+    destroy = new Subject<any>();
 
-  title = 'Pet4YouClient';
+    title = 'Pet4YouClient';
 
-  constructor(private router: Router,
-              private route: ActivatedRoute,
-              private location: Location,
-              public uiParts: UIPartsController) {
-  }
+    constructor(private router: Router,
+                private route: ActivatedRoute,
+                private location: Location,
+                public uiParts: UIPartsController) {
+    }
 
-  ngOnDestroy() {
-    this.destroy.next(null);
-    this.destroy.complete();
-  }
+    ngOnDestroy() {
+        this.destroy.next(null);
+        this.destroy.complete();
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  ngAfterViewInit() {
+    ngAfterViewInit() {
 
-  }
+    }
 
-  back() {
-      this.location.back();
-  }
+    back() {
+        this.location.back();
+    }
 }
