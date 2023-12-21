@@ -11,6 +11,7 @@ import { Dropdown, DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar'; 
 import { SellerProfileComponent } from './seller-profile/seller-profile.component'; 
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
  
  
@@ -20,7 +21,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
         FormsModule, 
         ConfirmDialogModule,
         HttpClientModule, 
-        ReactiveFormsModule, 
+        ReactiveFormsModule,
+        InputTextareaModule, 
         RouterModule.forChild([ 
             {path: '', redirectTo: 'my', pathMatch: 'full'}, 
             { 

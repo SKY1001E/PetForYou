@@ -17,6 +17,7 @@ import {HomePageComponent} from "./pages/home-page/home-page.component";
 import {AnnouncementService} from "./services/api/announcement.service";
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { OrderService } from './services/api/order.service';
+import { RatingService } from './services/api/rating.service';
 
 const providers = [
     UIPartsController,
@@ -25,6 +26,7 @@ const providers = [
     UserService,
     AnnouncementService,
     OrderService,
+    RatingService,
     AuthRequiredGuard,
     ConfirmationService
 ]

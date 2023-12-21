@@ -53,6 +53,9 @@ namespace Pet4YouAPI.Services
                 .Where(e => e.RecipientUserId == userId)
                 .ToListAsync();
 
+            if (ratings.Count == 0)
+                return -1;
+
             decimal rating = ratings
                 .Select(e => Convert.ToDecimal(e.Score))
                 .Average();

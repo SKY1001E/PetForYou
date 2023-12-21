@@ -1,4 +1,4 @@
-<div class="seller-profile"> 
+<div *ngIf="!isLoading" class="seller-profile"> 
     <div style="margin: 0 auto; max-width: 1280px;">
         <div class="text-center info-user" style="margin-top: 70px;">Information about user</div> 
         <div class="flex seller-container "> 
@@ -15,35 +15,42 @@
             </div> 
             <div class="date-register">
                 <div>Registration date: {{ user.registrationDate | date }}</div> 
-                <button
-                    *ngIf="isCanBeBanned"
-                    class="log-out-button"
-                    (click)="onBannedAccount($event)"
-                    style="background-color: rgb(255, 95, 95); margin-top: 10px;">Ban this account</button>
+                <div>
+                    <button
+                    class="your-ads-button"
+                    (click)="isReviewDialogOpened = true"
+                    style="margin-top: 10px;">Add a review</button>
+                </div>
+                
+                <div>
+                    <button
+                        *ngIf="isCanBeBanned"
+                        class="log-out-button"
+                        (click)="onBannedAccount($event)"
+                        style="background-color: rgb(255, 95, 95); margin-top: 10px;">Ban this account</button>
+                </div>
             </div>
         </div> 
         <div class="text-center info-reviews">Rating and reviews</div> 
         <div class="review-container"> 
             <div class="flex rating-container"> 
                 <div class="rating-label">Rating</div> 
-                <label class="rating-label" style="margin-left:20px">4.5</label> 
-                <span class="out-of-five" style="margin-left: 10px;"> / 5</span> 
-                <div class="number-rating-label" style="margin-left: 90px;"> {{ getReviewsCount() }} total user ratings </div> 
+                <div *ngIf="userScope > 0 else noscore">
+                    <label class="rating-label" style="margin-left:20px">{{ userScope | number:'1.2-2' }}</label> 
+                    <span class="out-of-five" style="margin-left: 10px;"> / 5</span>                     
+                </div>
+                <ng-template #noscore>
+                    <div>There is no reviews</div>
+                </ng-template>
             </div> 
         <div class=" flex review-block-container" style="gap:20px"> 
-            <div class="assesment-title">Відгуки</div> 
-            <div class="review-block"> 
-                <div class="time-publication ">Вчора о 20:00</div> 
-                <div class="text-center review-title">Гарний продавець</div> 
-                <div class="user-assesment">Оцінка: 5</div> 
-                <div class="user-review">Продавець вічливий, угода прошла швидко та зручно</div> 
+            <div class="assesment-title">Latest reviews</div> 
+            <div *ngFor="let review of latestReviews" class="review-block"> 
+                <div class="time-publication ">{{ review.ratingDate | date }}</div> 
+                <div class="user-assesment">Score: {{ review.score }}</div> 
+                <div class="user-review">{{ review.comment }}</div> 
             </div> 
-            <div class="review-block"> 
-                <div class="time-publication ">Вчора о 20:00</div> 
-                <div class="text-center review-title ">Довго не відповідає</div> 
-                <div class="user-assesment">Оцінка: 4</div> 
-                <div class="user-review">Занадто довго відповідав, але домовились про покупку.</div> 
-            </div> 
+            <div style="margin-left: -20px;" *ngIf="latestReviews.length == 0">There is no latest reviews</div>
         </div> 
     </div> 
     <div class="text-center info-contact">Контактна інформація про користувача</div> 
@@ -60,3 +67,25 @@
         </div> 
     </div>
 </div>
+
+<p-dialog 
+    header="Add a review about {{ user.login }}" 
+    [(visible)]="isReviewDialogOpened" 
+    [style]="{width: '600px'}"
+    [modal]="true"
+    [draggable]="false"
+    [resizable]="false">
+    <div>
+        <div class="flex" style="gap: 10px; align-items: center;">
+            <p style="font-size: 18px">Score:</p>
+            <p-dropdown [options]="scores" [(ngModel)]="score"></p-dropdown>
+        </div>
+    </div>
+    <div>
+        <p style="font-size: 18px; margin-bottom: 5px;">Review text</p>
+        <textarea pInputTextarea [(ngModel)]="reviewText" style="resize: none; width: 100%; height: 100px"></textarea>
+    </div>
+    <div style="margin-top: 15px">
+        <button pButton (click)="leaveReview()" label="Leave a review"></button>
+    </div>
+</p-dialog>
