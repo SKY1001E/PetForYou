@@ -8,7 +8,7 @@ import { OrderRequest } from 'src/app/pet4you-v1/shared/others/models/order-requ
   templateUrl: './order-list-archive.component.html'
 })
 export class OrderListArchiveComponent {
-    currentChosenTypeTitle: string = "Received orders"; 
+    currentChosenTypeTitle: string = "Archived orders"; 
     orderRequests?: OrderRequest[];
     isLoading: boolean = true;
     userId!: number;

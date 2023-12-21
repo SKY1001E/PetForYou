@@ -19,7 +19,7 @@
         </div>
     </div>
     <div *ngFor="let announcement of announcementsList" class="all-announcement-container">
-        <app-advertisement [announcementData]="announcement"></app-advertisement>
+        <app-advertisement [adminButtonsDisplay]="isCurrentUserAdmin" [announcementData]="announcement"></app-advertisement>
     </div>
     <div *ngIf="announcementsList == null || announcementsList?.length == 0">
         There is no advertisements. Try to apply other filters.

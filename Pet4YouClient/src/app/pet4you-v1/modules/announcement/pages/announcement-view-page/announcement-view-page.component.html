@@ -55,7 +55,7 @@
                             <div class="flex" style="gap: 15px;">
                                 <p-button label="Show Contacts" (click)="isContactsVisible = true"></p-button>
                                 <p-button label="User profile" [routerLink]="['/profile', owner.id]"></p-button>
-                                <p-button label="Write a message" [routerLink]="['/profile', owner.id]"></p-button>
+                                <p-button label="Write a message" (click)="openSendMessage()"></p-button>
                             </div>
                             <p-dialog header="User contacts" [(visible)]="isContactsVisible" [style]="{width: '400px'}">
                                 <div class="flex flex-direction-column" style="gap: 10px; font-size: 16px;">
@@ -96,5 +96,25 @@
 <ng-template #loadingTemplate>
     <div class="flex justify-content-center">
         <p-progressSpinner></p-progressSpinner>
+    </div>
+</ng-template>
+
+<p-dialog
+    header="Send message to advertisement author"
+    [(visible)]="isDialogOpened"
+    [modal]="true"
+    [style]="{ width: '50vw' }"
+    [draggable]="false"
+    [resizable]="false">
+    <ng-container *ngTemplateOutlet="contentDialog"></ng-container>
+</p-dialog>
+
+
+<ng-template #contentDialog>
+    <div>
+        <textarea pInputTextarea [(ngModel)]="messageToSend" style="resize: none; width: 100%;"></textarea>
+    </div>
+    <div>
+        <button pButton (click)="sendMessage()" label="Send message"></button>
     </div>
 </ng-template>

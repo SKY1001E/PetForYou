@@ -112,4 +112,26 @@ export class AdvertisementComponent implements OnInit {
             },
         });
     }
+
+    deleteAdvertisementAdmin(event: Event) {
+        this.confirmationService.confirm({
+            target: event.target as EventTarget,
+            message: 'Are you you want to delete this advertisement as admin?',
+            header: 'Advertisement deletion',
+            icon: 'pi pi-exclamation-triangle',
+            rejectButtonStyleClass:"p-button-text",
+            accept: () => {
+                this.announcementService.deleteAdvertisement(this.announcementData!.id!).subscribe({
+                    next: (response) => {
+                        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'You have successfully deleted the ad' });
+                        window.location.reload()
+                    },
+                    error: (error) => {
+                        this.messageService.add({severity:'error', summary:'Error',detail:'An error occued while deleting the ad'})
+                    }
+                })
+                
+            },
+        });
+    }
 }

@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { MessageService, SelectItem } from 'primeng/api';
 import { Announcement, AnnouncementFilterModel, SortType } from 'src/app/pet4you-v1/shared/others/models/announcement';
 import { AnnouncementService } from 'src/app/pet4you-v1/services/api/announcement.service';
+import { UserService } from 'src/app/pet4you-v1/services/api/user.service';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class AllAnnouncementsPageComponent {
     isFiltersOpened: boolean = false;
     announcementsList?: Announcement[];
     currentSearchQuery: string = "";
+    isCurrentUserAdmin: boolean = false;
 
     sortTypesItems: SelectItem[] = [
         { label: 'Date (newest)', value: SortType.DateDesc },
@@ -25,7 +27,8 @@ export class AllAnnouncementsPageComponent {
         { label: 'Price (desc)', value: SortType.PriceDesc }
     ];
     constructor(private router: Router, 
-        private route: ActivatedRoute, 
+        private route: ActivatedRoute,
+        private userService: UserService, 
         private announcementService: AnnouncementService, 
         private toastService: MessageService) {}
 
@@ -40,6 +43,7 @@ export class AllAnnouncementsPageComponent {
             next: (res) => this.announcementsList = res,
             error: () => this.toastService.add({severity:'error', summary:'Error',detail:'Error occured during trying to get advertisements'})
         })
+        this.userService.isCurrentUserAdmin().then((isAdmin) => this.isCurrentUserAdmin = isAdmin);
     }
 
     ngAfterViewInit() {}

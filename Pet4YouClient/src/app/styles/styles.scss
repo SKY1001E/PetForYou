@@ -1029,7 +1029,6 @@ body {
 }
 .adv-label{
     @include fluidFontSize(14px, 24px, 767px, 1280px, 19px);
-    white-space: nowrap;
 }
 .adv-desc{
     margin-left: 30px;

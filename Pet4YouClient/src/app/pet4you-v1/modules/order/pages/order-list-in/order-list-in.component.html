@@ -16,8 +16,8 @@
                 <div style="width: 80%" class="adv-desc">{{ order.message }}</div>
             </div>
             <div class="flex agreement-container" style="margin-top: 30px; justify-content: flex-end; gap:20px;">
-                <button class="agree-btn" type="button">Accept</button>
-                <button class="reject-btn" type="button">Reject</button>
+                <button (click)="acceptOrder(order.id)" class="agree-btn" type="button">Accept</button>
+                <button (click)="rejectOrder(order.id)" class="reject-btn" type="button">Reject</button>
             </div>
         </div>
     </div>

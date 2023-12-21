@@ -14,7 +14,7 @@
                     <div class="location">
                         {{ getCorrectLocation() }}
                     </div>
-                    <div class="time">{{ announcementData?.publicationDate | date : "dd.MM.yyyy hh:mm" }}</div>
+                    <div class="time">{{ announcementData?.publicationDate | date : "dd.MM.yyyy HH:mm" }}</div>
                 </div>
             </div>
             <div class="price-label">{{ getCorrectPrice() }}  </div>
@@ -26,7 +26,7 @@
             <button *ngIf="detailButtonDisplay" pButton class="p-button-info" [routerLink]="['/announcement', 'view', announcementData?.id]">Details</button>
             <button *ngIf="selfAnnouncementButtonsDisplay" pButton class="p-button-warning" [routerLink]="['/announcement', 'edit', announcementData?.id]">Edit</button>
             <button *ngIf="selfAnnouncementButtonsDisplay" pButton class="p-button-danger" (click)="deleteSelfAdvertisement($event)">Delete</button>
-            <button *ngIf="adminButtonsDisplay" pButton class="p-button-danger">Delete</button>
+            <button *ngIf="adminButtonsDisplay" pButton class="p-button-danger" (click)="deleteAdvertisementAdmin($event)">Delete</button>
         </div>
     </div>
 </div>
